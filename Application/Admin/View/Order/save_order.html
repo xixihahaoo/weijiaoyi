@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<title></title>
+    <style>
+        .layui-input{
+            width: 60%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form">
+
+<div style="margin-top: 10px;margin-left: 10px;">
+    <button class="layui-btn" lay-submit="" lay-filter="demo2">点击提交</button>
+</div>
+
+
+<input type="hidden" value="{$list.feeprice}" id="feeprice">
+<input type="hidden" value="{$list.odds}" id="odds">
+<input type="hidden" value="{$list.oid}" id="oid">
+
+  <table class="layui-table">
+    <thead>
+      <tr>
+        <th>用户编号</th>
+        <th>订单编号</th>
+        <th>用户昵称[上级]</th>
+        <th>手机号码</th>
+        <th>建仓时间</th>
+        <th>平仓时间</th>
+        <th>产品信息</th>
+        <th>方向</th>
+        <th>投资金额</th>
+        <th>手续费</th>
+        <th>买入价</th>
+        <th>卖出价</th>
+        <th>盈亏</th>
+        <th>出入金</th>
+      </tr> 
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>{$list.uid}</td>
+        <td>{$list.jno}</td>
+        <td>{$list.username}[{$list.opera_name}]</td>
+        <td>{$list.utel}</td> 
+        <td>
+             <input class="layui-input input" style="width: 160px;" placeholder="建仓时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$list.jc_jtime|date='Y-m-d H:i:s',###}" name="starttime" id="buytime">
+        </td>
+        <td>
+             <input class="layui-input input" style="width: 160px;" placeholder="平仓时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$list.jtime|date='Y-m-d H:i:s',###}" name="endtime" id="selltime">
+        </td>
+        <td>{$list.remarks}</td>
+        <td>								
+
+	      <select  name="interest" lay-filter="fange" id="interest" >
+            <if condition='$list.jostyle eq 1'>
+				     <option value="1" selected="">买跌</option>
+		       	 <option value="0">买涨</option>
+		    <else/>
+		         <option value="0" selected="">买涨</option>
+				     <option value="1">买跌</option>
+	       </if>
+	      </select>
+
+		</td>
+        <td>
+		      <input type="text" style="width: 80px;" name="username" id="jc_jaccess" value="{$list.jc_jaccess}" lay-verify="required" placeholder="投资金额" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'')">
+        </td>
+        <td id="fee">{$list.jfee}</td>
+        <td>
+		      <input type="text" style="width: 80px;" name="username" value="{$list.jbuyprice}" lay-verify="required" placeholder="买入价" autocomplete="off" class="layui-input" id="buyprice" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+
+        </td>
+        <td>
+		      <input type="text" style="width: 80px;" name="username" value="{$list.jsellprice}" lay-verify="required" placeholder="卖出价" autocomplete="off" class="layui-input" id="sellprice" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+		</td>
+        <td id="ploss">{$list.jploss}</td>
+        <td id="account">{$list.jaccess}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+
+
+<link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+<script type="text/javascript" src="__CSS__/layui/layui.js"></script>
+
+<script>
+
+
+var feeprice  = $('#feeprice').val(); //基础手续费
+var odds      = $('#odds').val();     //胜率
+
+
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer;
+  console.log(form);
+
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+});
+ 
+  
+// form.on('submit(demo2)', function(data){
+//     layer.alert(JSON.stringify(data.field), {
+//       title: '最终的提交信息'
+//     })
+//     return false;
+// });
+
+form.on('select(fange)', function(data){
+    // console.log(data.elem); //得到select原始DOM对象
+    // console.log(data.value); //得到被选中的值
+    // console.log(data.othis); //得到美化后的DOM对象
+    var buyprice    = parseFloat($('#buyprice').val());
+    var sellprice   = parseFloat($('#sellprice').val());
+
+    var jc_jaccess  = $('#jc_jaccess').val();
+    var fee         = (jc_jaccess * feeprice) / 100;
+
+    if(data.value == 0)
+    {
+        if(sellprice > buyprice)
+          {
+            account = (jc_jaccess - fee);
+            ploss   = account * odds;
+
+            $('#ploss').html(ploss.toFixed(2));
+            $('#account').html(parseFloat(account+ploss).toFixed(2));
+          }
+          else if(sellprice === buyprice)
+          {
+            account = (jc_jaccess - fee);
+            $('#ploss').html(0);
+            $('#account').html(parseFloat(account).toFixed(2));
+          } else {
+
+            account = (jc_jaccess - fee);
+            $('#ploss').html(-account.toFixed(2));
+            $('#account').html(0);
+          }
+    } else {
+
+          if(sellprice > buyprice)
+          {
+            account = (jc_jaccess - fee);
+            $('#ploss').html(-account.toFixed(2));
+            $('#account').html(0);
+          } else if(sellprice === buyprice)
+          {
+            account = (jc_jaccess - fee);
+            $('#ploss').html(0);
+            $('#account').html(parseFloat(account).toFixed(2));
+          } else {
+            account = (jc_jaccess - fee);
+            ploss   = account * odds;
+            $('#ploss').html(ploss.toFixed(2));
+            $('#account').html(parseFloat(account+ploss).toFixed(2));
+          }
+    }
+
+});
+});
+
+
+$('#jc_jaccess').blur(function(){
+
+	if($(this).val() % 100 === 0)
+	{
+		  fee = ($(this).val() * feeprice) / 100;
+   		$('#fee').html(parseFloat(fee).toFixed(1));
+      var buyprice    = parseFloat($('#buyprice').val());
+      var sellprice   = parseFloat($('#sellprice').val());
+
+       var ostyle = $('#interest option:selected').val();
+
+       if(ostyle == 1)
+       {
+        
+          if(sellprice > buyprice)
+          {
+	          	account = ($(this).val() - fee);
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+          } else if(sellprice === buyprice)
+          {
+          	    account = ($(this).val() - fee);
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+          } else {
+
+      	    account = ($(this).val() - fee);
+        		ploss 	= account * odds;
+
+        		$('#ploss').html(ploss.toFixed(2));
+        		$('#account').html(parseFloat(account+ploss).toFixed(2));
+          }
+
+       } else {
+
+	        if(sellprice > buyprice)
+	        {
+	        	account = ($(this).val() - fee);
+	        	ploss 	= account * odds;
+
+	        	$('#ploss').html(ploss.toFixed(2));
+	        	$('#account').html(parseFloat(account+ploss).toFixed(2));
+	        }
+	        else if(sellprice === buyprice)
+	        {
+	        	account = ($(this).val() - fee);
+
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+	        } else {
+
+	        	account = ($(this).val() - fee);
+	        	ploss 	= account * odds;
+
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+	        }
+       }
+
+
+	} else {
+        
+        $(this).focus();
+		layer.msg('必须为100的倍数');
+		$('#fee').html(0);
+	}
+});
+
+
+$('#buyprice').blur(function(){
+
+	buyprice   = parseFloat($(this).val());
+	sellprice  = parseFloat($('#sellprice').val());
+  fee 	     = $('#fee').html();
+  account    = ($('#jc_jaccess').val() - fee);
+  var ostyle = $('#interest option:selected').val();
+
+    if(ostyle == 1)
+       {
+          if(sellprice > buyprice)
+          {
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+          }
+           else if(sellprice === buyprice)
+          {
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+          }
+          else {
+        		ploss 	= account * odds;
+        		$('#ploss').html(ploss.toFixed(2));
+        		$('#account').html(parseFloat(account+ploss).toFixed(2));
+          }
+
+       } else {
+           
+	        if(sellprice > buyprice)
+	        {
+	        	ploss 	= account * odds;
+	        	$('#ploss').html(ploss.toFixed(2));
+	        	$('#account').html(parseFloat(account+ploss).toFixed(2));
+	        }
+	        else if(sellprice === buyprice)
+	        {
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+	        } else {
+
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+	        }
+       }
+
+});
+
+
+
+$('#sellprice').blur(function(){
+
+	sellprice  = parseFloat($(this).val());
+	buyprice   = parseFloat($('#buyprice').val());
+  fee 	     = $('#fee').html();
+  account    = ($('#jc_jaccess').val() - fee);
+  var ostyle = $('#interest option:selected').val();
+
+    if(ostyle == 1)
+       {
+          if(sellprice > buyprice)
+          {
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+          } else if(sellprice === buyprice)
+          {
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+          } else {
+
+        		ploss 	= account * odds;
+
+        		$('#ploss').html(ploss.toFixed(2));
+        		$('#account').html(parseFloat(account+ploss).toFixed(2));
+          }
+
+       } else {
+           
+	        if(sellprice > buyprice)
+	        {
+	        	ploss 	= account * odds;
+	        	$('#ploss').html(ploss.toFixed(2));
+	        	$('#account').html(parseFloat(account+ploss).toFixed(2));
+	        }
+	        else if(sellprice === buyprice)
+	        {
+	        	$('#ploss').html(0);
+	        	$('#account').html(parseFloat(account).toFixed(2));
+	        } else {
+
+	        	$('#ploss').html(-account.toFixed(2));
+	        	$('#account').html(0);
+	        }
+    }
+
+});
+</script>
+
+
+
+<script type="text/javascript" src="__CSS__/layer/layer.js"></script>
+<script type="text/javascript">
+
+$('.layui-btn').click(function(){
+  var index = layer.load(0, {shade: false});
+  
+  var oid       = $('#oid').val();
+  var buytime   = $('#buytime').val();
+  var selltime  = $('#selltime').val();
+  var ostyle    = $('#interest option:selected').val();
+  var jaccess   = $('#jc_jaccess').val();
+  var fee       = $('#fee').html();
+  var buyprice  = $('#buyprice').val();
+  var sellprice = $('#sellprice').val();
+  var ploss     = $('#ploss').html();
+  var access    = $('#account').html();
+
+$.ajax({
+        type: "POST",
+        url: "{:U('save')}",
+        dataType:"json",
+        data:{'oid':oid,'buytime':buytime,'selltime':selltime,'ostyle':ostyle,'jaccess':jaccess,'fee':fee,'buyprice':buyprice,'sellprice':sellprice,'ploss':ploss,'access':access},
+        success: function(data) {
+            layer.msg(data.msg);
+            if(data.code == 1)
+            { 
+                layer.msg(data.msg);
+                window.location.reload();
+            } else {
+                layer.close(index);
+                layer.msg(data.msg);
+            }
+            
+        },
+        error: function(data) {
+            console.log(data);
+        }
+});
+});
+</script>

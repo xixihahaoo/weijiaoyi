@@ -1,0 +1,366 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+    <link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+    <style>
+        .actions li:nth-child(1){
+            float: left;
+        }
+        .users-list .table td ul.actions li {
+            padding: 5px 0 0 3px;
+        }
+        .users-list .table td ul.actions li{
+            border:none;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <h3>{$user.username}--普通用户</h3>
+            <div class="row-fluid header" style="margin-bottom: 10px">
+                <form id="form1" action="__URL__/alist_user" method="get">
+                    <div class="span10 pull-left">
+
+                       <input type="hidden" name="uid" value="{$user.uid}">
+                        <div class="tpsearch" style="width: 20%">
+                            手机号：<input type="text" class="span6 search" value="{$sea.phone}" placeholder="请输入手机号"
+                                       name="phone" id="phone"/>
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            用户名称：<input type="text" value="{$sea.username}" class="span6 search"
+                                        placeholder="请输入用户名称..." name="username" id="username"/>
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            开始时间：<input type="text" value="{$sea.starttime}" class="span6 search datepicker"
+                                        style="margin-bottom: 0;width:100px;height:20px" name="starttime"
+                                        id="starttime">
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            结束时间：<input type="text" value="{$sea.endtime}" class="span6 search datepicker"
+                                        style="margin-bottom: 0;width:100px;height:20px" name="endtime" id="endtime">
+                        </div>
+
+<!--                         <div class="tpsearch" style="width: 20%">
+                            运营中心：<select name="operate" id="operate" class="span7">
+                            <option value="">默认不选</option>
+                            <foreach name="operate" item="vo">
+                                <option value="{$vo.uid}">{$vo.username}</option>
+                            </foreach>
+                            <input type="hidden" value="{$sea.operate}" class="operate">
+                        </select>
+                        </div>
+
+                        <div class="tpsearch" style="width: 20%">
+                            会员单位：<select name="oid" id="oid" class="span7">
+                            <option value="">默认不选</option>
+                            <notempty name="oidinfo['uid']">
+                                <option value="{$oidinfo['uid']}" selected>{$oidinfo['username']}</option>
+                            </notempty>
+                        </select>
+                        </div>
+
+                        <div class="tpsearch" style="width: 25%;margin:30px 0px 20px">
+                            普通会员<select name="puhui_id" id="puhui_id" class="span7">
+                            <option value="">默认不选</option>
+                            <notempty name="puhuiinfo['uid']">
+                                <option value="{$puhuiinfo['uid']}" selected>{$puhuiinfo['username']}</option>
+                            </notempty>
+                        </select>
+                        </div>
+
+                        <div class="tpsearch" style="width: 20%;margin:30px 0px 30px">
+                            经纪人：<select name="jid" id="jid" class="span7">
+                            <option value="">默认不选</option>
+                            <notempty name="jidinfo['uid']">
+                                <option value="{$jidinfo['uid']}" selected>{$jidinfo['username']}</option>
+                            </notempty>
+                        </select>
+                        </div> -->
+
+                        <div class="tpsearch" style="width:20%;margin:30px 0px 20px">
+                            <a href="javascript:void(0)" class="btn-flat info"
+                               onclick="javascript:$('#form1').submit();">开始查找</a>
+                            <a href="javascript:void(0)" class="btn-flat info" onclick="sub()">查找导出</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Users table -->
+            <div class="row-fluid table">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span1 sortable">
+                            编号
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>客户名
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>手机号码
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>创建日期
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>上级
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>最近登录时间
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>订单数量
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>账户余额(元)
+                        </th>
+<!--                         <th class="span2 sortable">
+                            <span class="line"></span>全民返佣
+                        </th> -->
+
+                        <th class="span1 sortable">
+                            <span class="line"></span>用户ip
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>状态
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>操作
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                    <volist name="ulist" id="ult">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                                {$ult['uid']}
+                            </td>
+                            <td>
+                                <a href="{:U('User/updateuser',array('uid'=>$ult['uid']))}">{$ult['username']}</a>
+                            </td>
+                            <td>
+                                {$ult['utel']}
+                            </td>
+                            <td>
+                                {$ult['utime']|date='Y-m-d H:i:s',###}
+                            </td>
+                            <td>
+                                <a href="{:U('User/updateuser',array('uid'=>$ult['oid']))}">{$ult.managername}</a>
+                            </td>
+                            <td>
+                                {$ult['utime']|date='Y-m-d H:i:m',###}
+                            </td>
+                            <td>
+                                <if condition="$ult['ocount'] eq 0">
+                                    0
+                                    <else/>
+                                    <a href="">{$ult['ocount']}</a>
+                                </if>
+                            </td>
+                            <td>
+                                <font color="#f00" size="4">￥{$ult['balance']}<font>
+                            </td>
+<!--                             <td>
+                                <font color="#f00" size="4">
+                                    <a href="{:U('user/rebate',array('uid'=>$ult['uid']))}">￥{$ult['agent']}</a><font>
+                            </td> -->
+                            <td>
+                                {$ult['uip']}
+                            </td>
+                            <td>
+                            <if condition='$ult["ustatus"] eq 0'>
+                                    正常
+                                <elseif condition="$ult['ustatus'] eq 1"/>
+                                    交易冻结
+                                <elseif condition="$ult['ustatus'] eq 2"/>
+                                    出金冻结
+                                <elseif condition="$ult['ustatus'] eq 3"/>
+                                    全部冻结
+                                <else/>
+                                    销户
+                                </if>
+                            </td>
+                            <td>
+                                <if condition="$ult['ustatus'] neq 7">
+                                <ul class="actions">
+                                    <li>
+                                        <a href="{:U('User/updateuser',array('uid'=>$ult['uid']))}">
+                                            <i class="table-edit"></i>
+                                        </a>
+                                    </li>
+                                    <li class="last"><a href="#" onclick="upstatus({$ult['uid']},7)" value="{$ult['uid']}">销户</a></li>
+                                    <li class="last"><a href="{:U('Order/tlist')}?username={$ult['username']}" value="{$ult['uid']}">查看</a></li>
+                                    <if condition="$ult['ustatus'] eq 1 or $ult['ustatus'] eq 3">
+                                    <li class="last"><a href="#" onclick="upstatus({$ult['uid']},11)" value="{$ult['uid']}">交易解冻</a></li>
+                                    <else/>
+                                        <li class="last"><a href="#" onclick="upstatus({$ult['uid']},1)" value="{$ult['uid']}">交易冻结</a></li>
+                                    </if>
+                                    <if condition="$ult['ustatus'] eq 2 or $ult['ustatus'] eq 3">
+                                    <li class="last"><a href="#" onclick="upstatus({$ult['uid']},21)" value="{$ult['uid']}">出金解冻</a></li>
+                                    <else/>
+                                        <li class="last"><a href="#" onclick="upstatus({$ult['uid']},2)" value="{$ult['uid']}">出金冻结</a></li>
+                                    </if>
+                                    <if condition="$ult['ustatus'] eq 3">
+                                    <li class="last"><a href="#" onclick="upstatus({$ult['uid']},31)" value="{$ult['uid']}">全部解冻</a></li>
+                                    <else/>
+                                        <li class="last"><a href="#" onclick="upstatus({$ult['uid']},3)" value="{$ult['uid']}">全部冻结</a></li>
+                                    </if>
+                                </ul>
+                                </if>
+                            </td>
+                        </tr>
+                    </volist>
+                    <tr>
+                        <td colspan="6"></td>
+                        <td></td>
+                        <td>总余额：{$total['balance']}元</td>
+<!--                         <td>总返佣：{$brokerage?$brokerage:0}元</td> -->
+                        <td colspan="3"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination pull-right">
+                <ul>
+                    {$page}
+                </ul>
+            </div>
+            <!-- end users table -->
+        </div>
+    </div>
+    <!-- scripts -->
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/bootstrap.datepicker.js"></script>
+    <script src="__JS__/theme.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker().on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var eqli = $("#dashboard-menu").children().eq(4);
+            eqli.attr('class', 'active');
+            $("#dashboard-menu .active .submenu").css("display", "block");
+
+            /**
+             * 时间对象的格式化;
+             */
+            Date.prototype.format = function (format) {
+                /*
+                 * eg:format="yyyy-MM-dd hh:mm:ss";
+                 */
+                var o = {
+                    "M+": this.getMonth() + 1, // month
+                    "d+": this.getDate(), // day
+                    "h+": this.getHours(), // hour
+                    "m+": this.getMinutes(), // minute
+                    "s+": this.getSeconds(), // second
+                    "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+                    "S": this.getMilliseconds()
+                    // millisecond
+                }
+
+                if (/(y+)/.test(format)) {
+                    format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                            - RegExp.$1.length));
+                }
+
+                for (var k in o) {
+                    if (new RegExp("(" + k + ")").test(format)) {
+                        format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                                ? o[k]
+                                : ("00" + o[k]).substr(("" + o[k]).length));
+                    }
+                }
+                return format;
+            }
+        });
+        function sub() {
+            $('#form1').attr("action", "__URL__/daochu");
+            $('#form1').submit();
+        }
+
+        function upstatus(id,type){
+
+            if(confirm('确定要进行该操作吗？')){
+                $.post("{:U('/Admin/Menber/upstatus')}", { "type":type,"id":id },
+                        function(data){
+                            alert(data.info); // John
+                            if(data.state==1){
+                                window.location.reload();//刷新当前页面.
+                            }
+                        });
+            }else{
+                return false;
+            }
+        }
+    </script>
+
+<script type="text/javascript">
+$('#operate').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+            type: "GET",
+            url: "{:U("User/ajax_get_brokers")}",
+            data: {'id':id},
+            success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#oid").html(html);
+        }
+   });
+});
+
+$('#oid').change(function(){
+    var id = $(this).val();
+    $.ajax({
+            type: "GET",
+            url: "{:U("User/ajax_get_brokers")}",
+            data: {'id':id},
+            success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#puhui_id").html(html);
+        }
+   });
+});
+
+$('#puhui_id').change(function(){
+    var id = $(this).val();
+    $.ajax({
+            type: "GET",
+            url: "{:U("User/ajax_get_brokers")}",
+            data: {'id':id},
+            success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#jid").html(html);
+        }
+   });
+});
+
+var operate = $(".operate").val();
+$("#operate option").each(function(){
+    if(operate == $(this).val()){
+        $(this).attr('selected',true);
+    }
+});
+
+</script>
+</block>

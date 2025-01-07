@@ -1,0 +1,150 @@
+.container{
+	width:100%;
+	height:100%;
+	background: url(../images/register_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: relative;
+}
+.back{
+	display: block;
+	width:1.06rem;
+	height:1.06rem;
+	overflow: hidden;
+	background:url(../images/back1.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	top:5%;
+	left:4%;
+}
+.container .title{
+	text-align: center;
+	width:100%;
+	height:18%;
+	font-size:0.53rem;
+	color:#fff;
+	letter-spacing: 0.1rem;
+	text-shadow: 0 0 1rem #006CDB;
+}
+.content{
+	width:78%;
+	height:75%;
+	margin:0 auto;
+	overflow: auto;
+	margin-top:-2%;
+	font-size:0.34rem;
+	color:#BABBBB;
+	line-height:0.56rem;
+}
+.main{
+	width:100%;
+	height:100%;
+}
+/*新闻公告*/
+.news-info{
+	width:80%;
+	height:75%;
+	margin:0 auto;
+	overflow: auto;
+}
+.news-list{
+	width:100%;
+	height:24%;
+	border-bottom: 0.02rem solid #ccc;
+	padding:0.4rem 0;
+}
+.news_pic{
+	float:left;
+	width:35%;
+	height:100%;
+}
+.news_pic img{
+	width:100%;
+	height:100%;
+}
+.news_text{
+	float:left;
+	width:60%;
+	height:100%;
+	margin-left:5%;
+}
+.news_text .n_t{
+	font-size:0.44rem;
+	line-height:0.8rem;
+	width:100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.news_text .n_m{
+	font-size:0.3rem;
+	line-height:0.6rem;
+}
+/*新闻详情页*/
+.news-info h1{
+	font-size:0.5rem;
+	color:#fff;
+	text-align: center;
+}
+.news-info h4{
+	font-size:0.3rem;
+	color:#fff;
+	text-align: center;
+}
+.n_w_content{
+	margin-top:5%;
+	width:100%;
+	font-size:0.3rem;
+	line-height:0.7rem;
+	color:#fff;
+	text-align: left;
+	text-indent: 2em;
+}
+.n_w_content p{
+	width:100%;
+	line-height:0.7rem;
+	color:#fff;
+	text-align: left;
+	text-indent: 2em;
+}
+.n_w_content img{
+	display: block;
+	width:100%;
+}
+/*我的推广*/
+.w_re_content{
+	width:80%;
+	height:77%;
+	margin:0 auto;
+	margin-top:-2%;
+	overflow: auto;
+}
+.w_all_money{
+	color:#fff;
+	width:100%;
+	text-align: right;
+}
+.jib{
+	height:1rem;
+	line-height:1rem;
+	color:#fff;
+}
+.jib p{
+	float:left;
+	width:33.33%;
+	text-align: center;
+}
+.jib .active{
+	background:#666;
+}
+.user_top li{
+	height:1rem;
+	line-height: 1rem;
+}
+#one li div,#two li div,#three li div{
+	float:left;
+	height:1rem;
+	line-height: 1rem;
+	width:33.33%;
+	text-align: center;
+	color:#fff;
+}

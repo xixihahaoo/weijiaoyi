@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户入金</title>
+    <include file="Common:header" />
+    <link href="__CSS__/yongli/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/yongli/nameAndBank.css">
+    <link href="__CSS__/yongli/profile.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+    <script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+
+</head>
+<body>
+<header class="page-header">
+    <div class="content">
+        <div class="left">
+            <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+        </div>
+        <h3 class="back " id="head-name">用户入金</h3>
+    </div>
+</header>
+    <section class="wrap-page" style="margin-top: 12%;">
+        <div style="float: left;width:100%">
+           <ul class="payment">
+               <li class="pay_channel">
+                   <div class="radio-content">
+                       <div class="item-content disable-pointer-events" >
+                       <div class="pay_bank_list_header">
+                           <div class="kuang" data-list="0" data-type="yy_yinlian"></div>
+                           <i class="pay_blue_bg"></i>
+                           <article>
+                               <p class="pay_blue"><span class="iconfont icon--19"></span><span class="ng-binding">银联支付</span></p>
+                           </article>
+                       </div>
+                   </div>
+                   </div>
+               </li>
+<!--                <li class="pay_channel">
+                   <div class="radio-content">
+                       <div class="item-content disable-pointer-events" >
+                           <div class="pay_bank_list_header">
+                               <div class="kuang"  data-list="1" data-type="wangyin"></div>
+                               <i class="pay_yinlian_bg"></i>
+                               <article>
+                                   <p class="pay_yinlian"><span class="iconfont icon-yinlianzhifu"></span><span class="ng-binding">网银支付</span></p>
+                               </article>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="pay_channel">
+                   <div class="radio-content">
+                       <div class="item-content disable-pointer-events" >
+                           <div class="pay_bank_list_header">
+                               <div class="kuang"  data-list="2" data-type="weixin"></div>
+                               <i class="pay_green_bg"></i>
+                               <article>
+                                   <p class="pay_blue"><span class="iconfont icon-weixin"></span><span class="weixin">微信支付</span></p>
+                               </article>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="pay_channel">
+                   <div class="radio-content">
+                       <div class="item-content disable-pointer-events" >
+                           <div class="pay_bank_list_header">
+                               <div class="kuang"  data-list="3" data-type="zhifubao"></div>
+                               <i class="pay_blue_bg"></i>
+                               <article>
+                                   <p class="pay_blue"><span class="iconfont zhifubao"></span><span class="ng-zhifubao">支付宝支付</span></p>
+                               </article>
+                           </div>
+                       </div>
+                   </div>
+               </li>
+               <li class="pay_channel">
+                   <div class="radio-content">
+                       <div class="item-content disable-pointer-events" >
+                           <div class="pay_bank_list_header">
+                               <div class="kuang"  data-list="4" data-type="qq"></div>
+                               <i class="pay_green_bg"></i>
+                               <article>
+                                   <p class="pay_blue"><span class="iconfont qq"></span><span class="ng-qq">QQ支付</span></p>
+                               </article>
+                           </div>
+                       </div>
+                   </div>
+               </li> -->
+           </ul>
+            <div class="out_money_content">
+            <form action="{:U('Pay/pay')}" method="post" id="from">
+                <article>
+	        	<span>
+	        		<i class="iconfont icon--5"></i>
+	        		充值金额：
+	        	</span>
+                  <input type="hidden" value="" class="paytype" name="paytype">
+                  <input type="number" onkeyup="shiji(this)" placeholder="请输入金额"  required="" class="ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required balance" name="balance">
+                </article>
+                <section class="ng-binding">单次充值至少￥{$financial.min_monery}起，最多￥{$financial.max_monery}</section>
+                <footer>
+                    余额：<span class="ng-binding">{$result.balance}</span>
+                    手续费：<span id="fee">{$financial.poundage}%</span>
+                    实际到账：<span class="ng-binding" id="shiji">0.00</span>
+                </footer>
+                <div class="newbutton outmoneybtn submit">确认充值</div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+<script type="text/javascript">
+$(".pay_bank_list_header .kuang").click(function(){
+    
+    $(".pay_bank_list_header .kuang").removeClass("active");
+    
+    $(this).addClass("active");
+
+    $('.paytype').val($(this).attr('data-type'));
+
+});
+
+
+function shiji(obj)
+{
+    var price       = $(obj).val();
+    var fee         = $("#fee").html().replace(/[^\d.]/g,'');
+
+    if(price == '' || price <= 0){
+
+        $("#shiji").html('0.00');
+        
+    } else {
+
+        money = (price * (fee/100));
+
+        prices = (parseFloat(price) - parseFloat(money)).toFixed(2);
+        $("#shiji").html(prices);
+    }
+}
+
+
+// $('.submit').click(function(){
+
+//   var balance   = $('.balance').val();
+//   var paytype   = $('.paytype').val();
+
+//   if(balance == '')
+//   {
+//     layer.msg('充值金额不能为空');
+//     return false;
+//   }
+//   if(paytype == '')
+//   {
+//     layer.msg('请选择支付方式');
+//     return false;
+//   }
+
+//   $('#from').submit();
+// });
+
+$('.submit').click(function(){
+
+    var index = layer.load(1, {
+        shade: [0.1,'#fff']
+    });
+
+    var balance = $('.balance').val();
+    var paytype = $('.paytype').val();
+
+    $.ajax({
+         type: "post",
+         url: "{:U('recharge')}",
+         dataType: 'json',
+         data:{'balance':balance,'paytype':paytype},
+         success: function (data) {
+                   
+            if(data.status === 0){
+                layer.close(index);     
+                layer.msg(data.msg);
+                return false;
+            }
+
+            if(data.status === 1){
+                layer.close(index);
+                $('#from').submit();
+                return false;
+            }
+         }
+    });
+})
+
+</script>

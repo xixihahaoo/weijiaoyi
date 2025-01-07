@@ -1,0 +1,158 @@
+.bar-tab .tab-item.active, .bar-tab .tab-item:active{
+    color: #3e78bc;
+}
+.bar-tab {
+    bottom: 0;
+    width: 100%;
+    height: 1.5rem;
+    padding: 0;
+    table-layout: fixed;
+}
+.bar {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    height: 1.7rem;
+    overflow: hidden;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.1rem;
+/*    border-top:2px solid #484848;*/
+    /*padding-bottom: 0.3rem;*/
+    backface-visibility: hidden;
+    background: #2c2b31;
+}
+.bar-tab .tab-item .icon {
+    top: 0.05rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.bar .icon {
+    position: relative;
+    z-index: 20;
+    padding: .5rem .1rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
+}
+.icon {
+    font-style: normal;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 100% auto;
+    background-position: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icontu{
+    width: 2rem;
+    height: 0.93rem;
+}
+.icontu i{
+    width: 0.15rem;
+    height: 0.15rem;
+    border-radius: 50%;
+    background-color: #e4393a;
+    position:absolute;
+    top:0.1rem;
+    right:0.55rem;
+}
+.icon-index-active{
+    background: url("../../images/yongli/icon/shouye_y.png") no-repeat center center;
+    background-size: 0.68rem 0.68rem;
+}
+.icon-index{
+    background: url("../../images/yongli/icon/index.png") no-repeat center center;
+    background-size: 0.68rem 0.68rem;
+}
+.indext-active{
+    color: #e0ac3f;
+}
+.indext{
+    color:#bababb;
+}
+.icon-jy-active{
+    background: url("../../images/yongli/icon/jiaoyi_y.png") no-repeat center center;
+    background-size: 0.68rem 0.68rem;
+}
+.icon-jy{
+    background: url("../../images/yongli/icon/jiaoyi.png") no-repeat center center;
+    background-size: 0.68rem 0.68rem;
+}
+.jy-active{
+    color: #e0ac3f;
+}
+.jy{
+    color:#bababb;
+}
+/*.icon-cc{
+    background: url("../images/icon/footer_12.png") no-repeat center center;
+    background-size: 0.78rem 1rem;
+}
+.icon-cc-active{
+    background: url("../images/icon/ft_12.png") no-repeat center center;
+    background-size: 0.78rem 1rem;
+}
+.cc-active{
+    color: #f91800;
+}
+.cc{
+    color:#8e8e8e;
+}
+.icon-jt{
+    background: url("../images/icon/footer_03.png") no-repeat center center;
+    background-size: 0.7rem 0.8rem;
+}
+.icon-jt-active{
+    background: url("../images/icon/ft_03.png") no-repeat center center;
+    background-size: 0.7rem 0.8rem;
+}
+.jt-active{
+    color: #f91800;
+}
+.jt{
+    color:#8e8e8e;
+}*/
+.icon-me{
+    background: url("../../images/yongli/icon/footer_15.png") no-repeat center center;
+    background-size: 0.68rem 0.68rem;
+}
+.icon-me-active{
+    background: url("../../images/yongli/icon/ft_05.png") no-repeat center center;
+    background-size: 0.7rem 0.68rem;
+}
+.me-active{
+    color: #e0ac3f;
+}
+.me{
+    color:#bababb;
+}
+.bar-tab .tab-item .icon~.tab-label {
+    display: block;
+    font-size: .35rem;
+    position: relative;
+    letter-spacing: 0;
+}
+.bar-tab a.tab-label{
+    font-size:0.4rem;
+}
+.bar-tab .tab-item {
+    position: relative;
+    display: table-cell;
+    width: 1%;
+    height: 0;
+    /*padding-right: 2rem;*/
+    color: #fff;
+    text-align: center;
+    /*vertical-align: middle;*/
+}
+/*
+.bar-tab .tab-item:first-child{
+    text-align: left;
+}
+.bar-tab .tab-item:last-child{
+    text-align: right;
+}*/

@@ -1,0 +1,152 @@
+<link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+<script src="__PUBLIC__/Js/layer/layer.js"></script>
+<div style="margin-top:10px;">
+    <div class="container-fluid">
+
+        <empty name="data">
+            暂无数据
+            <else />
+            <form class="form-horizontal" id="form1" onsubmit="return false;" method="post">
+                <div class="control-group">
+                    <label class="control-label" for="title">名称</label>
+                    <div class="controls">
+                        <input type="text" name="title" id="title" value="{$data.title}" readonly placeholder="代金券标题">
+                        不可更改
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="value">价值</label>
+                    <div class="controls">
+                        <input type="text" name="value" id="value" value="{$data.value}" readonly placeholder="价值">
+                        不可更改
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="begin_time">开始时间</label>
+                    <div class="controls">
+                        <input type="text" name="begin_time" class="datepicker" id="begin_time" value="{$data.begin_time}" placeholder="开始时间">
+                        为空则不限制。
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="end_time">结束时间</label>
+                    <div class="controls">
+                        <input type="text" name="end_time" class="datepicker" id="end_time" value="{$data.end_time}" placeholder="结束时间">
+                        为空则不限制。
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="title">类型</label>
+                    <div class="controls">
+                        <input type="text" name="type" readonly  value="{$data.type_str}" >
+                    </div>
+                </div>
+                <if condition="$data.type eq 2">
+                <div class="control-group">
+                    <label class="control-label" for="total">体验券数量</label>
+                    <div class="controls">
+                        <input type="text" name="limit" id="total" value="{$data.limit}" placeholder="体验券数量">
+                        <input type="hidden" name="id" value="{$data.id}">
+                    </div>
+                </div>
+                <else /> 
+                    <div class="control-group">
+                        <label class="control-label" for="total">入金额度</label>
+                        <div class="controls">
+                            <input type="text" name="limit" id="total" value="{$data.limit}" placeholder="体验券数量">
+                            <input type="hidden" name="id" value="{$data.id}">
+                        </div>
+                    </div>
+                </if>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn" onclick="submitform()" >提交</button>
+                    </div>
+                </div>
+            </form>
+        </empty>
+    </div>
+</div>
+
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        // datepicker plugin
+        $('.datepicker').datepicker().on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    });
+
+    $(document).ready(function(){
+        /**
+         * 时间对象的格式化;
+         */
+        Date.prototype.format = function(format) {
+            /*
+             * eg:format="yyyy-MM-dd hh:mm:ss";
+             */
+            var o = {
+                "M+" : this.getMonth() + 1, // month
+                "d+" : this.getDate(), // day
+                "h+" : this.getHours(), // hour
+                "m+" : this.getMinutes(), // minute
+                "s+" : this.getSeconds(), // second
+                "q+" : Math.floor((this.getMonth() + 3) / 3), // quarter
+                "S" : this.getMilliseconds()
+                // millisecond
+            }
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                        - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                            ? o[k]
+                            : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        }
+
+        //var now = new Date().format("MM/dd/yyyy");
+        //$(".input-large").attr("value",now);
+    });
+
+
+    function submitform(){
+        var title = $("input[name='title']").val();
+        var value = $("input[name='value']").val();
+        var total = $("input[name='total']").val();
+        if(title == ''){
+            layer.msg('标题不能为空');
+            return false;
+        }
+        if(value == ''){
+            layer.msg('价值不能为空');
+            return false;
+        }
+        if(total == ''){
+            layer.msg('数量不能为空');
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{:U('edit')}",
+            data: $('#form1').serialize(),
+            success: function(data){
+                layer.msg(data.msg, {time: 1000});
+                setTimeout("window.parent.layer.closeAll()",1050);
+                setTimeout("window.parent.parent.location.reload()",1055);
+            }
+        });
+    }
+</script>

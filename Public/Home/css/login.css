@@ -1,0 +1,225 @@
+.container{
+	width:100%;
+	height:60%;
+	background:url(../images/login_bg.png) no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+	overflow: hidden;
+}
+.back{
+	display: block;
+	width:1.06rem;
+	height:1.06rem;
+	overflow: hidden;
+	background:url(../images/back1.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	top:6%;
+	left:5%;
+}
+.container h2{
+	text-align: center;
+	font-size:0.53rem;
+	color:#FFFFFF;
+	letter-spacing: 0.1rem;
+	text-shadow: 0 0 1rem #006CDB;
+	height:27%;
+}
+.login{
+	width:46%;
+	height:12%;
+	background:url(../images/button_bg.png) no-repeat;
+	background-size:100% 100%;
+	text-align: center;
+	margin:6% auto 0px;
+}
+.form_box{
+	width:80%;
+	height:70%;
+	margin:0 auto;
+	margin-top:-2%;
+}
+#reviseForm{
+	width:100%;
+	height:100%;
+}
+.type_box{
+	width:100%;
+	height:16%;
+	margin-bottom:4%;
+	font-size:0.35rem;
+	border: 0.04rem solid #00b7f3;
+	border-radius: 0.13rem;
+	position: relative;
+}
+.type_box .type_name{
+	float:left;
+	width:20%;
+	height:100%;
+	padding:0 3%;
+}
+.type_box .input_box{
+	float:left;
+	width:74%;
+	height:100%;
+}
+.type_box .input_box input{
+	width:100%;
+	height:100%;
+	border:none;
+	outline:none;
+	background:transparent;
+	color:#fff;
+}
+.check_butn{
+	width:30%;
+	height:53%;
+	position: absolute;
+	top:23%;
+	right:3.5%;
+	background:#ffb500;
+	border-radius: 0.1rem;
+	overflow: hidden;
+}
+.check_butn input{
+	width:100%;
+	height:100%;
+	border:none;
+	outline:none;
+	background:transparent;
+	display: block;
+	text-align: center;
+	color:#fff;	
+}
+.login input{
+	display: block;
+	width:100%;
+	height:100%;
+	text-align: center;
+	background:transparent;
+	border:none;
+	outline:none;
+	color:#fff;
+	letter-spacing: 0.08rem;
+	font-size:0.45rem;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+}
+/*支付页面*/
+.main{
+	width:100%;
+	height:100%;
+}
+.cz_content{
+	width:80%;
+	height:60%;
+	margin:0 auto;
+	margin-top:-2%;
+}
+#moneyCharge1{
+	width:100%;
+	height:100%;
+}
+.money-num{
+	width:100%;
+	height:60%;
+}
+.money-list{
+	width:100%;
+	height:100%;
+}
+.money-list li{
+	float:left;
+	width:30.33%;
+	height:25%;
+	margin:0 1.5% 5%;
+	text-align: center;
+	color:#333;
+	font-size:0.4rem;
+	background:#fff;
+	border-radius: 8%;
+}
+#nowmoney{
+	display: block;
+	width:80%!important;
+	height:2em!important;
+	text-align: center;
+	margin:0 auto!important;
+	padding:0;
+	border:0.04rem solid #00b7f3;
+	color:#fff;
+	border-radius: 0.13rem;
+}
+.f-sub{
+	display: block;
+	width:70%;
+	height:20%;
+	margin:0 auto;
+	margin-bottom:3%;
+	background:url(../images/long_bg.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+	outline:none;
+	font-size:0.5rem;
+	font-weight:bold;
+	letter-spacing: 0.1rem;
+}
+/*个人信息*/
+.user_list_per{
+	width:50%;
+	height:40%;
+	margin:0 auto;
+	margin-top:5%;
+}
+.user_list_per ul{
+	width:100%;
+	height:100%;
+}
+.user_list_per ul li{
+	width:100%;
+	height:25%;
+	font-size:0.4rem;
+	color:#fff;
+}
+/*我的推广*/
+.form_sfrz{
+	width:50%;
+	margin:0.5rem auto;
+}
+/*登录页面*/
+.form-box{
+	width:100%;
+	height:50%;
+}
+.form-box li{
+	width:100%;
+	height:36%;
+	margin:7% 0;
+	border:0.04rem solid #00B7F3;
+	border-radius: 0.13rem;
+	position: relative;
+}
+.form-box li img{
+	width:7%;
+	height:53%;
+	position: absolute;
+    top: 23%;
+    left: 7%;
+}
+.form-box li input{
+	border: none;
+    outline: none;
+    width: 80%;
+    height: 100%;
+    background: transparent;
+    padding-left: 20%;
+    font-size: 0.35rem;
+    color: #fff;
+}
+.w_link{
+	position: absolute;
+	font-size:0.34rem;
+	bottom:12%;
+	color:#fff;
+}

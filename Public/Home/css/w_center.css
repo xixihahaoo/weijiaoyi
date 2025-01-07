@@ -1,0 +1,136 @@
+.container{
+	width:100%;
+	height:100%;
+	background: url(../images/register_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: relative;
+	overflow: hidden;
+}
+.back{
+	display: block;
+	width:1.06rem;
+	height:1.06rem;
+	overflow: hidden;
+	background:url(../images/back1.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	top:6%;
+	left:5%;
+}
+.container .title{
+	text-align: center;
+	width:100%;
+	height:18%;
+	font-size:0.53rem;
+	color:#fff;
+	letter-spacing: 0.1rem;
+	text-shadow: 0 0 1rem #006CDB;
+}
+.container ul{
+	width:82%;
+	padding:0px 9%;
+	height:60%;
+	overflow: auto;
+}
+.container ul li{
+	width:33.33%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+	float:left;
+	padding:0 2% 2%;
+}
+.container ul li img{
+	display: block;
+	width:100%;
+	height:73%;
+}
+.container ul li em{
+	display: block;
+	width:100%;
+	height:1rem;
+	line-height: 1rem;
+	background:url(../images/get_moneybg.png) no-repeat;
+	background-size:100% 100%;
+	text-align: center;
+	font-size:0.32rem;
+	color:#fff;
+	font-style:normal;
+}
+.me{
+	width:82%;
+	height:11%;
+	position: relative;
+	margin:0 auto;
+}
+.me .headpic{
+	width:100%;
+	height:100%;
+}
+.me .headpic .left{
+	float: left;
+	width:20%;
+	height:100%;
+	position: relative;
+}
+.me .headpic .right{
+	float:right;
+	width:80%;
+	height:100%;
+}
+.me .headpic .right p{
+	width:40%;
+	color:#FFFFFF;
+	font-size:0.4rem;
+	font-weight:bold;
+	padding-left: 0.16rem;
+	position: relative;
+	height:43%;
+}
+.me .headpic .right p img{
+	position: absolute;
+	width:110%;
+	left:-0.18rem;
+	bottom:0;
+}
+.me .headpic .left img{
+	width:90%;
+	height:90%;
+	display: block;
+	margin:0 auto;
+}
+.me .headpic .left .pic_border{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index:10;
+}
+.me .money{
+	width:40%;
+	height:44%;
+	background:url(../images/money_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	bottom:12.5%;
+	right:0;
+}
+.me .money span{
+	position: absolute;
+	font-size:0.28rem;
+	color:#00DDF7;
+	font-weight:600;
+	bottom:20%;
+	left:31.4%;
+}
+.line{
+	width:82%;
+	height:1%;
+	background:url(../images/line.png) no-repeat;
+	background-size:100% 100%;
+	margin:1.5% auto;
+}

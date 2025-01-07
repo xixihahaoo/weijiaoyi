@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>微盘系统管理中心</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="__CSS__/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="__CSS__/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="__CSS__/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="__CSS__/layout.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/elements.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/icons.css" />
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="__JS__/layer/layer.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <ul class="nav pull-right">                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
+                        {$_SESSION['username']}
+                        <b class="caret"></b>
+                    </a>
+                </li>
+                <li class="settings hidden-phone">
+                    <a href="{:U('Admin/User/signinout')}" role="button">
+                        <i class="icon-share-alt"></i>
+                    </a>
+                </li>
+            </ul>            
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+			<if condition="$Think.session.userotype != 1" >
+            <li>
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="{:U('Admin/Index/index')}">
+                    <i class="icon-home"></i>
+                    <span>系统首页</span>
+                </a>
+            </li>
+			</if>
+			<in name="listauth[0]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-edit"></i>
+                    <span>内容管理</span>
+					<i class="icon-chevron-down"></i>
+                </a>
+				<ul class="submenu">
+                    <li><a href="{:U('Admin/News/typelist')}">栏目管理</a></li>
+                    <li><a href="{:U('Admin/News/newslist')}">文章管理</a></li>
+                    <!--<li><a href="user-profile.html">我发布的文档</a></li>-->
+					<!--<li><a href="user-profile.html">内容回收站</a></li>-->					
+                </ul>
+            </li>
+			</in>
+			<in name="listauth[1]" value="$range" >
+			<li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-calendar-empty"></i>
+                    <span>产品管理</span>
+					<i class="icon-chevron-down"></i>
+                </a>
+				<ul class="submenu">
+                    <!--<li><a href="{:U('Admin/Goods/gadd')}">添加产品</a></li>-->
+                    <li><a href="{:U('Admin/Goods/glist')}">产品列表</a></li>
+                    <!--li><a href="{:U('Admin/Gift/glist')}">积分礼品列表</a></li>
+                    <<li><a href="{:U('Admin/Goods/gtypeadd')}">添加商品分类</a></li>
+                    <li><a href="{:U('Admin/Goods/gtype')}">商品分类列表</a></li>-->
+                    <!--<li><a href="user-profile.html">回收站</a></li>-->				
+                </ul>
+            </li>
+			</in>
+			<in name="listauth[2]" value="$range" >
+			<li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-th-large"></i>
+                    <span>订单管理</span>
+					<i class="icon-chevron-down"></i>
+                </a>
+				<ul class="submenu">
+                    <!--li><a href="{:U('Admin/Order/olist')}">订单列表</a></li-->
+                    <li><a href="{:U('Admin/Order/tlist')}">成交明细</a></li>
+                    <li><a href="{:U('Admin/Order/nowlist')}">当前持仓</a></li>
+                    <!-- <li><a href="{:U('Admin/Gift/gtlist')}">积分交易流水</a></li> -->
+                    <!--<li><a href="{:U('Admin/Order/blist')}">充值提现流水</a></li>-->
+                    <!--<li><a href="new-user.html">移除的订单</a></li>-->
+                </ul>
+            </li>
+            </in>
+            <in name="listauth[3]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>客户管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('User/ulist')}">客户列表</a></li>
+                    <li><a href="{:U('User/addmoney')}">手动充值</a></li>
+                    <!--<li><a href="{:U('Admin/User/ugroup')}">用户组设置</a></li>-->
+                    <!--<li><a href="{:U('User/recharge')}">充值和提现申请</a></li>
+                     <!-- <li><a href="{:U('rebate/index')}">aaa</a></li> -->
+                    <!--li><a href="{:U('User/recommend')}">推广设置</a></li-->
+                </ul>
+            </li>
+            </in>
+
+            <in name="listauth[4]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>经纪人管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <!--<li><a href="{:U('User/agentlist')}">经纪人申请列表</a></li>-->
+                    <li><a href="{:U('Agentlist/alist')}">经纪人列表</a></li>
+                </ul>
+            </li>
+            </in>
+			<li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>代理商管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('leaguer/mlist')}">代理商列表</a></li>
+                    <li><a href="{:U('leaguer/madd')}">添加代理商</a></li>
+                </ul>
+            </li>
+			<in name="listauth[5]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-sitemap"></i>
+                    <span>会员单位</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Menber/mlist')}">会员列表</a></li>
+                    <li><a href="{:U('Menber/madd')}">添加会员</a></li>
+                </ul>
+            </li>
+			</in>
+			<!--li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-sitemap"></i>
+                    <span>特会管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Tehui/mlist')}">特会列表</a></li>
+                    <li><a href="{:U('Tehui/madd')}">添加特会</a></li>
+                </ul>
+            </li-->
+            <in name="listauth[12]" value="$range" >
+			<li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-sitemap"></i>
+                    <span>运营中心</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Operation/mlist')}">运营中心列表</a></li>
+                    <li><a href="{:U('Operation/madd')}">添加运营中心</a></li>
+                </ul>
+            </li>
+            </in>
+			<!--if condition="$Think.session.userotype != 1" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-picture"></i>
+                    <span>优惠卷管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Coupons/cpadd')}">添加优惠卷</a></li>
+                    <li><a href="{:U('Coupons/cplist',array('style'=>'list'))}">优惠券列表</a></li>
+					<li><a href="{:U('Coupons/cplist',array('style'=>'oldlist'))}">历史优惠卷</a></li>
+                </ul>
+            </li>
+			</if-->
+			<in name="listauth[6]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="personal-info.html">
+                    <i class="icon-code-fork"></i>
+                    <span>系统管理员</span>
+					<i class="icon-chevron-down"></i>
+                </a>
+					<ul class="submenu">						
+                        <li><a href="{:U('Super/sadd')}">添加管理员</a></li>
+						<li><a href="{:U('Super/slist')}">管理员列表</a></li>
+						<!--<li><a href="grids.html">管理员组</a></li>-->
+					</ul>
+            </li>
+			</in>
+
+			<!--in name="listauth[7]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="personal-info.html">
+                    <i class="icon-code-fork"></i>
+                    <span>权限管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                    <ul class="submenu">                        
+                        <li><a href="{:U('Auth/addauth')}">添加权限</a></li>
+                        <li><a href="{:U('Auth/auth')}">添加角色</a></li>
+                        <li><a href="{:U('Auth/authlist')}">角色列表</a></li>
+                        <!--<li><a href="grids.html">管理员组</a></li>>
+                    </ul>
+            </li>
+            </in-->
+
+            <in name="listauth[7]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="personal-info.html">
+                    <i class="icon-money"></i>
+                    <span>财务管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                    <ul class="submenu">
+                        <li><a href="{:U('User/recharge/',array('type'=>'充值'))}">充值记录</a></li>
+                        <li><a href="{:U('User/recharge/',array('type'=>'提现'))}">提现记录</a></li>
+                        <li><a href="{:U('User/financial_setting/',array('type'=>'入金'))}">入金设置</a></li>
+						<li><a href="{:U('User/financial_setting/',array('type'=>'出金'))}">出金设置</a></li>
+						<li><a href="{:U('Coupon/index/')}">体验券管理</a></li>
+                    </ul>
+            </li>
+			</in>
+
+
+			<in name="listauth[8]" value="$range" >
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-cog"></i>
+                    <span>系统设置</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                	<li><a href="{:U('Super/esystem')}">基本设置</a></li>
+                    <!--<li><a href="grids.html">清理缓存</a></li>-->
+                    <li><a href="{:U('Super/backupdb')}">数据备份</a></li>
+					<!--li><a href="signin.html">数据还原</a></li-->
+                    <li><a href="{:U('User/signinout')}">退出系统</a></li>
+                </ul>
+            </li>
+			</in>
+
+
+			<in name="listauth[9]" value="$range" >
+             <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-comments"></i>
+                    <span>微信管理</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Menber/wxinfo')}">微信基本信息</a></li>
+                    <li><a href="{:U('Menber/wxlist')}">微信用户列表</a></li>
+                    <li><a href="{:U('Menber/instruser')}">更新微信用户</a></li>
+                </ul>
+            </li>
+			</in>
+
+			<in name="listauth[10]" value="$range" >
+			 <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-comments"></i>
+                    <span>日志信息</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('User/userlog')}">日志信息</a></li>
+                </ul>
+            </li>
+            </in>
+
+            <in name="listauth[11]" value="$range" >
+             <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-comments"></i>
+                    <span>资金流水</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{:U('Flow/money_flow')}">流水记录</a></li>
+                </ul>
+            </li>
+            </in>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+	<!-- main container -->
+    <div class="content">
+
+      
+      <!--   <div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"></span><span class="text">默认颜色</span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="__CSS__/skins/dark.css">
+                <span class="icon"></span><span class="text">黑色背景</span>
+            </a>
+        </div> -->
+    	<block name="content"></block>
+    </div>
+    <script type="text/javascript">
+    	var wid = $(window).height();
+    	document.writeln('<div id="popupLayer" style="position:absolute;z-index:2;width:100%;height:'+wid+'px;left:0;top:0;opacity:0.3;filter:Alpha(opacity=30);background:#000;display: none;"></div>');
+    </script>
+</body>
+</html>

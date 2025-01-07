@@ -1,0 +1,1 @@
+a:8:{i:0;s:4:"exid";i:1;s:3:"uid";i:2;s:3:"eid";i:3;s:7:"exgtime";i:4;s:8:"getstyle";i:5;s:6:"number";s:3:"_pk";s:4:"exid";s:5:"_type";a:6:{s:4:"exid";s:7:"int(11)";s:3:"uid";s:7:"int(11)";s:3:"eid";s:7:"int(11)";s:7:"exgtime";s:7:"int(20)";s:8:"getstyle";s:7:"int(11)";s:6:"number";s:7:"int(11)";}}

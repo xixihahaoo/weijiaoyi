@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="html" style="display: block;"><head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>账户登录</title>
+    <include file="Common:header" />
+    <link rel="stylesheet" href="__CSS__/yongli/merge1.css">
+    <style type="text/css">
+    body{
+        width: 100%;
+        height:100%;
+        background-size: 100% 100%;
+    }
+    </style>
+    <script src="__JS__/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+
+</head>
+<body >
+<div class="signin">
+    <div class="signin-header">
+        <div class="system-logo" >
+            <!-- <img  alt="" src="__IMG__/logo8.png"> -->
+          <!--    <img  alt="" src="__IMG__/logo9.jpg"> -->
+        </div>
+    </div>
+    <div class="signin-content">
+        <div class="list">
+            <label class="item item-input">
+                <i class="input-icon ion-android-person"></i>
+                <input type="text" placeholder="用户名" ng-model="phone" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="utel" value="{$phone}">
+            </label>
+            <label class="item item-input">
+                <i class="input-icon ion-locked"></i>
+                <input type="password" placeholder="密码" ng-model="passwd" required="" ng-keydown="go_signin()" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="password">
+            </label>
+        </div>
+        <div class="signin-action">
+            <button class="newbutton sign_button" id="submit">
+                登&nbsp;&nbsp;录
+            </button>
+        </div>
+    </div>
+    <div class="signin-footer" ng-show="if_signup">
+        <a href="{:U('reg')}"  id="zC">——&nbsp;&nbsp;立即开户&nbsp;&nbsp;——</a>
+    </div>
+</div>
+
+<script>
+ $('#submit').click(function(){
+    
+     var utel        = $("#utel").val();
+     var password    = $("#password").val();
+
+     var index = layer.load(1, {
+          shade: [0.1,'#fff'] //0.1透明度的白色背景
+    });
+
+     $.ajax({
+         type: "post",
+         url: "{:U('login')}",
+         dataType: 'json',
+         data:{'utel':utel,'password':password},
+         success: function (data) {
+                   
+            if(data.status === 0){
+
+                    layer.close(index);     
+                    layer.msg(data.msg);
+                    return false;
+            }
+
+            if(data.status === 1){
+                 layer.close(index);     
+                 layer.msg(data.msg);
+                window.setTimeout("window.location='{:U('Index/index')}'",1000);
+                 return false;
+            }
+         }
+     })
+ })
+
+
+
+</script>
+</body>
+</html>

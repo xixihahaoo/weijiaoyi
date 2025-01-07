@@ -1,0 +1,66 @@
+前台测试账户
+
+域名：http://127.0.0.1
+
+用户：111	111111
+
+
+后台测试账户
+
+域名：http://127.0.0.1/admin
+
+运营中心：	001		123456
+会员单位：	002		123456
+代理：		003		123456
+
+
+系统返佣规则
+
+运营中心：			收取用户下单手续费  由总后台按比例设置
+
+会员单位：			与用户对赌  当会员单位资金低于总后台设置的风控金额时，自动转为特会模式，一旦转为特会模式，除去总后台 所有人不参与分佣。
+
+代理：				收取用户 (下单金额+手续费)  由会员单位设置佣金比例，此代理的分佣金额，由会员单位全部承担  			(不管会员单位输平赢，都会进行分佣)
+
+全民经纪人(三级)：	收取用户 (下单金额+手续费)  由会员单位设置各个层级佣金比例，此经纪人分佣的金额，由会员单位全部承担	(不管会员单位输平赢，都会进行分佣)
+
+
+
+涌易支付：
+
+支付已经对接完成	只需在 /thinkphp/library/org/util/yongyi/merchantInfo.ini文件 更改 商户号和密钥  merId keyValue 即可
+
+
+程序用到的进程
+
+使用 supervisord 管理进程
+
+1：平仓
+
+	进程名称		weijiaoyi_pingcang
+
+	平仓路径		/var/www/html/weijiaoyi/cli.php Home/Handle/position
+
+;微交易项目(平仓)
+[program:weijiaoyi_pingcang]
+command=/www/server/php/56/bin/php /var/www/html/weijiaoyi/cli.php Home/Handle/position
+autorestart=true
+autostart=true
+
+
+2：接收数据源 websocket
+
+	使用ssh  
+
+	cd /var/www/html/weijiaoyi/Workerman/GatewayWorker/
+
+	执行 /www/server/php/56/bin/php start.php start  (用来启动进程)
+
+	业务逻辑都在:
+	/var/www/html/weijiaoyi/Workerman/GatewayWorker/Applications/YourApp/Event.php  （需要修改里面的数据库连接密码等信息）
+
+【数据源说明】：
+    数据源对接地址：http://39.107.99.235:1008/market
+
+
+

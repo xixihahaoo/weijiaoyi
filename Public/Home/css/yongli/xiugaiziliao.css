@@ -1,0 +1,19 @@
+.user_bt{
+    height: 1.53rem;
+    line-height: 1.53rem;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.user_bt ul li{
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 0.45rem;
+}
+.user_bt ul li.sure{
+    background: #b93c41;
+}
+.user_bt ul li.close{
+    background: #262834;
+}

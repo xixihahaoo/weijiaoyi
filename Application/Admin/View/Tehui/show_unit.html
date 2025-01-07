@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+
+    <!-- bootstrap -->
+    <link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="__CSS__/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="__CSS__/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+  <title></title>
+    <style>
+        .layui-input{
+            width: 60%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+ <form  id="id_form" method="post">
+  <div class="layui-form">
+    <table class="layui-table">
+      <colgroup>
+        <col width="50">
+        <col width="150">
+        <col width="150">
+        <col width="200">
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="text-align: center;">编号</th>
+          <th style="text-align: center;">用户名</th>
+          <th style="text-align: center;">手机号码</th>
+          <th style="text-align: center;">账户余额</th>
+          <th style="text-align: center;">登录时间</th>
+          <th style="text-align: center;">注册时间</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+         <input type="hidden" name="uid" value="{$uid}">
+        <volist name="info" id="vo">
+          <tr style="text-align: center;">
+            <td>{$vo.uid}</td>
+            <td>{$vo.username}</td>
+            <td>{$vo.utel}</td>
+            <td>{$vo.balance}</td>
+            <td>{:date('Y-m-d H:i:s',$vo['lastlog'])}</td>
+            <td>{:date('Y-m-d H:i:s',$vo['utime'])}</td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+            <div class="pagination pull-right">
+                <ul>
+                    {$page}
+                </ul>
+            </div>
+  </div>
+  </form>
+</body>
+</html>
+
+<script type="text/javascript" src="__CSS__/layui/layui.js"></script>

@@ -1,0 +1,170 @@
+/*header*/
+.mui-bar-nav{
+    height:1.52rem;
+    line-height:1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight:normal;
+}
+.mui-action-back{
+    display: inline-block;
+}
+.mui-action-back img{
+    width: 0.33rem;
+    height:0.42rem;
+}
+.mui-icon-nav img{
+    width: 0.45rem;
+    height:0.3rem;
+    margin-left: 0.3rem;
+}
+.mui-title{
+    width: 85%;
+    text-align: center;
+    font-size:0.4rem;
+}
+.mui_play{
+    font-size:0.4rem;
+    padding-right: 0.3rem;
+}
+.in_top {
+    background: #1b1b1b;
+    height: 1.46rem;
+}
+/*.in_acount {
+    padding: .1rem .2rem 0rem .45rem;
+}*/
+.ac_a {
+    font-size: .3rem;
+    color: #969696;
+    padding-top: 0.1rem;
+}
+.in_money {
+    width: 1.24rem;
+    margin-top: 0.49rem;
+    margin-right: 0.3rem;
+}
+.a_money {
+    font-size: .6rem;
+    color: #d9a71e;
+}
+.in_money .btn {
+    width: 1.24rem;
+    height: 0.58rem;
+    line-height: 0.58rem;
+    margin-right: 0.2rem;
+    border-radius: 0.1rem;
+    /* padding-left: 0.95rem; */
+    font-size: 0.35rem;
+    color: #fff;
+    text-align: center;
+}
+.in_money_chong {
+    background: #d83f4e;
+}
+.user_top{
+    height:1.25rem;
+    line-height:1.25rem;
+    background: #252529;
+}
+.zoushi{
+    background:#1b1b1b;
+    width: 2.54rem;
+    height:0.92rem;
+    line-height:0.92rem;
+    border-radius:0.2rem;
+    margin-left: 0.45rem;
+    margin-top: 0.15rem;
+    float: left;
+    position: relative;
+    font-size:0.35rem;
+ }
+.zoushi div{
+    display: inline-block;
+    width: 47%;
+    text-align: center;
+}
+.kxian{
+
+    width: 1.28rem;
+    height:0.76rem;
+    line-height:0.76rem;
+    background: #252529;
+
+    border-radius:0.15rem;
+    color:#d9a71e;
+    text-align: center;
+    font-size:0.35rem;
+}
+.zoushi_day{
+    width: 70%;
+    float: right;
+    color:#707070;
+    font-size:0.38rem;
+    text-align: center;
+}
+.zoushi_day ul.zoushi_day_list{
+    overflow: auto;
+}
+.zoushi_day ul.zoushi_day_list li{
+    float: left;
+    width: 16%;
+    height:1.25rem;
+    line-height: 1.25rem;
+    border-bottom:1px solid #1b1b1b;
+}
+.zoushi_day ul.zoushi_day_list li.on{
+    height: 1.25rem;
+    line-height:1.25rem;
+    border-bottom:1px solid #d9a71e;
+}
+.kxiantu{
+    height:6rem;
+    padding: .1rem .3rem 0rem .3rem;
+}
+#service_items {
+    width: 100%;
+    display: none;
+    position: absolute;
+    left:0;
+    line-height: 1rem;
+    top: 1.5rem;
+    /* border: 1px solid #ddd; */
+    border-top-width: 0;
+    background-color: #000;
+    /* box-shadow: 0 0 10px #DDD; */
+    z-index: 30;
+}
+.service ul li {
+    /*float: left;*/
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+    z-index: 1;
+    border-bottom:1px solid #1b1b1b;
+}
+#service_items li {
+    padding-left: 10px;
+    margin: 0px;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+.heng,.xius{
+    /* overflow: auto; */
+    /* border: 1px solid #ddd; */
+    width: 100%;
+    position: fixed;
+    right: 0;
+    left: 0;
+    height: 2.5rem;
+    bottom: 1.65rem
+}
+.xius{
+    text-align: center;
+    font-size:0.8rem;
+    height:2rem;
+    line-height:1.5rem;
+}

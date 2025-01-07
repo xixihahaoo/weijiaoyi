@@ -1,0 +1,479 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/order-list.css" type="text/css" media="screen" />
+    <link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list" style="padding:0px; margin-top:25px;">
+            <div class="row-fluid header">
+                <form id="form1" action="__URL__/tlist" method="get">
+                <h3 style="height:40px; line-height:40px; width: 100%">成交明细</h3>
+                <div class="span10 pull-left" style="margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%">
+                        订单编号：<input type="text" value="{$sea.orderno}" class="span6 search input_width" style="width:150px;" placeholder="请输入订单编号查找..." name="orderno" id="orderno"/>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        用户名称：<input type="text" value="{$sea.username}" class="span6 search" style="width:150px;" placeholder="请输入用户名称查找..." name="username" id="username"/>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        电话号码：<input type="text" value="{$sea.tel}" class="span6 search input_width" style="width:150px;" placeholder="电话号码" name="tel" id="tel"/>
+                    </div>
+                </div>
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%">
+                        开始时间：
+                        <if condition="$sea['starttime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['starttime']}" name="starttime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="<?php echo date('Y-m-d H:i:s', time()-300)?>" name="starttime">
+                        </if>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        结束时间：
+                        <if condition="$sea['endtime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['endtime']}" name="endtime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="<?php echo date('Y-m-d H:i:s', time())?>" name="endtime">
+                        </if>
+                    </div>
+
+                    <div class="tpsearch" style="width: 25%">
+                        订单类型：<select id="ostyle" class="span6" name="ostyle" style="width:150px;">
+                                    <option value="">默认不选</option>
+                                    <if condition="$sea.ostyle eq '-1'">
+                                    <option value="-1" selected>买涨</option>
+                                    <else/>
+                                    <option value="-1">买涨</option>
+                                    </if>
+                                    <if condition="$sea.ostyle eq '1'">
+                                    <option value="1" selected>买跌</option>
+                                    <else/>
+                                    <option value="1">买跌</option>
+                                    </if>
+                                </select>
+                    </div>
+                </div>
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%">
+                        订单盈亏：<select id="ploss" class="span6" name="ploss" style="width:150px;">
+                                    <option value="">默认不选</option>
+                                    <if condition="$sea.ploss eq '-1'">
+                                    <option value="-1" selected>亏损</option>
+                                    <else/>
+                                    <option value="-1">亏损</option>
+                                    </if>
+                                    <if condition="$sea.ploss eq '1'">
+                                    <option value="1" selected>盈利</option>
+                                    <else/>
+                                    <option value="1">盈利</option>
+                                    </if>
+                                        <if condition="$sea.ploss eq '2'">
+                                    <option value="2" selected>平局</option>
+                                    <else/>
+                                    <option value="2">平局</option>
+                                    </if>
+                                </select>
+                    </div>
+                    <div class="tpsearch" style="width: 25%;">
+                        运营中心：<select name="operate" id="operate" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <foreach name="operate" item="vo">
+                            <option value="{$vo.uid}">{$vo.username}</option>
+                        </foreach>
+                        <input type="hidden" value="{$sea.operate}" class="operate">
+                    </select>
+                    </div>
+
+                    <div class="tpsearch" style="width: 25%;">
+                        会员单位：<select name="oid" id="oid" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="all_agent['mem']" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['oid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div>
+                </div>
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%;">
+                        代理1：<select name="puhui_id" id="puhui_id" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="all_agent['one']" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['puhui_id']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div>
+
+<!--                     <div class="tpsearch" style="width: 25%;">
+                        代理2：<select name="jid" id="jid" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="all_agent['two']" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['jid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div> -->
+                    <div class="tpsearch" style="width: 25%;">
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="javascript:$('#form1').submit();">开始查找</a>
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="sub()">查找导出</a>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <!-- Users table -->
+            <br />
+            <div class="row-fluid table">
+                <!--//这个地方动态加载-->
+                <table class="table table-hover">
+                <thead>
+                        <tr>
+                            <th class="span1 sortable" style="font-size:14px;">
+                                统计汇总
+                            </th>
+                            <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>流水总金额：<font color="red">{$total['jaccess']}</font>元
+                            </th>
+                            <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>盈亏：<font color="red">{$total['jploss']|default=0}</font>元
+                            </th>
+                            <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>手续费：<font color="red">{$total['jfee']|default=0}</font>元
+                            </th>
+                            <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>订单个数：<font color="red">{$total['count']|default=0}</font>个
+                            </th>
+<!--                             <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>推广费用：<font color="red">{$rebate|default=0}</font>元
+                            </th> -->
+                        </tr>
+                    </thead>
+                </table>
+           </div>
+
+            <div class="row-fluid table">
+                <!--//这个地方动态加载-->
+                <table class="table table-hover">
+                        <div class="qjcz">
+                    <thead>
+                        <tr>
+                            <th class="span2 sortable">
+                                <span class="line"></span>用户编号
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>订单编号
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>用户昵称[上级]
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>手机号码
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>建仓时间
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>平仓时间
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>产品信息
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>类型
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>方向
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>建仓出金
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>手续费
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>买入价
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>卖出价
+                            </th>
+<!--                             <th class="span2 sortable">
+                                <span class="line"></span>账户余额
+                            </th>    -->
+                            <th class="span1 sortable">
+                                <span class="line"></span>盈亏
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>出入金
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                        <volist name="tlist" id="tl">
+                        <tr class="first">
+                            <td>
+                                {$tl.uid}
+                            </td>
+                            <td>
+                                {$tl.jno}
+                            </td>
+                            <td>
+                                <a href="{:U('User/updateuser',array('uid'=>$tl['uid']))}">{$tl.username}</a>[{$tl.opera_name}]
+                            </td>
+                            <td>
+                                {$tl.utel}
+                            </td>
+                            <td>{$tl.jc_jtime|date='Y-m-d H:i:s',###}</td>
+                            <if condition='$tl.jtype eq "平仓"'>
+                            <td>{$tl.jtime|date='Y-m-d H:i:s',###}</td>
+                            <else />
+                             <td>—</td>
+                            </if>
+                            <td>
+                                {$tl.remarks}
+                            </td>
+                            <td>
+                                <if condition='$tl.jtype eq "平仓"'>
+                                    <span class="label label-info">平仓</span>
+                                <else/>
+                                    <span class="label">建仓</span>
+                                </if>
+                            </td>
+                            <td>
+                                <if condition='$tl.jostyle eq 1'>
+                                    <span class="label label-success">买跌</span>
+                                    <else/>
+                                    <span class="label label-cc">买涨</span>
+                                </if>
+                            </td>
+
+                            <td>
+                                <font color="#ed0000" size="3">{$tl.jc_jaccess}</font>
+                            </td>
+
+                            <td>
+                                <font color="#ed0000" size="3">{$tl.jfee}</font>
+                            </td>
+                            <td>
+                                <font color="#ed0000" size="3">{$tl.jbuyprice}</font>
+                            </td>
+                            <td>
+                                <if condition='$tl.jtype eq "平仓"'>
+                                    <font color="#ed0000" size="3">{$tl.jsellprice}</font>
+                                <else/>
+                                    <font color="#ed0000" size="3">—</font>
+                                </if>
+                            </td>
+       <!--                      <td> <font color="#ed0000" size="3">{$tl.balance}</font></td> -->
+
+                            <td>
+                            <if condition='$tl.jtype eq "平仓"'>
+                                <if condition='$tl["jploss"] EGT 0'>
+                                    <font color="#2fb44e" size="3">+{$tl.jploss}</font>
+                                <else />
+                                    <font color="#ed0000" size="3">{$tl.jploss}</font>
+                                </if>
+                                <else/>
+                                    <font color="#2fb44e" size="3">—</font>
+                                </if>
+                            </td>
+
+                            <td>
+                                <if condition='$tl["jaccess"] EGT 0'>
+                                    <font color="#2fb44e" size="3">{$tl.jaccess}</font>
+                                <else />
+                                    <font color="#ed0000" size="3">{$tl.jaccess}</font>
+                                </if>
+                            </td>
+
+                            <td>
+                                <a onclick="order({$tl['oid']})" title="修改订单">修改</a>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+
+                </div>
+            </div>
+
+              <div>今日已有<font color="#f00" size="4">{$total.day_count}</font>个订单达成交易</div>
+            <div class="pagination pull-right">
+                <ul>
+                    {$show}
+                </ul>
+            </div>
+            <!-- end users table -->
+        </div>
+    </div>
+    <!-- end main container -->
+<div id="loading" style="width: 100%;height: 105%;position: absolute;top: 0; z-index: 9999;display: none;">
+    <div class="load-center" style="background: #000;position: absolute;width: 60%;height: 14%;bottom: 10%;border-radius: 10px;color: #fff;text-align: center;font-size: 24px;left: 17%;padding: 1%;">
+        <img src="__IMG__/ajax-loading.jpg" alt="ajax-loading" width="40"/><br/>页面加载中...
+    </div>
+</div>
+
+
+
+<!-- scripts -->
+
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript" src="__CSS__/layui/layui.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        // datepicker plugin
+        $('.datepicker').datepicker().on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        /*var eqli = $("#dashboard-menu").children().eq(3);
+        eqli.attr('class','active');
+        $("#dashboard-menu .active .submenu").css("display","block");*/
+
+        /**
+         * 时间对象的格式化;
+         */
+        Date.prototype.format = function(format) {
+            /*
+             * eg:format="yyyy-MM-dd hh:mm:ss";
+             */
+            var o = {
+                "M+" : this.getMonth() + 1, // month
+                "d+" : this.getDate(), // day
+                "h+" : this.getHours(), // hour
+                "m+" : this.getMinutes(), // minute
+                "s+" : this.getSeconds(), // second
+                "q+" : Math.floor((this.getMonth() + 3) / 3), // quarter
+                "S" : this.getMilliseconds()
+                // millisecond
+            }
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                                - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                                    ? o[k]
+                                    : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        }
+});
+
+
+
+function sub()
+{
+    $('#form1').attr("action","__URL__/tpGetExcel");
+    $('#form1').submit();
+    $('#form1').attr("action","__URL__/tlist");
+}
+
+$('#operate').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#oid").html(html);
+            $('select#puhui_id').html('<option value="">默认不选</option>');
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#oid').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#puhui_id").html(html);
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#puhui_id').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#jid").html(html);
+        }
+   });
+});
+
+var operate = $(".operate").val();
+$("#operate option").each(function(){
+    if(operate == $(this).val()){
+        $(this).attr('selected',true);
+    }
+});
+
+//日期选择时间
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+});
+</script>
+
+
+<script type="text/javascript" src="__CSS__/layer/layer.js"></script>
+<script type="text/javascript">
+function order(oid)
+{
+    layer.open({
+            type: 2,
+            area: ['92%', '40%'],
+            fixed: true, //不固定
+            maxmin: true,
+            title: "订单管理",
+            content: ["{:U('save_order')}?oid="+oid, 'no'],
+            end: function () {
+             //top.location.reload();
+            }
+    });
+}
+</script>
+
+
+</block>

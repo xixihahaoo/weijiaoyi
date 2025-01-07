@@ -1,0 +1,113 @@
+.mui-bar-nav {
+    height: 1.52rem;
+    line-height: 1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight: normal;
+}
+.mui-action-back {
+    display: inline-block;
+}
+.mui-action-back img {
+    width: 0.33rem;
+    height: 0.42rem;
+}
+.mui-title {
+    width: 85%;
+    text-align: center;
+    font-size: 0.6rem;
+}
+.mui_play {
+    font-size: 0.4rem;
+    padding-right: 0.3rem;
+}
+.in_top {
+    background: #11141d;
+    height: 1.86rem;
+    padding: 0rem .2rem 0rem .45rem;
+}
+.in_money {
+    width: 1.24rem;
+    margin-top: 0.25rem;
+   /* margin-right: 0.3rem;*/
+}
+.ac_a {
+    font-size: .33rem;
+    color: #616161;
+    padding-top: 0.3rem;
+}
+.a_money {
+    font-size: .8rem;
+    color: #1fc65b;
+    white-space: nowrap;
+}
+.in_money .btn {
+    width: 2.3rem;
+    height: 1.35rem;
+    line-height: 1.28rem;
+    margin-right: 0.2rem;
+    border-radius: 0.1rem;
+    border:2px solid #da2f35;
+    /* padding-left: 0.95rem; */
+    font-size: 0.38rem;
+    color: #d83f4e;
+    text-align: center;
+}
+.user_top {
+    background: #11141d;
+    border-top:2px solid #252529;
+    border-bottom:2px solid #252529;
+    margin-bottom: 0.35rem;
+}
+.buy_hand{
+    padding: 0rem .45rem;
+    overflow: auto;
+    display: block;
+}
+.buy_hand ul{
+    border-bottom:2px solid #252529;
+    height:1.34rem;
+    line-height:1.34rem;
+}
+ .buy_hand ul li{
+    color:#1fc65b;
+     font-size:0.5rem;
+     width: 50%;
+     height:1.3rem;
+     line-height:1.3rem;
+ }
+.buy_hand ul li.buy_hand_num>span{
+    font-size:0.38rem;
+}
+.buy_hp{
+    overflow: auto;
+    padding: 0 0.45rem;
+    padding-bottom: 0.2rem;
+}
+.buy_hp .buy_hand_lf{
+    width: 65%;
+    overflow: auto;
+}
+.buy_hand_lfnum{
+    display: block;
+    overflow: auto;
+    height: 1rem;
+    line-height: 1rem;
+    font-size:0.38rem;
+    color:#616161;
+}
+.buy_hand_lfnum li, .buy_hand_lfnum li>span{
+    white-space: nowrap;
+}
+.buy_hand_rt{
+    width: 2.37rem;
+    height: 1.35rem;
+    line-height:1.35rem;
+    border-radius:0.2rem;
+    background:#da2f35;
+    text-align: center;
+    font-size:0.5rem;
+    margin-top: 0.35rem;
+}
+

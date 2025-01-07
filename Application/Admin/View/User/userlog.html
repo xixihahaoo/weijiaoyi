@@ -1,0 +1,218 @@
+<extend name="Base/common"/>
+<block name="content">
+<!-- this page specific styles -->
+<link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen" />
+<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+<div class="container-fluid">
+    <div id="pad-wrapper" class="users-list">
+        <div class="row-fluid header">
+                <form id="form1" action="__URL__/userlog" method="get">
+                <h3 style="height: 40px;width: 100%;">操作日志</h3>
+
+                <div class="span10 pull-left" style="margin-top: 20px;">
+                    <div class="tpsearch">
+                        订单类型：<select id="type" class="span6" name="type">
+                                    <option <?php if($_GET['type'] == ''){echo "selected='selected'";}?> value=""selected>默认不选</option>
+                                    <option <?php if($_GET['type'] != '' && $_GET['type'] == 0){echo "selected='selected'";}?> value="0">客户登录</option>
+                                    <option <?php if($_GET['type'] == 1){echo "selected='selected'";}?> value="1">管理员登录</option>
+                                    <option <?php if($_GET['type'] == 2){echo "selected='selected'";}?> value="2">操作</option>
+                                </select>
+                    </div>
+                    <div class="tpsearch">
+                        用户级别：<select id="type" class="span6" name="level">
+                                    <option <?php if($_GET['level'] == ''){echo "selected='selected'";}?> value=""selected>默认不选</option>
+                                    <option <?php if($_GET['level'] == 0 && $_GET['level'] != ''){echo "selected='selected'";}?> value="0">客户</option>
+                                    <option <?php if($_GET['level'] == 3){echo "selected='selected'";}?> value="3">交易所</option>
+                                    <option <?php if($_GET['level'] == 5){echo "selected='selected'";}?> value="5">运营中心</option>
+                                    <option <?php if($_GET['level'] == 2){echo "selected='selected'";}?> value="2">会员单位</option>
+                                    <option <?php if($_GET['level'] == 4){echo "selected='selected'";}?> value="4">代理</option>
+                                    <option <?php if($_GET['level'] == 1){echo "selected='selected'";}?> value="1">经纪人</option>
+                                </select>
+                    </div>
+                    <div class="tpsearch">
+                        用户名称：<input type="text" value="{$sea.username}" class="span6 search" placeholder="请输入用户名称查找..." name="username" id="username"/>
+                    </div>
+
+                </div>
+
+                <div class="span10 pull-left" style="margin: 20px 0 10px 30px;">
+
+                    <div class="tpsearch">
+                        开始时间：<input type="text" value="{$sea.starttime}" class="span6 search datepicker" name="starttime" id="starttime">
+                    </div>
+                    <div class="tpsearch">
+                        结束时间：<input type="text" value="{$sea.endtime}" class="span6 search datepicker" style="margin-bottom: 0;" name="endtime" id="endtime">
+                    </div>
+                    <div class="span10 pull-left " style="width:30%;">
+                        <a href="javascript:void(0)" class="btn-flat info" onclick="javascript:$('#form1').submit();">开始查找</a>
+                        <a href="javascript:void(0)" class="btn-flat info" onclick="sub()">查询导出</a>
+                    </div>
+
+                </div>
+
+                </form>
+            </div>
+
+        <!-- Users table -->
+        <div class="row-fluid table">
+        <form action="log_del" id="roleform" method="post">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="span1 sortable">
+                            编号
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>用户名
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作时间
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作人ip
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>备注
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作
+                        </th>
+                        <th class="span2 sortable" style="width:10px;">
+                            <span class="line"></span><input type="checkbox" id="check">
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody id="ajaxback">
+                <volist name="rechargelist" id="relist">
+                <!-- row -->
+                <tr class="first">
+
+                    <td>
+                        {$relist.id}
+                    </td>
+                    <td>
+                        <a href="{:U('User/updateuser',array('uid'=>$relist['uid']))}">{$relist.username}</a>
+                    </td>
+                    <td>
+                        {$relist.time|date='Y-m-d H:i:s',###}
+                    </td>
+                    <td>
+                        <font>{$relist.ip}</font> 元
+                    </td>
+                    <td>
+                        {$relist.info}
+                    </td>
+                    <td>
+                            <a class="deldata" onclick="deldata({$relist.id})">删除</a>
+
+
+                    </td>
+                    <td>
+
+                    <input type="checkbox" value="{$relist.id}" name="menu[]">
+
+                    </td>
+                </tr>
+
+
+                <!-- row -->
+                </volist>
+                </tbody>
+            </table>
+        </form>
+        </div>
+        <div class="pagination pull-right">
+            <ul id="show">
+                {$page}
+            </ul>
+        </div>
+        <!-- end users table -->
+    </div>
+</div>
+
+<!-- scripts -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/popup_layer.js"></script>
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript">
+
+
+    /*$(document).ready(function(){
+        var eqli = $("#dashboard-menu").children().eq(13);
+        eqli.attr('class','active');
+        $("#dashboard-menu .active .submenu").css("display","block");
+    });*/
+    $("#check").change(function(){
+        if($("input[type='checkbox']").is(':checked')){
+           if(confirm("确定要清空数据吗？"))
+            {
+                $('#roleform').submit();
+            }
+        }
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker().on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    });
+    $(".elecl").click(function(){
+        var bpid = $(this).attr("bpid");
+        $('#popupLayer').css('display','block');
+        $('#elesh'+bpid).animate({
+            right: '45%', top: 200 ,opacity: 'toggle'
+        },600);
+    })
+    $('.closesh').click(function(){
+        $('#popupLayer').css('display','none');
+        $('.shtc').css('display','none');
+    })
+    $(".shtj").click(function(){
+        var bpid = $(this).attr("bpid");
+        var rebpprce=$('.rebpprce').html();
+        var userid=$('#userid').val();
+        var isverified = $('#elesh'+bpid+' input[name="isverified"]:checked ').val();
+        var remarks = $("#remarks"+bpid).val();
+        $.ajax({
+            type: "post",
+            url: "{:U('User/upbalance')}",
+            data:{"bpid":bpid,"isverified":isverified,"remarks":remarks,"rebpprce":rebpprce,"userid":userid},
+            success: function(data) {
+                if(data=="success"){
+                    $('#popupLayer').css('display','none');
+                    $('.shtc').css('display','none');
+                    alert('处理成功！');
+                    window.location.reload();
+                }else{
+                    alert('处理失败!');
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+      });
+    })
+function sub()
+{
+    $('#form1').attr("action","__URL__/daochu1");
+    $('#form1').submit();
+}
+function deldata(id){
+    if(confirm('确定要删除这条记录吗')){
+        $.ajax({
+            type:"post",
+            url:"{:U('User/deluserlog')}",
+            data:{"id":id},
+            success:function(data){
+                alert("更新成功");
+                window.location.reload();
+            }
+        });
+    }
+}
+</script>
+</block>

@@ -1,0 +1,138 @@
+.mui-bar-nav {
+    height: 1.52rem;
+    line-height: 1.52rem;
+    background: #252529;
+    padding: 0 .2rem 0 .45rem;
+    font-size: .3rem;
+    font-weight: normal;
+    position: relative;
+}
+.mui-action-back {
+    display: inline-block;
+}
+.mui-action-back img {
+    width: 0.33rem;
+    height: 0.42rem;
+}
+.mui-title {
+    width: 92%;
+    text-align: center;
+    font-size: 0.6rem;
+}
+.mui_play {
+    font-size: 0.4rem;
+    padding-right: 0.3rem;
+}
+.my-member{
+    position: absolute;
+    top: 2px;
+    right: 0;
+}
+.in_top {
+    background: #1f2024;
+    height: 1.82rem;
+    line-height: 1.82rem;
+    padding: 0rem 0rem 0rem .45rem;
+    margin-top: 0.3rem;
+    /* display: block; */
+    width: 100%;
+    /*float: left;*/
+}
+.ac_a {
+    font-size: .5rem;
+    color: #aaa9ac;
+}
+.ac_a input{
+    width: 60%;
+    height: 1rem;
+    line-height: 1rem;
+    background: #1F2024;
+    color: #e2e2e2;
+}
+.in_top .ac_a span {
+    color: #f6293b;
+    font-size: 0.33rem;
+    padding-left: 0.3rem;
+    position: relative;
+    top: -0.07rem;
+}
+.user_top {
+    /* margin-left: 0.65rem; */
+    /* margin-right: 0.65rem; */
+    overflow: auto;
+    width: 100%;
+    background: #1f2024;
+    margin-top: 0.35rem;
+
+}
+.user_top>p.user_choose{
+    text-align: left;
+    /* display: block; */
+    font-size: 0.45rem;
+    /* overflow: auto; */
+    line-height: 0.8rem;
+    /* width: 100%; */
+    color: #aaa9ac;
+    padding-top: 0.5rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.65rem;
+}
+.user_wx {
+    width: 9.45rem;
+    height: 1.86rem;
+    line-height: 1.86rem;
+    border: 1px solid rgba(134, 79, 80, 0.43);
+    margin: 0 auto;
+    border-radius: 0.2rem;
+    background-color: #1b1b1b;
+    position: relative;.
+
+}
+.user_top .active{
+    border: 1px solid #FC0001;
+}
+.user_img,.user_img{
+    width:1.22rem ;
+    height:1.22rem;
+    margin-left: 0.2rem;
+    margin-top: -0.05rem;
+}
+.user_img>img{
+    width: 100%;
+    height: 100%;
+}
+.user_wx_text>p{
+    line-height:0.6rem;
+    font-size:0.4rem;
+    padding-left: 2.4rem;
+    padding-top: 0.2rem;
+    color: #aaa9ac;
+}
+.tuijain{
+    width: 1.3rem;
+    height: 1.3rem;
+    background: url(../images/x.png) no-repeat center center;
+    background-size: 1.3rem 1.3rem;
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+}
+.tuijain>p{
+    position: absolute;
+    transform: rotate(45deg);
+    font-size: 0.35rem;
+    bottom: -0.1rem;
+    right: 0.1rem;
+}
+.next{
+    width: 9.45rem;
+    height: 1.86rem;
+    line-height:1.86rem;
+    background: #da2f35;
+    margin: 0 auto;
+    margin-top: 0.55rem;
+    border-radius:0.2rem;
+    font-size:0.45rem;
+    text-align: center;
+}
+

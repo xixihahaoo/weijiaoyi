@@ -1,0 +1,223 @@
+.mui-bar-nav {
+    height: 1.52rem;
+    line-height: 1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight: normal;
+}
+.mui-action-back {
+    display: inline-block;
+}
+.mui-action-back img {
+    width: 0.33rem;
+    height: 0.42rem;
+}
+.mui-title {
+    width: 74%;
+    text-align: center;
+    font-size: 0.6rem;
+}
+.mui_play {
+    font-size: 0.5rem;
+    padding-right: 0.3rem;
+}
+.in_top {
+    background: #1f2024;
+    height: 1.86rem;
+    line-height:1.86rem;
+    padding: 0rem 0rem 0rem .45rem;
+    margin-top: 0.3rem;
+}
+.in_top .ac_a span{
+    color:#f6293b;
+}
+/*.in_money {
+    !*width: 1.24rem;*!
+    margin-top: 0.25rem;
+    !* margin-right: 0.3rem;*!
+}*/
+.ac_a {
+    font-size: .55rem;
+    color: #aaa9ac;
+}
+.a_money {
+    font-size: .8rem;
+    color: #1fc65b;
+    white-space: nowrap;
+}
+.in_money .btn {
+    width: 3.05rem;
+    height: 1.86rem;
+    line-height: 1.86rem;
+   background: #f6293b;
+    /* padding-left: 0.95rem; */
+    font-size: 0.55rem;
+    color: #fff;
+    text-align: center;
+}
+.user_top {
+    background: #11141d;
+    margin-bottom: 0.35rem;
+}
+.buy_hand_lf{
+    width: 100%;
+}
+
+.buy_hp{
+    width: 100%;
+    padding: 0rem 0.45rem 0rem .45rem;
+}
+.buy_hand_lf ul:first-child{
+    border-right: 1px solid #5e5f60;
+}
+.buy_hand_lf ul,.buy_hand_lf ul li{
+    width: 50%;
+    float: left;
+    text-align: center;
+    }
+.buy_hand_lf ul li.buy_zhiying{
+    text-align: left;
+}
+.buy_hand_lf ul li{
+    font-size:0.45rem;
+    color:#5e5f60;
+    height:1.35rem;
+    line-height:1.35rem;
+    white-space: nowrap;
+}
+.buy_yonjin{
+    border:none!important;
+}
+ul.weiy li{
+    padding-left: 0.3rem;
+}
+.erweim>p{
+    font-size:0.4rem;
+    color:#5e5f60;
+    line-height:1rem;
+    text-align: center;
+}
+.er_img{
+    width: 6rem;
+    height:6rem;
+    background: #1fc65b;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+.lianjie>p{
+    font-size:0.4rem;
+    padding-left: 0.6rem;
+    color:#5e5f60;
+    display: block;
+    padding-bottom: 0.3rem;
+}
+.lianjie{
+    overflow: auto;
+}
+.lianjie_c{
+    height:1.62rem;
+    line-height:1.62rem;
+    background: #11141d;
+    margin-bottom: 0.5rem;
+}
+.lianjie_c input{
+    width: 7.3rem;
+    margin-left: 0.6rem;
+    height:1.62rem;
+    line-height:1.62rem;
+    background: #11141d;
+    color: #5e5f60;
+    font-size:0.4rem;
+}
+.lianjie_c button{
+    width: 2.27rem;
+    height:1.06rem;
+    line-height:0.8rem;
+    border-radius: 0.2rem;
+    border:2px solid #f6293b;
+    background: #11141d;
+    float: right;
+    margin-right: 0.45rem;
+    margin-top: 0.25rem;
+    color:#f6293b;
+    font-size:0.4rem;
+}
+.tuiguang,.frwwx,.tg_name{
+    margin-left: 0.45rem;
+    margin-right: 0.45rem;
+    background: #11141d;
+    overflow: auto;
+    padding: 0.8rem 0.66rem;
+    border-radius: 0.2rem;
+    margin-top: 1.15rem;
+}
+.tuiguang ul li:nth-child(2),.tuiguang ul li:nth-child(4){
+    margin-left: 1rem;
+}
+.tuiguang ul li:nth-child(3),.tuiguang ul li:nth-child(4){
+    margin-top: 0.64rem;
+}
+.tuiguang ul li{
+    float: left;
+}
+.tuiguang ul li>img{
+    width: 3.77rem;
+    height: 1.3rem;
+}
+.frwwx .frwwx_text{
+    color:#f6293b;
+    font-size:0.45rem;
+    padding-left: 0.4rem;
+    padding-right: 0.8rem;
+    line-height:0.8rem;
+}
+.frwwx .frwwx_img{
+    background: #da2f35;
+    padding:0.2rem 0.45rem;
+    font-size:0.45rem;
+    overflow: auto;
+    margin-top: 0.5rem;
+}
+.frwwx .frwwx_img ul{
+    display:block ;
+    overflow: auto;
+}
+.frwwx .frwwx_img ul li>span{
+    color:#fefa01;
+}
+.frwwx{
+    margin-top: 0.4rem!important;
+}
+.tg_name{
+    padding-top: 0.5rem!important;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+}
+.tg_name ul{
+    border-bottom: 1px solid #5e5f60;
+    overflow: auto;
+}
+.tg_name ul li{
+    width: 25%;
+    text-align:center;
+    color:#5e5f60;
+    font-size: 0.45rem;
+    line-height:0.7rem;
+    border-right: 1px solid #5e5f60;
+}
+.tg_name ul li:last-child{
+    border:none;
+}
+.tg_name ul li.namer{
+    line-height:1.4rem;
+}
+.tg_name ul.tg_yuan li{
+    line-height:2rem;
+}
+.tg_name{
+    margin-bottom: 0.8rem;
+}
+

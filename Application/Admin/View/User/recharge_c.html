@@ -1,0 +1,295 @@
+<extend name="Base/common"/>
+<block name="content">
+<!-- this page specific styles -->
+<link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen" />
+<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+<div class="container-fluid">
+    <div id="pad-wrapper" class="users-list">
+        <div class="row-fluid header">
+                <form id="form1" action="__URL__/recharge" method="get">
+                <h3 style="height: 40px;width: 100%;">充值记录</h3>
+
+                <div class="span10 pull-left" style="margin-top: 20px;">
+
+                    <div class="tpsearch">
+                        <input type="hidden" name="type" value="充值"/>
+                        会员单位：<select name="oid" id="oid" class="span7">
+                                    <option value="">默认不选</option>
+                                    <foreach name="huilist" item="vo">
+                                        <php>
+                                        if($sea['oid'] == $vo['uid']){
+                                        </php>
+                                        <option value="{$vo.uid}" selected>{$vo.username}</option>
+                                        <php>}else{</php>
+                                        <option value="{$vo.uid}">{$vo.username}</option>
+                                        <php>}</php>
+                                    </foreach>
+                                </select>
+                    </div>
+                    <div class="tpsearch">
+                        用户名称：<input type="text" value="{$sea.username}" class="span6 search" placeholder="请输入用户名称查找..." name="username" id="username"/>
+                    </div>
+
+                </div>
+
+                <div class="span10 pull-left" style="margin: 20px 0 10px 30px;">
+
+                    <div class="tpsearch">
+                        开始时间：<input type="text" value="{$sea.starttime}" class="input-large datepicker" name="starttime" id="starttime">
+                    </div>
+                    <div class="tpsearch">
+                        结束时间：<input type="text" value="{$sea.endtime}" class="input-large datepicker" style="margin-bottom: 0;" name="endtime" id="endtime">
+                    </div>
+                    <div class="span10 pull-left " style="width:30%;">
+                        <a href="javascript:void(0)" class="btn-flat info" onclick="javascript:$('#form1').submit();">开始查找</a>
+                        <a href="javascript:void(0)" class="btn-flat info" onclick="sub()">查询导出</a>
+                    </div>
+
+                </div>
+
+                </form>
+            </div>
+
+        <!-- Users table -->
+        <div class="row-fluid table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="span1 sortable">
+                            编号
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>用户名
+                        </th>
+                        <th class="span1 sortable">
+                            <span class="line"></span>上级
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作时间
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>处理时间
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作金额
+                        </th>
+                        <!--<th class="span2 sortable">
+                            <span class="line"></span>实际操作金额
+                        </th>-->
+                        <th class="span2 sortable">
+                            <span class="line"></span>会员账户余额
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>备注
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>审核状态
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody id="ajaxback">
+                <volist name="rechargelist" id="relist">
+                <!-- row -->
+                <tr class="first">
+
+                    <td>
+                        {$relist.bpid}
+                    </td>
+                    <td>
+                        <a href="{:U('User/updateuser',array('uid'=>$relist['uid']))}">{$relist.username}</a>
+                    </td>
+                    <td>
+                        {$relist.oid}
+                    </td>
+                    <td>
+                        {$relist.bptime}
+                    </td>
+                    <td>
+                        <if condition="$relist.cltime eq '' ">
+                        暂未处理
+                        <else/>
+                        {$relist.cltime}
+                        </if>
+                    </td>
+                    <td>
+                        <font color="#f00" size="4">{$relist.bpprice}</font> 元
+                    </td>
+                    <!--<td>
+                        <font color="#f00" size="4">{$relist.shibpprice}</font> 元
+                    </td>-->
+                    <td>
+                        <font color="#f00" size="4">{$relist['shibpprice']?$relist['shibpprice']:0}</font> 元
+                    </td>
+                    <td>
+                        {$relist.remarks}
+                    </td>
+                    <td>
+                    <if condition="$relist.bptype eq '提现'">
+                            <if condition="$relist.isverified eq 0">
+                            <a class="elecl" id="elecl{$relist.bpid}" bpid="{$relist.bpid}">处理/拒绝</a>
+                            <elseif condition="$relist.isverified eq 1"/>
+                            已通过
+                            <else/>
+                            拒绝申请
+                            </if>
+                    <else/>
+                            <if condition="$relist.isverified eq 1">
+                            已通过
+                            <else/>
+                            未通过
+                            </if>
+                            <!--<a class="deldata" onclick="deldata({$relist.bpid})">删除</a>-->
+                    </if>
+
+                    </td>
+                </tr>
+
+                <div class="shtc" id="elesh{$relist.bpid}">
+                    <div class="shtitle"><a class="closesh" id="closesh{$relist.bpid}" href="javascript:void(0)" >关闭</a></div>
+                    <ul class="shtcu">
+                        <input type="hidden" id="userid" value="{$relist['uid']}">
+                        <li><label>申请用户：</label><a href="{:U('User/updateuser',array('uid'=>$relist['uid']))}">{$relist.username}</a></li>
+                        <li><label>申请金额：</label>
+<font color="#f00" class="rebpprce">{$relist.bpprice}</font>元</li>
+                        <li class="sqs"><label>申请操作：</label><input type="radio" name="isverified" value="1">同意<input type="radio" name="isverified" value="0">拒绝</li>
+                        <li><label>理由：</label><textarea id="remarks{$relist.bpid}"></textarea></li>
+                        <li class="lastli"><a class="btn-flat success shtj" bpid="{$relist.bpid}">提交</a></li>
+                    </ul>
+                </div>
+                <!-- row -->
+                </volist>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>总计：<span  style="color:red">{$summoeny}元</span></td>
+                    <td>{$sumshibpprice}元</td>
+                    <td style="color:red">{$sumsheng}元</td>
+                    <td colspan="2"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination pull-right">
+            <ul id="show">
+                {$page}
+            </ul>
+        </div>
+        <!-- end users table -->
+    </div>
+</div>
+
+<!-- scripts -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/popup_layer.js"></script>
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker().on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    });
+    $(".elecl").click(function(){
+        var bpid = $(this).attr("bpid");
+        $('#popupLayer').css('display','block');
+        $('#elesh'+bpid).animate({
+            right: '45%', top: 200 ,opacity: 'toggle'
+        },600);
+    })
+    $('.closesh').click(function(){
+        $('#popupLayer').css('display','none');
+        $('.shtc').css('display','none');
+    })
+    $(".shtj").click(function(){
+        if($('input[name=isverified]:checked').length)
+        {
+            var bpid = $(this).attr("bpid");
+            var rebpprce=$('.rebpprce').html();
+            var userid=$('#userid').val();
+            var isverified = $('#elesh'+bpid+' input[name="isverified"]:checked ').val();
+            var remarks = $("#remarks"+bpid).val();
+            $.ajax({
+                type: "post",
+                url: "{:U('User/upbalance')}",
+                data:{"bpid":bpid,"isverified":isverified,"remarks":remarks,"rebpprce":rebpprce,"userid":userid},
+                success: function(data) {
+                    if(data=="success"){
+                        $('#popupLayer').css('display','none');
+                        $('.shtc').css('display','none');
+                        alert('处理成功！');
+                        window.location.reload();
+                    }else{
+                        alert('处理失败!');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+          });
+        }
+        else
+        {
+            alert('请您选择是否同意!');
+        }
+    })
+function sub()
+{
+    $('#form1').attr("action","__URL__/daochu1");
+    $('#form1').submit();
+}
+function deldata(id){
+    if(confirm('确定要删除这条记录吗')){
+        $.ajax({
+            type:"post",
+            url:"{:U('User/deldata')}",
+            data:{"bpid":id},
+            success:function(data){
+                alert("更新成功");
+                window.location.reload();
+            }
+        });
+    }
+}
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        /*var eqli = $("#dashboard-menu").children().eq(10);
+        eqli.attr('class','active');
+        $("#dashboard-menu .active .submenu").css("display","block");*/
+
+        /**
+         * 时间对象的格式化;
+         */
+        Date.prototype.format = function(format) {
+            /*
+             * eg:format="yyyy-MM-dd hh:mm:ss";
+             */
+            var o = {
+                "M+" : this.getMonth() + 1, // month
+                "d+" : this.getDate(), // day
+                "h+" : this.getHours(), // hour
+                "m+" : this.getMinutes(), // minute
+                "s+" : this.getSeconds(), // second
+                "q+" : Math.floor((this.getMonth() + 3) / 3), // quarter
+                "S" : this.getMilliseconds()
+                // millisecond
+            }
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                                - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                                    ? o[k]
+                                    : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        }
+    });
+</script>
+</block>

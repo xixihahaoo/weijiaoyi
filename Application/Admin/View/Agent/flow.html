@@ -1,0 +1,342 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/order-list.css" type="text/css" media="screen" />
+    <link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list" style="padding:0px; margin-top:25px;">
+            <div class="row-fluid header">
+                <form id="form1" action="__URL__/flow" method="get">
+                <h3 style="height:40px; line-height:40px; width: 100%">佣金流水</h3>
+                <div class="span10 pull-left" style="margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%">
+                        用户名称：<input type="text" value="{$sea.username}" class="span6 search" style="width:150px;" placeholder="请输入用户名称查找..." name="username" id="username"/>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        电话号码：<input type="text" value="{$sea.tel}" class="span6 search input_width" style="width:150px;" placeholder="电话号码" name="tel" id="tel"/>
+                    </div>
+
+
+                    <div class="tpsearch" style="width: 25%">
+                        开始时间：
+                        <if condition="$sea['starttime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['starttime']}" name="starttime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" name="starttime">
+                        </if>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        结束时间：
+                        <if condition="$sea['endtime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['endtime']}" name="endtime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" name="endtime">
+                        </if>
+                    </div>
+                </div>
+
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                            <div class="tpsearch" style="width: 25%;">
+                                运营中心：<select name="operate" id="operate" style='width:160px;' class="span7">
+                                <option value="">默认不选</option>
+                                <foreach name="operate" item="vo">
+                                    <option value="{$vo.uid}">{$vo.username}</option>
+                                </foreach>
+                                <input type="hidden" value="{$sea.operate}" class="operate">
+                            </select>
+                            </div>
+
+                            <div class="tpsearch" style="width: 25%;">
+                                会员单位：<select name="oid" id="oid" style='width:160px;' class="span7">
+                                <option value="">默认不选</option>
+                                <volist name="all_oid" id="vo">
+                                    <if condition="$vo['uid'] neq ''">
+                                    <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['oid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                            </div>
+
+                            <div class="tpsearch" style="width: 25%;">
+                                代理1：<select name="puhui_id" id="puhui_id" style='width:160px;' class="span7">
+                                <option value="">默认不选</option>
+                                <volist name="all_puhui" id="vo">
+                                    <if condition="$vo['uid'] neq ''">
+                                    <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['puhui_id']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                            </div>
+
+<!--                             <div class="tpsearch" style="width: 25%;">
+                                代理2：<select name="jid" id="jid" style='width:160px;' class="span7">
+                                <option value="">默认不选</option>
+                                <volist name="all_jid" id="vo">
+                                    <if condition="$vo['uid'] neq ''">
+                                    <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['jid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                            </div> -->
+                    </div>
+                    <div class="tpsearch" style="width: 25%;">
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="javascript:$('#form1').submit();">开始查找</a>
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="sub()">查找导出</a>
+                    </div>
+                </form>
+            </div>
+            <!-- Users table -->
+            <br />
+            <div class="row-fluid table">
+                <!--//这个地方动态加载-->
+                <table class="table table-hover">
+                <thead>
+                        <tr>
+                            <th class="span1 sortable" style="font-size:14px;">
+                                统计汇总
+                            </th>
+
+                            <th class="span2 sortable" style="font-size:14px;">
+                                <span class="line"></span>总佣金收益：<font color="red">{$profit|default=0}</font>元
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+           </div>
+            <div class="row-fluid table">
+                <!--//这个地方动态加载-->
+                <table class="table table-hover">
+                        <div class="qjcz">
+                    <thead>
+                        <tr>
+                            <th class="span2 sortable">
+                                <span class="line"></span>流水编号
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>用户名[会员单位]
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>手机号码
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>用户级别
+                            </th>
+                            <th class="span3 sortable" >
+                                <span class="line"></span>购买产品
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>佣金收益
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>总费用
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>佣金比例
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>是否发放
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>购买人
+                            </th>
+                            <th class="span1 sortable">
+                                <span class="line"></span>发放时间
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                        <volist name="info" id="vo">
+                        <tr class="first">
+                            <td>
+                                {$vo.id}
+                            </td>
+                            <td>
+                                {$vo.username}[{$vo.unit_name}]
+                            </td>
+
+                            <td>{$vo.utel}</td>
+
+                            <td>
+                                <if condition="$vo.class eq 1">
+                                    一级用户
+                               <elseif condition="$vo.class eq 2"/>
+                                    二级用户
+                                <else />
+                                    三级用户
+                                </if>
+                            </td>
+
+                            <td>
+                                {$vo.ptitle}
+                            </td>
+                            <td>
+                                ￥{$vo.profit}
+                            </td>
+                            <td>
+                                ￥{$vo.fee}
+                            </td>
+                            <td>
+                                {$vo.rate}
+                            </td>
+                            <td>
+                                <eq name="vo.status" value="1">
+                                    已发放
+                                <else/>
+                                    未发放
+                                </eq>
+                            </td>
+                            <td>
+                                {$vo.purchaser_username}
+                            </td>
+                            <td>
+                                {:date('m-d H:i:s',$vo['create_time'])}
+                            </td>
+
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+
+                </div>
+            </div>
+
+            <div class="pagination pull-right">
+                <ul>
+                    {$show}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+<div id="loading" style="width: 100%;height: 105%;position: absolute;top: 0; z-index: 9999;display: none;">
+    <div class="load-center" style="background: #000;position: absolute;width: 60%;height: 14%;bottom: 10%;border-radius: 10px;color: #fff;text-align: center;font-size: 24px;left: 17%;padding: 1%;">
+        <img src="__IMG__/ajax-loading.jpg" alt="ajax-loading" width="40"/><br/>页面加载中...
+    </div>
+</div>
+
+
+
+<!-- scripts -->
+
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript" src="__CSS__/layui/layui.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        // datepicker plugin
+        $('.datepicker').datepicker().on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+        });
+    });
+</script>
+<script type="text/javascript">
+    /*$(document).ready(function(){
+        var eqli = $("#dashboard-menu").children().eq(15);
+        eqli.attr('class','active');
+        $("#dashboard-menu .active .submenu").css("display","block");
+});*/
+
+
+
+function sub()
+{
+    $('#form1').attr("action","__URL__/tpGetExcel");
+    $('#form1').submit();
+    $('#form1').attr("action","__URL__/tlist");
+}
+
+$('#operate').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#oid").html(html);
+            $('select#puhui_id').html('<option value="">默认不选</option>');
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#oid').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#puhui_id").html(html);
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#puhui_id').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#jid").html(html);
+        }
+   });
+});
+
+var operate = $(".operate").val();
+$("#operate option").each(function(){
+    if(operate == $(this).val()){
+        $(this).attr('selected',true);
+    }
+});
+
+//日期选择时间
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+});
+</script>
+
+
+<script type="text/javascript" src="__CSS__/layer/layer.js"></script>
+<script type="text/javascript">
+function order(oid)
+{
+    layer.open({
+            type: 2,
+            area: ['92%', '40%'],
+            fixed: true, //不固定
+            maxmin: true,
+            title: "订单管理",
+            content: ["{:U('save_order')}?oid="+oid, 'no'],
+            end: function () {
+             //top.location.reload();
+            }
+    });
+}
+</script>
+
+
+</block>

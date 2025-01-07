@@ -1,0 +1,37 @@
+.wrap-page header {
+    width: 93%;
+    height: 3rem;
+    border-radius: 0.15rem;
+    margin: 0.5rem 2% 0.1rem 3.5%;
+    position: relative;
+    background: #212124;
+    /* background-clip: border-box; */
+    -webkit-background-clip: border;
+    border: 0.05rem #505050 dashed;
+}
+
+.ifnone_add_bank p:nth-of-type(1) {
+    position: static;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    height: 1rem;
+    line-height: 1rem;
+    color: #505050;
+    margin-top: 0.2rem;
+}
+.wrap-page header p:nth-of-type(2) {
+    width: 100%;
+    height: 1rem;
+    font-size: 0.45rem;
+    line-height: 1rem;
+    text-align: center;
+    bottom: 0.1rem;
+    right: 0.1rem;
+    z-index: 1000;
+    font-weight: 700;
+    margin: 0;
+    position: static;
+    color: #505050;
+    margin-top: 0.5rem;
+}

@@ -1,0 +1,274 @@
+.in_top {
+    width: 100%;
+    padding-top: 0.2rem;
+    background: url(../../images/yongli/personalbg.png) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    height: 4rem;
+    border-bottom: 2px solid #1f1f1f;
+}
+.in_top i.iconfont {
+    position: absolute;
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    top: 0.5rem;
+    right: 0.8rem;
+    color: #FFFFFF;
+    font-size: 0.2rem;
+    text-align: center;
+    line-height: 0.3rem;
+    background:url("../../images/yongli/exit.png") no-repeat center center;
+    background-size:0.6rem 0.6rem ;
+}
+.in_top  .article_img {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    margin: 0.5rem auto 0.3rem auto;
+    border: 0.08rem solid #ccc9c6;
+}
+.personalbg header  p {
+    text-align: center;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.4rem;
+    margin: 0;
+    color: #fdbe19;
+}
+.personalbg header p:nth-of-type(1) {
+    font-size: 0.4rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-top: 0.1rem;
+}
+p.ng-binding span{
+    width: 0.5rem;
+    height:0.5rem;
+    background: url("../../images/yongli/bi.png") no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    display: inline-block;
+    margin-left: 0.1rem;
+}
+ ul.persona_nation {
+    width: 100%;
+     overflow: hidden;
+   /* height: 0.8rem;*/
+    background: #282828;
+    margin-top: 0.05rem;
+    display: flex;
+}
+ ul.persona_nation li {
+     flex: 1;
+     height: 100%;
+}
+ ul.persona_nation li:nth-of-type(1) section {
+    border-left: none;
+}
+ ul.persona_nation li section {
+    width: 100%;
+     overflow: hidden;
+    /*height: 0.6rem;*/
+    padding-top: 0.05rem;
+    margin-bottom: 0.1rem;
+    margin-top: 0.1rem;
+    border-right: 1px solid #171717;
+    border-left: 1px solid #404040;
+}
+ul.persona_nation li section i.qianyue{
+    background: url("../../images/yongli/qianyue.png") no-repeat center center;
+    background-size: 0.8rem 0.6rem;
+}
+ul.persona_nation li section i.rujin{
+    background: url("../../images/yongli/rujin.png") no-repeat center center;
+    background-size: 0.6rem 0.6rem;
+}
+ul.persona_nation li section i.chujin{
+    background: url("../../images/yongli/chujin.png") no-repeat center center;
+    background-size: 0.6rem 0.6rem;
+}
+ul.persona_nation li section i.zijin{
+    background: url("../../images/yongli/sasaas_24.png") no-repeat center center;
+    background-size: 0.6rem 0.6rem;
+}
+ul.persona_nation li section i {
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0 auto;
+    font-size: 0.25rem;
+    line-height: 0.25rem;
+    text-align: center;
+    background-size: 0.8rem 0.8rem;
+}
+.main {
+    width: 67%;
+    height: 10.5rem;
+    margin: 1.5rem auto 0 auto;
+    background: url(../../images/yongli/erweimabg.png) no-repeat;
+    background-size: 100% 100%;
+    padding-top: 2.5rem;
+}
+.main .erwema_img {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0 auto;
+}
+.main .erwema_img img {
+    width: 100%;
+    height: 100%;
+}
+.main p {
+    height: 0.8rem;
+    margin-top: 0.05rem;
+    line-height: 0.8rem;
+    font-size: 0.4rem;
+    text-align: center;
+}
+.main p span {
+    /* margin-right: 0.05rem; */
+    color: #d1d1d1;
+    line-height: 0.8rem;
+}
+ ul.persona_nation li section p {
+    text-align: center;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    margin: 0;
+    font-size: .34rem;
+    color: #ffffff;
+}
+.in_top  .article_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.in_user {
+    padding-top: .7rem;
+    padding-left: .3rem;
+}
+.in_user a {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+.in_user .img {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin: 0 auto;
+    /* padding: .07rem; */
+    background: #1e1e1e;
+    overflow: hidden;
+    box-sizing: content-box;
+    display: block;
+    position: relative;
+}
+.in_user .img img {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+.in_acount {
+    padding: .5rem .2rem .3rem .3rem;
+}
+.in_acount p.ac_a {
+    font-size: .4rem;
+}
+.in_acount p {
+    font-size: .36rem;
+    color: #a4a3a3;
+    line-height: 0.7rem;
+}
+p.a_money span.a_money_red {
+    color: #ce1704;
+}
+.in_money {
+    margin-top: 1rem;
+}
+.in_money .btn {
+    width: 1.9rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    background: #d3af30;
+    margin-right: 0.2rem;
+    border-radius: 0.2rem;
+    /* padding-left: 0.95rem; */
+    font-size: 0.45rem;
+    color: #000;
+}
+.in_money .btn i {
+    width: 0.8rem;
+    height: 0.45rem;
+    /* margin-top: 0.2rem; */
+    margin-left: 0.2rem;
+}
+.in_money .in_money_chong i {
+    background: url(../../images/yongli/baofeng_20.png) no-repeat center center;
+    background-size: 0.43rem 0.38rem;
+}
+.in_money .in_money_ti i {
+    background: url(../../images/yongli/baofeng_14.png) no-repeat center center;
+    background-size: 0.43rem 0.4rem;
+}
+.form {
+    overflow: hidden;
+    display: block;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+    border-bottom: 2px solid #1f1f1f;
+}
+.w-item {
+    width: 100%;
+    height: 1.35rem;
+    border-color: #c1c1c1;
+    position: relative;
+    float: left;
+    line-height: 1.35rem;
+    font-size: 0.3rem;
+    background: #151515;
+    padding-left: 0.3rem;
+    /* margin-bottom: 0.3rem; */
+    /*margin-left: 0.4rem;*/
+   /* margin-top: 0.3rem;*/
+    border-bottom: 2px solid #1f1f1f;
+}
+.user_info {
+    width: 0.55rem;
+    height: 0.55rem;
+    position: absolute;
+    top: 0.45rem;
+    left: 0.3rem;
+}
+.user_info_text {
+    font-size: 0.52rem;
+    padding-left: 1.1rem;
+    line-height: 1.35rem;
+    color: #a4a3a3;
+}
+.jiantou {
+    margin-right: 0.4rem;
+}
+.jiantou img {
+    width: 0.2rem;
+    height: 0.3rem;
+}
+.action {
+    margin:.5rem .3rem;
+}
+.action .button,.action a.more {
+    width: 100%;
+}
+.button-stress {
+    color: #fff;
+    border-color: #941E22;
+    background-color: #941E22;
+    font-size: 0.5rem;
+}
+.button {
+    display:block;
+    height: 1.35rem;
+    line-height: 1.35rem;
+    text-align: center;
+    padding: 0 .1rem;
+    color: #fff;
+    border-radius: .1rem;
+}

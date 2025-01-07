@@ -1,0 +1,359 @@
+.container{
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+.me{
+	width:54%;
+	height:12%;
+	padding-top:2%;
+	padding-left: 2.5%;
+}
+.me .left{
+	float:left;
+	width:32%;
+	height:100%;
+	position: relative;
+}
+.me .left .head{
+	width:90%;
+	height:90%;
+	display: block;
+	margin:0 auto;
+	margin-top:2%;
+}
+.me .left .pic_border{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index:10;
+}
+.me .right{
+	width:68%;
+	height:100%;
+	float:left;
+	position: relative;
+}
+.me .right p{
+	color:#fff;
+	font-size:0.4rem;
+	font-weight:bold;
+	padding-left: 0.1rem;
+}
+.me .right img{
+	display: block;
+	position: absolute;
+	width:77%;
+	height:10%;
+	top:29%;
+	left:-0.1rem;
+}
+.me .right .money{
+	width:91%;
+	height:43%;
+	background: url(../images/money_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	left:4%;
+	bottom:11.5%;
+}
+.me .right .money span{
+	color:#00DDF7;
+	font-size:0.3rem;
+	font-weight:bold;
+	position: absolute;
+	bottom:20%;
+	left:31.5%;
+}
+.t_right{
+	width:33%;
+	height:5%;
+	position: absolute;
+	top:7.2%;
+	right:2.6%;
+}
+.t_right div{
+	float:left;
+	width:69%;
+	height:100%;
+}
+.t_right div p{
+	width:100%;
+	height:100%;
+	background:url(../images/button_bg.png) no-repeat;
+	background-size:100% 100%;
+	text-align: center;
+	font-size:0.35rem;
+	color:#fff;
+}
+.t_right div ul{
+	width:92%;
+	height:300%;
+	padding:0 4%;
+	display: none;
+	border-radius: 0.1rem;
+}
+.t_right div ul li{
+	width:100%;
+	height:33.33%;
+	text-align: center;
+	font-size:0.35rem;
+	color:#000;
+	background:#fff;
+}
+.t_right a{
+	float:right;
+	width:22%;
+	height:100%;
+	background:url(../images/go_help.png) no-repeat;
+	background-size:100% 100%;
+}
+.content{
+	width:95%;
+	height:55%;
+	padding:0px 2.5%;
+	margin-top: 2%;
+	background:url(../images/c_bg.png) no-repeat;
+	background-size:100% 100%;
+	overflow: hidden;
+}
+.content .left{
+	float:left;
+	width:10%;
+	height:87%;
+	padding-top:13%;
+}
+.content .left p{
+	width:100%;
+	height:12%;
+	text-align: center;
+	font-size:0.26rem;
+	font-weight:bold;
+	color:#02D1EC;
+}
+.content .left ul{
+	width:100%;
+	height:88%;
+}
+.content .left ul li{
+	width:81%;
+	padding:25% 0;
+	margin-bottom:2%;
+	text-align: center;
+	color:#fff;
+	font-size:0.29rem;
+	line-height: 0.32rem;
+	background:url(../images/choose.png) no-repeat;
+	background-size:100% 100%;
+}
+.content .left ul .active{
+	background: url(../images/choose1.png) no-repeat;
+	background-size:100% 100%;
+}
+.content .right{
+	float:right;
+	width:90%;
+	height:87%;
+	padding-top:13%;
+}
+.line{
+	width:95%;
+	height:1%;
+	margin:0 auto;
+	background: url(../images/blue_line.png) no-repeat;
+	background-size:100% 100%;
+}
+.money_choose{
+	width:95%;
+	height:14%;
+	margin:0 auto;
+}
+.money_choose .top{
+	width:100%;
+	height:37%;
+	position: relative;
+}
+.money_choose .top p{
+	width:30%;
+	height:100%;
+	text-align: center;
+	margin:0 auto;
+	color:#FFF;
+	text-shadow: 0 0 0 0.1rem #007ED6;
+	font-size:0.4rem;
+}
+.money_choose .top img{
+	position: absolute;
+	width:35%;
+	height:21%;
+	top:39.5%;
+}
+.money_choose .bottom{
+	width:100%;
+	height:63%;
+}
+.money_choose .bottom ul{
+	width:100%;
+	height:100%;
+}
+.money_choose .bottom li{
+	float:left;
+	width:14%;
+	height:100%;
+	background:url(../images/gold.png) no-repeat;
+	background-size:100% 100%;
+	margin-right:3.2%;
+	font-size:0.3rem;
+	color:#3F1900;
+	font-weight:bold;
+	position: relative;
+	text-align: center;
+}
+.money_choose .bottom .active{
+	background:url(../images/gold_on.png) no-repeat;
+	background-size:100% 100%;
+	color:#fff;
+}
+.money_choose .bottom li span{
+	width:100%;
+	height:56%;
+	display: block;
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	z-index:10;
+}
+.footer{
+	width:95%;
+	height:11.5%;
+	position: absolute;
+	left:2.5%;
+	bottom:2%;
+}
+.footer div{
+	position: absolute;
+	width:36%;
+	height:100%;
+	top:0;
+	z-index:10;
+}
+.footer .up{
+	background:url(../images/up_on.png) no-repeat;
+	background-size:100% 100%;
+	left:0;
+}
+.footer .down{
+	background:url(../images/down.png) no-repeat;
+	background-size:100% 100%;
+	right:0;
+}
+.footer .ok{
+	display: block;
+	width:22.5%;
+	height:100%;
+	background:url(../images/sure.png) no-repeat;
+	background-size:100% 100%;
+	margin:0 auto;
+}
+.back{
+	display: inline-block;
+	padding:0.2rem 0.3rem;
+	color:#fff;
+	font-size:0.3rem;
+	background:url(../images/button_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	top:15%;
+	left:1%;
+}
+.w_c_list{
+	display: inline-block;
+	padding:0.2rem 0.3rem;
+	color:#fff;
+	font-size:0.3rem;
+	background:url(../images/button_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	top:15%;
+	right:1%;
+}
+.w_table{
+	width:100%;
+	height:10%;
+}
+.w_table tr{
+	width:100%;
+	height:100%;
+}
+.w_table tr td{
+	width:21%;
+	padding:0 2%;
+	height:100%;
+	font-size:0.3rem;
+	color:#fff;
+}
+.w_table tr td span{
+	color:red;
+}
+.buy_alert{
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.2);
+	position: fixed;
+	z-index:888;
+}
+.buy_alert .window{
+	width:75%;
+	height:35%;
+	padding-top:5%;
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	background:#293043;
+}
+.buy_alert .window table{
+	width:85%;
+	height:70%;
+	margin:0 auto;
+	border-collapse: collapse;
+}
+.buy_alert .window table tr{
+	width:100%;
+	height:33.3%;
+	border-bottom:1px dashed #141823;
+}
+.buy_alert .window table tr td{
+	color:#999;
+	font-size:0.4rem;
+}
+.buy_alert .window table tr td span{
+	color:#fff;
+}
+.buy_alert .window table tr .buy_cz{
+	font-size:0.45rem;
+	color:#61be37;
+}
+.btnbg{
+	width:80%;
+	height:16%;
+	padding:7% 0;
+	margin:0 auto;
+}
+.btnbg button{
+	width:40%;
+	height:100%;
+	margin:0 5%;
+	float:left;
+	border:none;
+	outline:none;
+	color:#fff;
+	border-radius: 8%;
+}

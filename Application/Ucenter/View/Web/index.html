@@ -1,0 +1,54 @@
+<extend name="Base/common"/>
+<block name="content">
+<style type="text/css">
+	.col-md-6{ width:100%;}
+	.form-horizontal { width:500px;}
+</style>
+	<div class="main sidebar-minified">
+		<div class="row">
+			    <div class="col-md-6">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">
+			                <h2><i class="fa fa-indent red"></i><strong>
+							交易密码
+			                </strong></h2>
+			            </div>
+			            <form action="{:U('Web/index')}" method="post" enctype="multipart/form-data" class="form-horizontal">
+						<div class="panel-body">
+							<if condition="$account neq NULL">
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="text-input">原密码</label>
+				                    <div class="col-md-9">
+				                        	<input type="password"  name="oldpw" class="form-control" value="{$list.assure}">
+				                    </div>
+				                </div>
+							</if>
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="text-input">新密码</label>
+				                    <div class="col-md-9">
+
+				                        <input type="password"  name="npw" class="form-control" value="{$list.frozen}" >
+				                    </div>
+				                </div>
+
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="text-input">确认密码</label>
+				                    <div class="col-md-9">
+
+				                        <input type="password"  name="rpw" class="form-control">
+				                    </div>
+				                </div>
+				           
+						</div>
+						<div class="panel-footer">
+		                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 提交</button>
+	                        <a onclick="window.history.go(-1)"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 返回</button></a>
+		                </div>	
+		                </form>
+			        </div>	
+			    </div>
+				
+			 
+			        </div>
+	</div>
+</block>

@@ -1,0 +1,150 @@
+<extend name="Base/common"/>
+<block name="content">
+<link rel="stylesheet" href="__CSS__/compiled/new-user.css" type="text/css" media="screen" />  
+<style>
+	.new-user .form-wrapper input[type="text"]{border: 1px solid #D0D0D0;}
+</style>
+<div class="container-fluid">
+	<div id="pad-wrapper" class="new-user">
+		<div class="row-fluid header">
+			<h3>{$otype_info['name']}</h3>
+		</div>
+
+		<div class="row-fluid form-wrapper">
+			<form action="{:U(Agentlist/save_name)}" method="get" class="new_user_form">
+			<!-- left column -->
+			<div class="span6 with-sidebar">
+				<if condition="$otype_info['list'][0] eq 1">
+				<div class="span9 field-box">
+					<label>运营中心:</label>
+					<input class="span4" type="text" readonly="true" value="{$otype_info['list_info']['operate']['username']}"/>
+				</div>
+				</if>
+				<if condition="$otype_info['list'][1] eq 1">
+				<div class="span9 field-box">
+					<label>会员单位:</label>
+					<input class="span4" type="text" readonly="true" value="{$otype_info['list_info']['unit']['username']}"/>
+				</div>
+				</if>
+				<if condition="$otype_info['list'][2] eq 1">
+				<div class="span9 field-box">
+					<label>代理1:</label>
+					<input class="span4" type="text" readonly="true" value="{$otype_info['list_info']['leaguer']['username']}"/>
+				</div>
+				</if>
+				<div class="span9" style="height:40px;text-align:center;line-height:40px;font-weight:bold;">以上是上级单位</div>
+				<div class="span9 field-box uname">
+					<label>新的机构编号:</label>
+					<input class="span4" type="text" name="username" value="{$user_info.username}"/>
+				</div>
+				<input type='hidden' name='url' value='{$url}'>
+				<input type='hidden' name='uid' value='{$user_info.uid}'>
+				<div class="span8 field-box actions" style="padding-bottom: 20px;">
+					<input type="submit" name='sub' class="btn-glow primary" value="修改" />
+				</div>
+			</div>
+			</form>
+			<!-- side right column -->
+			<div class="span5 form-sidebar pull-right">
+				<div class="btn-group toggle-inputs hidden-tablet">
+					<button class="glow left" data-input="inline">内联输入</button>
+					<button class="glow right active" data-input="normal">正常输入</button>
+				</div>
+				<div class="alert alert-info hidden-tablet" style="width: 50%;">
+					<i class="icon-lightbulb pull-left"></i>
+					点击上面的按钮可以切换输入方式。
+				</div>
+			</div>                    
+		</div>
+	</div>
+</div>
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/theme.js"></script>
+<script>
+$(function () {
+	var data_info = <?php echo json_encode($otype_info);?>;
+	var data = new Object();
+	var sub_name = "机构编号必须"+data_info.where1+data_info.len+"位";
+	$("input[name='username']").on('change',function(){
+		var new_name = $(this).val();
+		if(!validate(data_info.where,$(this).val().length,data_info.len))
+		{
+			tanchu("机构编号必须"+data_info.where1+data_info.len+"位");
+			sub_name = "机构编号必须"+data_info.where1+data_info.len+"位";
+		}
+		else
+		{
+			var superior = $('select.superior:last').find("option:selected").html();
+			if(superior)
+			{
+				if(superior == new_name.substring(0,superior.length))
+				{
+					$.ajax({
+						type: "GET",
+						url: "{:U('ajax_name')}",
+						data: {name:$("input[name='username']").val()+""},
+						async:false,
+						success: function(data){
+							if(data.status == 0)
+							{
+								tanchu(data.msg);
+								sub_name = data.msg;
+							}
+							else
+							{
+								sub_name = false;
+							}
+						}
+				   });
+				}
+				else
+				{
+					tanchu("机构编号前"+superior.length+"位必须等于"+superior);
+					sub_name = "机构编号前"+superior.length+"位必须等于"+superior;
+				}
+			}
+			else
+			{
+				$.ajax({
+					type: "GET",
+					url: "{:U('ajax_name')}",
+					data: {name:$("input[name='username']").val()+""},
+					async:false,
+					success: function(data){
+						if(data.status == 0)
+						{
+							tanchu(data.msg);
+							sub_name = data.msg;
+						}
+						else
+						{
+							sub_name = false;
+						}
+					}
+			   });
+			}
+		}
+	})
+	$("form.new_user_form").submit(function(){
+		$("input[name='username']").change();
+		if(sub_name)
+		{
+			tanchu(sub_name);
+			return false;
+		}
+	})
+	function validate(where,name_len,len)
+	{
+		if(where == "eq")
+		{
+			return name_len == len;
+		}
+		else
+		{
+			return name_len > len;
+		}
+	}
+})
+</script>
+</block>

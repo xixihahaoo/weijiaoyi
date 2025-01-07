@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="__JS__/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+  <title></title>
+    <style>
+        .layui-input{
+            width: 60%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<button class="layui-btn site-demo-layedit" data-type="content" style="margin: 5px 0 0 5px;">点击提交</button>
+ <form  id="id_form" method="post">
+  <div class="layui-form">
+    <table class="layui-table">
+      <colgroup>
+        <col width="50">
+        <col width="150">
+        <col width="150">
+        <col width="200">
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="text-align: center;">编号</th>
+          <th style="text-align: center;">级别</th>
+          <th style="text-align: center;">比例</th>
+          <th style="text-align: center;">创建时间</th>
+        </tr> 
+      </thead>
+      <tbody>
+      
+         <input type="hidden" name="uid" value="{$uid}">
+        <volist name="rebate" id="vo">
+          <tr style="text-align: center;">
+            <input type="hidden" name="id[]" value="{$vo.id}">
+            <input type="hidden" name="type[]" value="{$vo.type}">
+
+            <td>{$vo.id|default=0}</td>
+            <td>{$vo.type}级</td>
+            <td><input type="text" name="rate[]" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{$vo.rate|default=0}" onkeyup="value=value.replace(/[^\d\.]/g,'')">&nbsp;%</td>
+            <td>{$vo['dateline']}</td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+  </div>
+  </form>
+</body>
+</html>
+
+<script type="text/javascript" src="__CSS__/layer/layer.js"></script>
+<script type="text/javascript">
+
+$('.layui-btn').click(function(){
+
+$.ajax({
+        type: "post",
+        url: "{:U('Menber/save_rate')}",
+        data:$("#id_form").serialize(),
+        success: function(data) {
+          if(data.code == 200)
+          {
+            layer.msg(data.msg);
+            top.location.reload();
+          } else {
+            layer.msg(data.msg);
+          }
+            
+        },
+        error: function(data) {
+            console.log(data);
+        }
+});
+});
+</script>

@@ -1,0 +1,43 @@
+<extend name="Base/common"/>
+<block name="content">
+<script>
+<style type="text/css">
+	.datatable,.datatable th{text-align:center;}
+</style>
+<script type="text/javascript" src="/public/home/js/jquery.min.js"></script>
+<div class="main sidebar-minified">
+<!--/row-->
+			<div class="row">		
+				<div class="col-lg-12">
+					<div class="panel panel-default" style="min-height: 700px;">{$list['ncontent']}
+					</div>
+				</div><!--/col-->
+			
+			</div><!--/row-->
+   
+		</div>
+<script>
+	function showpre(uid)
+	{
+		var StartTime = $("#StartTime").val();
+		var EntTime = $("#EntTime").val();
+		$.ajax({
+			type: "post",
+			url:"{:U('Ordinary/showpre')}",
+			data:{"uid":uid,"StartTime":StartTime,"EntTime":EntTime},
+			dataType:"json",
+			success:function(data)
+			{
+				if(!data.sumyk){
+					alert("无任何交易信息");
+				}else{
+					alert("该用户总充值"+data.sumbla+"元,交易总盈亏是："+data.sumyk+"元,交易总手续费是"+data.sumsxf+'元');
+				}
+			},
+			error: function(data) {  
+				//alert(data);
+			}
+		});
+	}
+</script>
+ </block>

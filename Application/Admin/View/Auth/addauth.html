@@ -1,0 +1,431 @@
+<extend name="Base/common"/>
+
+<block name="content">
+	<!-- this page specific styles -->
+	<link rel="stylesheet" href="__CSS__/compiled/article-add.css" type="text/css" media="screen" />
+    <div class="container-fluid">
+<section class="content content2">
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list"></i> 编辑权限</h3>
+      </div>
+      <div class="panel-body ">
+      <form action="do_addgroup" id="roleform" method="post">
+          <table class="table table-bordered table-striped dataTable">
+           
+            <tr>
+              <td class="title left" style="padding-right:50px;"> 内容管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-1">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="3,4,5,6" ck="mod-1">
+                      栏目管理</label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="7,8,9" ck="mod-1">
+                      文章管理</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">产品管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-2">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="10,11,12" ck="mod-2">
+                      产品列表</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">订单管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-3">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="13,14" ck="mod-3">
+                      交易流水</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+
+            <tr>
+              <td class="title left" style="padding-right:50px;">客户管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-14">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="15,16,17" ck="mod-14">
+                      客户管理</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="18,19,20" ck="mod-14">
+                      手动充值</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+
+            <tr>
+              <td class="title left" style="padding-right:50px;">经纪人管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-4">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="22" ck="mod-4">
+                      经纪人申请</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="23,24,25" ck="mod-4">
+                      经纪人列表</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">会员单位管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-5">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="26,27" ck="mod-5">
+                      会员列表</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="28" ck="mod-5">
+                      添加会员</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">运营中心管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-52">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="51,52,53,54" ck="mod-52">
+                      运营中心列表</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="52" ck="mod-52">
+                      添加运营中心</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">系统管理员
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-6">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="29" ck="mod-6">
+                      添加管理员</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="30,31" ck="mod-6">
+                      管理员列表</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">权限管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-7">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="32,33" ck="mod-7">
+                      添加权限</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="34,35" ck="mod-7">
+                      添加角色</label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="36,37,38,39" ck="mod-7">
+                      角色列表</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">财务管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-8">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="40,41" ck="mod-8">
+                      财务管理</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">系统设置
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-9">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="42" ck="mod-9">
+                      基本设置</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="43" ck="mod-9">
+                      数据备份</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+            <tr>
+              <td class="title left" style="padding-right:50px;">微信管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-10">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="44" ck="mod-10">
+                      微信基本设置</label>
+                  </li>
+                  
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="45" ck="mod-10">
+                      微信用户列表</label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="46" ck="mod-10">
+                      更新微信用户</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+
+            <tr>
+              <td class="title left" style="padding-right:50px;">日志管理
+                <noempty name="vv.menu">
+                  <label class="right">
+                    <input type="checkbox" value="1" cka="mod-11">
+                    全选</label>
+                </noempty></td>
+            </tr>
+            <tr>
+              <td><ul class="group-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" name="menu[]"  value="47" ck="mod-11">
+                      日志管理</label>
+                  </li>
+                  <div class="clear-both"></div>
+                </ul></td>
+            </tr>
+
+          </table>
+          <div style="margin-bottom:23px;">选中角色: 
+          	<select name="title" class="select">
+          	<foreach name="list" item="v">
+            	<option value="{$v.title}">{$v.title}</option>
+            </foreach>
+          </select>
+          </div>
+          <div class="page-bar">
+            <table>
+              <tr>
+                <td><label>
+                    <input class="allChoose" name="" onclick="choosebox(this)" type="checkbox">
+                    全部选中</label></td>
+                <td class="page-list"></td>
+                <td class="pull-right"><a href="javascript:void(0)" onclick="roleSubmit()" class="link_btn">提交数据</a></td>
+              </tr>
+            </table>
+          </div>
+          <input type="hidden" name="__hash__" value="48907ee6ffa97a2997fb1f62277bb5ca_f59f254a65ebcfabd460d364ba7ab734" />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
+</div>
+<!-- end main container -->
+
+<style>
+ul.group-list {
+	width: 96%;
+	min-width: 1000px;
+	margin: auto 5px;
+	list-style: disc outside none;
+}
+ul.group-list li {
+	white-space: nowrap;
+	float: left;
+	width: 150px;
+	height: 25px;
+	padding: 3px 5px;
+	list-style-type: none;
+	list-style-position: outside;
+	border: 0px;
+	margin: 0px;
+}
+th.title {
+	background: #F3F3F3;
+	border-bottom: 1px solid #D7D7D7;
+	font-weight: bold;
+	white-space: nowrap;
+}
+.content .content2{
+	margin-left: 20px
+}
+.panel-title{
+	margin-top: 54px;
+	margin-bottom: 15px
+}
+.link_btn {
+    border: 1px #139667 solid;
+    border-radius: 2px;
+    background: #19a97b;
+    color: white;
+    padding: 8px 15px;
+    display: inline-block;
+    cursor: pointer;
+}
+#roleform label{
+  display: inline-block;
+}
+</style>
+<!-- scripts -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var eqli = $("#dashboard-menu").children().eq(6);
+		eqli.attr('class','active');
+		$("#dashboard-menu .active .submenu").css("display","block");
+	});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(":checkbox[cka]").click(function(){
+		var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");;
+		if($(this).is(':checked')){
+			$cks.each(function(){$(this).prop("checked",true);});
+		}else{
+			$cks.each(function(){$(this).removeAttr('checked');});
+		}
+	});
+});
+
+function choosebox(o){
+	var vt = $(o).is(':checked');
+	if(vt){
+		$('input[type=checkbox]').prop('checked',vt);
+	}else{
+		$('input[type=checkbox]').removeAttr('checked');
+	}
+}
+
+function roleSubmit(){
+	if($('#role_name').val() == '' ){
+		layer.alert('角色名称不能为空', {icon: 2});  //alert('少年，角色名称不能为空');
+		return false;
+	}
+	$('#roleform').submit();
+}
+</script>
+</block>

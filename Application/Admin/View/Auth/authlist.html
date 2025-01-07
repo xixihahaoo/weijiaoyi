@@ -1,0 +1,66 @@
+<extend name="Base/common"/>
+<block name="content">
+<!-- this page specific styles -->
+<link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+<div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>角色列表</h3>                    
+                </div>
+                <!-- Users table -->
+                <div class="row-fluid table header">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span1 sortable">
+                                    编号
+                                </th>
+                                <th class="span3 sortable">
+                                    角色名称
+                                </th>
+                                <th class="span2 sortable">
+                                    操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <foreach name="list" item="vo">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                                {$vo['id']}
+                            </td>
+                            <td>
+                                {$vo.title}
+                            </td>
+                            <td>
+                                <ul class="actions">
+                                     <li><a href="{:U('Auth/edit',array('uid'=>$ult['uid']))}"><i class="table-edit"></i></a></li>
+                                    <li class="last"><a href="{:U('Auth/adel',array('id'=>$vo['id']))}" onclick="if(confirm('确定要删除吗?')){return true;}else{return false;}"><i class="table-delete"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </foreach>                        
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        {$page}
+                    </ul>
+                </div>
+                <!-- end users table -->
+            </div>
+        </div>
+	<!-- scripts -->
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/theme.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			var eqli = $("#dashboard-menu").children().eq(6);
+			eqli.attr('class','active');
+			$("#dashboard-menu .active .submenu").css("display","block");
+		});
+	</script>
+</block>

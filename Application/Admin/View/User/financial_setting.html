@@ -1,0 +1,67 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/article-add.css" type="text/css" media="screen" />
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="form-page">
+             <div class="row-fluid header" style="margin-bottom:30px">
+                <h3>财务管理&nbsp;>&nbsp;{$type}设置</h3>
+            </div>
+            <div class="row-fluid form-wrapper">
+                <form action="{:U('User/financial_setting')}" method="post">
+                <!-- left column -->
+                <div class="span8 column">
+
+                    <div class="field-box" style="width: 45%;">
+                        <label>{$type}最大金额</label>
+                        <input class="span5" type="text" title="请输入数字"  name="max_monery" value="{$list.max_monery}"/>
+                    </div>
+
+                    <div class="field-box" style="width: 45%;">
+                        <label>{$type}最低金额</label>
+                        <input class="span2" type="text" title="请输入数字" name="min_monery" value="{$list.min_monery}" />
+                    </div>
+                    <input type="hidden" name="type" value="{$type}"/>
+                    <!--<div class="field-box" style="width: 45%;">
+                        <label>{$type}手续费</label>
+                        <input class="span2" type="text" title="请填写手续费百分比"  value="{$list.poundage}" name="poundage"/><if condition="$type eq '出金'">(元/笔)<else/>%</if>
+                    </div>
+                    <div class="field-box" style="width: 45%;">
+                        <label>{$type}开始时间</label>
+                        <input class="span2" type="text" title="请输入数字"  value="{$list.starttime}" name="starttime"/>
+                    </div>
+                    <div class="field-box" style="width: 45%;">
+                        <label>{$type}结束时间</label>
+                        <input class="span2" type="text" title="请输入数字"  value="{$list.endtime}" name="endtime"/>
+                    </div>!-->
+                    <div class="field-box actions">
+                        <input type="submit" class="btn-glow primary" value="提交"><span>或</span><input type="reset" value="重置" >
+                    </div>
+                </div>
+                </form>
+                <!-- right column -->
+                <div class="span4 column pull-right">
+                   <div class="field-box"><h3>说明：</h3></div>
+                   <div class="field-box">**只有在开始时间和结束时间段内才可以进行出金和入金!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container -->
+
+
+<!-- scripts for this page -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/theme.js"></script>
+
+
+    <script type="text/javascript">
+        /*$(document).ready(function() {
+            var eqli = $("#dashboard-menu").children().eq(10);
+            eqli.attr('class', 'active');
+            $("#dashboard-menu .active .submenu").css("display", "block");
+        });*/
+    </script>
+</block>

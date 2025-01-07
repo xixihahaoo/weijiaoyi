@@ -1,0 +1,60 @@
+.sy-shade {
+      position: absolute;
+      top: 0;
+      z-index: 9999;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,.5);
+      display: none;
+    }
+    .sy-shade-con {
+      position: absolute;
+      top: 30%;
+      z-index: 666;
+      /*height: 30%;*/
+      padding-bottom: 5%;
+      width: 70%;
+      margin: 0 15%;
+      font-size: 1.5em;
+      text-align: center;
+      overflow: hidden;
+      background: #eee;
+	 
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius:10px;
+    }
+	.sy-shade-con h3{
+      font-size: 1em;
+      height: 2em;
+      line-height: 2em;
+      color: #666;
+	  border-bottom: 1px solid #ccc;
+    }
+
+    .sy-shade-con .pwd-btn{
+      font-size: 1em;
+	  width: 80%;
+	  margin: 0 10%;
+      height: 2em;
+      color: #fff;
+      background: #4883D0;
+	  -webkit-border-radius: 1em;
+      -moz-border-radius: 1em;
+      border-radius:1em;
+    }
+    .sy-shade-con .pwd{
+      width: 80%;
+      height: 1.8em;
+      line-height: 1.8em;
+      margin: 1em auto;
+      font-size: 1em;
+      color: #666;
+      text-align: center;
+      border: none;
+      border:1px solid #ccc;
+      -webkit-border-radius: 0.2em;
+      -moz-border-radius: 0.2em;
+      border-radius: 0.2em;
+    }
+

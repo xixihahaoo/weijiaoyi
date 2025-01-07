@@ -1,0 +1,344 @@
+<extend name="Base/common"/>
+<block name="content">
+<!-- this page specific styles -->
+<link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+<link rel="stylesheet" type="text/css" href="__CSS__/layui/css/layui.css">
+
+<div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+            <div class="row-fluid header">
+                <form id="form1" action="__URL__/agentlist" method="get">
+                <h3 style="height:40px; line-height:40px; width: 100%">经纪人申请列表</h3>
+                <div class="span10 pull-left" style="margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%">
+                        用户名称：<input type="text" value="{$sea.username}" class="span6 search" style="width:150px;" placeholder="请输入用户名称查找..." name="username" id="username"/>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        电话号码：<input type="text" value="{$sea.tel}" class="span6 search input_width" style="width:150px;" placeholder="电话号码" name="tel" id="tel"/>
+                    </div>
+
+                    <div class="tpsearch" style="width: 25%">
+                        开始时间：
+                        <if condition="$sea['starttime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['starttime']}" name="starttime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" name="starttime">
+                        </if>
+                    </div>
+                    <div class="tpsearch" style="width: 25%">
+                        结束时间：
+                        <if condition="$sea['endtime']">
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$sea['endtime']}" name="endtime">
+                        <else />
+                        <input class="span6 search input_width" style="width: 150px;" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="" name="endtime">
+                        </if>
+                    </div>
+                </div>
+
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%;">
+                        运营中心：<select name="operate" id="operate" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <foreach name="operate" item="vo">
+                            <option value="{$vo.uid}">{$vo.username}</option>
+                        </foreach>
+                        <input type="hidden" value="{$sea.operate}" class="operate">
+                    </select>
+                    </div>
+
+                    <div class="tpsearch" style="width: 25%;">
+                        会员单位：<select name="oid" id="oid" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="oidinfo" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['oid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div>
+
+                	<div class="tpsearch" style="width: 25%;">
+                        代理1：<select name="puhui_id" id="puhui_id" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="puhuiinfo" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['puhui_id']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div>
+
+                    <div class="tpsearch" style="width: 25%;">
+                        代理2：<select name="jid" id="jid" style='width:160px;' class="span7">
+                        <option value="">默认不选</option>
+                        <volist name="jidinfo" id="vo">
+                            <if condition="$vo['uid'] neq ''">
+                            <option value="{$vo['uid']}" <?php if($vo['uid'] == $_GET['jid']){echo "selected='selected'";}?>>{$vo['username']}</option>
+                            </if>
+                        </volist>
+                    </select>
+                    </div>
+                </div>
+                <div class="span10 pull-left margin-left-css" style="margin-top: 20px;margin-left:0px;">
+                    <div class="tpsearch" style="width: 25%;">
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="javascript:$('#form1').submit();">开始查找</a>
+                        <a href="javascript:void(0)" class="btn-flat info" style="background: #3389d1; border: none;" onclick="sub()">查找导出</a>
+                    </div>
+                </div>
+                </form>
+            </div>
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span1 sortable">
+                                    用户编号
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>用户名称
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>手机号码
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>创建日期
+                                </th>
+                                 <th class="span2 sortable">
+                                    <span class="line"></span>昵称
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="ajaxback">
+                        <volist name="list" id="ult" key="k">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                                {$ult.uid}
+                            </td>
+                            <td>
+                               <if condition="$ult['username'] eq ''">
+                                暂无名称
+                                <else/>
+                                     {$ult['username']}
+                                </if>
+                           
+                            </td>
+                            <td>
+                                 <if condition="$ult['utel'] eq ''">
+                                 暂无电话
+                                <else/>
+                                    {$ult['utel']}
+                                </if>
+                                
+                            </td>
+                            <td>
+                                {$ult['utime']|date='Y-m-d H:i:s',###}
+                            </td>
+                            <td>
+                                {$ult['nickname']|default=暂未填写}
+                            </td>
+                            <td>
+                            	<if condition="$ult.agenttype eq 2">
+									已通过
+								<else/>
+                            	<ul class="actions">
+                                    <li><a href="{:U('User/edituser')}?uid={$ult['uid']}&otype=1" onclick="if(confirm('确定要通过吗?')){return true;}else{return false;}">通过</a></li>
+                                    <li class="last"><a href="{:U('User/edituser')}?uid={$ult['uid']}&otype=0" onclick="if(confirm('确定要拒绝吗?')){return true;}else{return false;}">拒绝</a></li>
+                                </ul>
+								</if>
+                            </td>
+                        </tr>
+                        </volist>                        
+                        </tbody>
+                    </table>
+        
+                </div>
+        		<div><p style="color:red">总会员:{$count}个</p></div>
+                <div class="pagination pull-right">
+                    <ul>
+                        {$page}
+                    </ul>
+                </div>
+                <!-- end users table -->
+            </div>
+        </div>
+<!-- scripts -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript" src="__CSS__/layui/layui.js"></script>
+<script type="text/javascript">
+	/*$(document).ready(function(){
+		var eqli = $("#dashboard-menu").children().eq(15);
+		eqli.attr('class','active');
+		$("#dashboard-menu .active .submenu").css("display","block");
+	});*/
+	
+	$('#top_search').keyup(top_serch);
+	$('#sxsearch').click(top_serch);
+	//搜索结果，ajax返回搜索框搜索结果
+	function top_serch(){
+		//获取点击参数
+		var urlkey = $(this).attr("urlkey");
+		//获取文本框值
+		var keywords = $("#top_search").val(),
+		    sxkey = $("#sxkey  option:selected").val(),
+			formula = $("#formula  option:selected").val(),
+			sxvalue = $("#sxvalue").val();
+		//重新定义提交url
+		var newurl = "";
+		if(urlkey == "search"){
+			newurl = "{:U('User/ulist?step=search')}"
+		}
+		if(urlkey == "sxsearch"){
+			newurl = "{:U('User/ulist?step=sxsearch')}"
+		}
+		$.ajax({  
+		    type: "post",  
+		    url: newurl,    
+        	data:{"keywords":keywords,"sxkey":sxkey,"formula":formula,"sxvalue":sxvalue},
+		    success: function(data) {
+		    	//console.log(data);
+		    	if(data=="null"){
+	            	//$("#loading").hide();
+	            	$("#ajaxback").html('<tr class="first"><td colspan="13">没有找到结果，请重新输入！</tr></td>');
+	            }else{
+			    	$ulist = "";
+		            $.each(data,function(no,items){
+		            	$ulist += '<tr class="first">';
+		            	$ulist += '<td>'+items.uid+'</td>';
+		            	$ulist += '<td><a href="{:U(\'User/updateuser\')}?uid='+items.uid+'" class="name">'+items.username+'</a></td>';
+		            	$ulist += '<td>'+items.utel+'</td>';
+		            	$ulist += '<td>'+items.utime+'</td>';
+		            	if(items.ocount=='0'){
+		            		$ulist += '<td>0</td>';
+		            	}else{
+		            		$ulist += '<td><a href="">'+items.ocount+'</a></td>';	
+		            	}
+		            	$ulist += '<td><font color="#f00" size="4">￥'+items.balance+'<font></td>';
+		            	$ulist += '<td>';
+		            	if(items.otype == '0'){
+		            		$ulist += '会员';
+		            	}
+		            	if(items.otype == '1'){
+		            		$ulist += '正在申请经纪人';
+		            	}
+		            	if(items.otype == '2'){
+		            		$ulist += '经纪人';
+		            	}
+		            	$ulist += '<ul class="actions">';
+		            	$ulist += '<li><a href="{:U(\'User/updateuser\')}?uid='+items.uid+'"><i class="table-edit"></i></a></li>';
+						$ulist += '<li><i class="table-settings"></i></li>';
+						$ulist += '<li class="last"><a href="{:U(\'User/userdel\')}?uid='+items.uid+'" onclick="if(confirm(\'确定要删除吗?\')){return true;}else{return false;}"><i class="table-delete"></i></a></li>';
+		            	$ulist += '</ul></td></tr>';
+		            })
+		            $("#ajaxback").html($ulist);
+	            }
+		    },
+		    error: function(data) {  
+	            console.log(data);
+	        }
+		  })
+	}
+	
+	$("#sxkey").bind("change",function(){
+		var sxkey = $(this).val();
+		switch(sxkey){
+			case "uid":
+				$("#sxvalue").attr("placeholder","格式：不允许汉字");
+				break;
+			case "username":
+				$("#sxvalue").attr("placeholder","格式：雁过留痕");
+				break;
+			case "utel":
+				$("#sxvalue").attr("placeholder","格式：15022220000");
+				break;
+			case "otype":
+				$("#sxvalue").attr("placeholder","格式：会员/经纪人");
+				break;
+			case "utime":
+				$("#sxvalue").attr("placeholder","格式：1970-10-01");
+				break;
+			case "balance":
+				$("#sxvalue").attr("placeholder","格式：不允许汉字");
+				break;
+			default:
+				$("#sxvalue").text("输入内容");
+		}
+		
+	});
+
+
+$('#operate').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#oid").html(html);
+            $('select#puhui_id').html('<option value="">默认不选</option>');
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#oid').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#puhui_id").html(html);
+            $('select#jid').html('<option value="">默认不选</option>');
+        }
+   });
+});
+
+$('#puhui_id').change(function(){
+    var id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "{:U("User/ajax_get_brokers")}",
+        data: {'id':id},
+        success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#jid").html(html);
+        }
+   });
+});
+
+var operate = $(".operate").val();
+$("#operate option").each(function(){
+    if(operate == $(this).val()){
+        $(this).attr('selected',true);
+    }
+});
+
+//日期选择时间
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+});
+
+</script>
+</block>

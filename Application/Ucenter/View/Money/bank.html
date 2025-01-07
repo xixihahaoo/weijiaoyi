@@ -1,0 +1,72 @@
+<extend name="Base/common"/>
+<block name="content">
+<script src="/Public/Admin/js/jquery-latest.js"></script>
+<style type="text/css">
+	.col-md-6{ width:100%;}
+	.form-horizontal { width:500px;}
+	.form-control-sel{width: 22%;height: 34px}
+	.form-control-sel-one{margin-left: 13px}
+</style>
+	<div class="main sidebar-minified">
+		<div class="row">
+			    <div class="col-md-6">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">
+			                <h2><i class="fa fa-indent red"></i><strong>
+							绑定银行卡
+			                </strong></h2>
+			            </div>
+			            <form action="{:U('Money/bank')}" method="post" enctype="multipart/form-data" class="form-horizontal">
+						<div class="panel-body">
+				                <div class="form-group">
+			                        <label class="col-md-3 control-label">所属银行:</label>
+
+			                        <select id="Bank" class="form-control-sel form-control-sel-one" name="bankname">
+							            <option value="{$bank['bankname']}">{$bank['bankname']}</option>
+							        </select>
+
+							        <select id="selProvince" onchange="provinceChange();" class="form-control-sel" name="province">
+							            <option value="{$bank['province']}">{$bank['province']}</option>
+
+							        </select>
+
+							        <select id="selCity" class="form-control-sel" name="city">
+                                        <option value="{$bank['city']}">{$bank['city']}</option>
+							        
+
+							        </select>
+			                    </div>
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="password-input">银行卡号</label>
+				                    <div class="col-md-9">
+				                        <input type="text" id=""  class="form-control" name="banknumber" value="{$bank['banknumber']}">
+				                    </div>
+				                </div><!-- 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="password-input">开户行</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="" value="{$bank.branch}"  name="branch" class="form-control">
+                                    </div>
+                                </div> -->
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="password-input">收款人姓名</label>
+				                    <div class="col-md-9">
+				                        <input type="text" id="" value="{$bank.busername}"  name="busername" class="form-control">
+				                    </div>
+				                </div>
+				           
+						</div>
+						<div class="panel-footer">
+		                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 提交</button>
+	                        <a onclick="window.history.go(-1)"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 返回</button></a>
+		                </div>	
+		                </form>
+			        </div>	
+			    </div>
+				
+			 
+			        </div>
+	</div>
+	   
+
+</block>

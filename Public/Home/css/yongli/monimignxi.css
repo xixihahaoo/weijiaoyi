@@ -1,0 +1,57 @@
+.mui-bar-nav {
+    height: 1.52rem;
+    line-height: 1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight: normal;
+}
+.mui-action-back {
+    display: inline-block;
+}
+.mui-action-back img {
+    width: 0.33rem;
+    height: 0.42rem;
+}
+.mui-title {
+    width: 85%;
+    text-align: center;
+    font-size: 0.6rem;
+}
+.in_top {
+    background: #11141d;
+    height: 1.35rem;
+    line-height:1.35rem;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .5rem;
+    color: #616161;
+    white-space: nowrap;
+}
+.user_top {
+    background: #252529;
+    border-bottom: 2px solid #11141d;
+    padding: 0.3rem .2rem 0.45rem .45rem;
+}
+.buy_hand_lf{
+    width: 100%;
+}
+.buy_hand_lf ul li:first-child,.buy_hand_lf ul li:last-child{
+    width: 28%;
+}
+.buy_hand_lf ul li:nth-child(2){
+    text-align: center;
+    color:#fff;
+}
+.buy_hand_lf ul li:last-child{
+    white-space: nowrap;
+    padding-left: 0.3rem;
+    color:#d83f4e;
+}
+.buy_hand_lf ul li{
+    float: left;
+    width: 43%;
+    overflow: auto;
+    text-align: left;
+    color: #616161;
+    font-size:0.4rem;
+}

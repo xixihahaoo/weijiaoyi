@@ -1,0 +1,1 @@
+a:8:{i:0;s:3:"nid";i:1;s:6:"ntitle";i:2;s:8:"ncontent";i:3;s:6:"ncover";i:4;s:9:"ncategory";i:5;s:5:"ntime";s:3:"_pk";s:3:"nid";s:5:"_type";a:6:{s:3:"nid";s:7:"int(11)";s:6:"ntitle";s:12:"varchar(255)";s:8:"ncontent";s:4:"text";s:6:"ncover";s:12:"varchar(255)";s:9:"ncategory";s:7:"int(11)";s:5:"ntime";s:7:"int(20)";}}

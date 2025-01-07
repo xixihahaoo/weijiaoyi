@@ -1,0 +1,37 @@
+<extend name="Base/common"/>
+
+<block name="content">
+<script src="__JS__/jquery-2.1.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="/Public/Home/js/jquery.qrcode.min.js"></script>
+	<style type="text/css">
+	.col-md-6{ width:100%;}
+	.form-horizontal { width:500px;}
+</style>
+	<div class="main sidebar-minified">
+		<div class="row">
+			    <div class="col-md-6">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">
+			                <h2><i class="fa fa-indent red"></i><strong><if condition="$user.uid neq ''">修改客户信息<else/>添加客户</if></strong></h2>
+			            </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="text-input">
+                                <input  id='link' type="text" value="{$url}" style="width:400px" class="st"/>
+                                <div class="form_sfrz" id="code"></div>
+                            </label>
+
+                        </div>
+
+			        </div>	
+			    </div>
+				
+			 
+        </div>
+	</div>
+<script>
+ var asd=$("#link").val();
+ 
+$('#code').qrcode($("#link").val());
+</script>
+</block>

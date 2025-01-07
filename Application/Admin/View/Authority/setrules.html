@@ -1,0 +1,75 @@
+<extend name="Base/common"/>
+<block name="content">
+    <link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+    <script src="__JS__/theme.js"></script>
+    <link rel="stylesheet" href="__CSS__/layerui/css/layui.css"  media="all">
+    <script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="__CSS__/layer_mobile/layer.css">
+    <script type="text/javascript" src="__CSS__/layer_mobile/layer.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__css/layer/layer.js"></script>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>分配权限</legend>
+    </fieldset>
+    <div style="width:90%;margin:auto;">
+        <span>{$user.otype_str} [ {$user['username']?$user['username']:$user['nickname']} ] 的权限分配</span>
+        <form action="" method="post">
+            <input type="hidden" name="id" value="{$id}" />
+            <table class="layui-table">
+                <colgroup>
+                    <col width="20">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>分类</th>
+                    <th>权限</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                            <?php $flag = 0;?>
+                            <volist name="rules" id="vo" >
+                                <if condition="$flag neq $vo['type']">
+                                    <tr>
+                                    <td>{$cate[$vo['type']]}</td>
+                        <td>
+                            <div style="float:left;margin-right:10px;">
+                                <input type="checkbox" name="rules[]" style="float:left;" <if condition="in_array($vo['rid'],$my_rules)">checked</if> id="{$vo.rid}" value="{$vo.rid}" />
+                                <label style="float:left;" for="{$vo.rid}">{$vo.title}</label>
+                            </div>
+                            <?php $flag=$vo['type'];?>
+                                <else />
+                            <div style="float:left;margin-right:10px;">
+                                <input type="checkbox" name="rules[]" style="float:left;"  <if condition="in_array($vo['rid'],$my_rules)">checked</if> id="{$vo.rid}" value="{$vo.rid}" />
+                                <label for="{$vo.rid}" style="float:left;" >{$vo.title}</label>
+                            </div>
+                        </if>
+                                <if condition="$flag neq $vo['type']">
+                                    </td></tr>
+
+                                </if>
+                            </volist>
+                </tbody>
+            </table>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="submit" class="layui-btn" value="确认提交" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/bootstrap.datepicker.js"></script>
+    <script src="__JS__/theme.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var eqli = $("#dashboard-menu").children().eq(2);
+            eqli.attr('class','active');
+            $("#dashboard-menu .active .submenu").css("display","block");
+        });
+    </script>
+</block>

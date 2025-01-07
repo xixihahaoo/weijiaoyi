@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="__CSS__/yongli/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/yongli/nameAndBank.css">
+    <script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+    <script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+
+    <title>用户出金</title>
+</head>
+<body>
+<!--头部-->
+<header class="page-header">
+    <div class="content">
+        <div class="left">
+            <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+        </div>
+        <h3 class="back " id="head-name">用户出金</h3>
+    </div>
+</header>
+    <section class="wrap-page" style="margin-top: 12%;">
+    
+        <if condition="$bank['bankname'] eq ''">
+            <link href="__CSS__/yongli/user_payment.css" rel="stylesheet" type="text/css"/>
+            <header class="ifnone_add_bank">
+               <a href="{:U('User/banks')}">
+                   <p>+</p>
+                   <p>添加银行卡</p>
+               </a>
+            </header>
+        <else />
+            
+            <link href="__CSS__/yongli/user_profile.css" rel="stylesheet" type="text/css"/>
+
+            <div>
+            <header class="coldbg">
+                <p class="ng-binding bankname">{$bank.bankname}</p>
+                <p class="ng-binding">{$bank.banknumber}</p>
+                <span class="iconfont icon-nongyeyinxing1 green" style=""><i iconfont icon-pufayinhang pay_blue></i></span>
+                <i class="iconfont icon-nongyeyinxing1 green"></i>
+            </header>
+            <div class="out_money_content">
+                <article>
+                    <span>
+                        <i class="iconfont icon--5"></i>
+                        提现金额：
+                    </span>
+                    <input type="number" placeholder="0.00" onkeyup="shiji(this)" required="" class="ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required" id="money">
+                </article>
+                <section class="ng-binding" id="withDraw">单次提现至少￥{$financial.min_monery}起,</section>
+                <footer>
+                    余额：<span class="ng-binding">{$balance}</span>
+                    手续费：<span id="fee">{$financial.poundage}%</span>
+                    实际到账：<span class="ng-binding" id="shiji">0.00</span>
+                </footer>
+                <button class="newbutton outmoneybtn" id="submit">确认出金</button>
+            </div>
+            </div>
+        </if>
+    </section>
+</body>
+</html>
+
+<script type="text/javascript">
+
+function shiji(obj)
+{
+    var price       = $(obj).val();
+    var fee         = $("#fee").html().replace(/[^\d.]/g,'');
+
+    if(price == '' || price <= 0){
+
+        $("#shiji").html('0.00');
+        
+    } else {
+
+        money   = (price * (fee/100));
+
+        prices  = (parseFloat(price) - parseFloat(money)).toFixed(2);
+        $("#shiji").html(prices);
+    }
+}
+
+
+
+$('#submit').click(function(){
+
+    var index = layer.load(1, {
+        shade: [0.1,'#fff']
+    });
+
+    var money = $("#money").val();
+
+     $.ajax({
+         type: "post",
+         url: "{:U('withdrawals_check')}",
+         dataType: 'json',
+         data:{'money':money},
+         success: function (data) {
+                   
+            if(data.status === 0){
+                layer.close(index);     
+                layer.msg(data.msg);
+                return false;
+            }
+
+            if(data.status === 1){
+                layer.close(index);     
+                layer.msg(data.msg);
+                window.setTimeout("window.location='{:U('Index/index')}'",1000);
+                return false;
+            }
+         }
+     });
+});
+
+
+var bankname = $('.bankname').html();
+
+
+    switch(bankname){
+        case '中国农业银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'nongye.png';
+            var bankbig     = 'nongye_big.png';
+            break;
+        case '中国银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'zhonguo.png';
+            var bankbig     = 'zhonguo_big.png';
+            break;
+        case '中国工商银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'gongshang.png';
+            var bankbig     = 'gongshang_big.png';
+            break;
+        case '交通银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'jiaotong.png';
+            var bankbig     = 'jiaotong_big.png';
+            break;
+        case '中国建设银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'jianshe.png';
+            var bankbig     = 'jianshe.png';
+            break;
+        case '中国邮政储蓄银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'youzheng.png';
+            var bankbig     = 'youzheng.png';
+            break;
+        case '招商银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'zhaoshang.png';
+            var bankbig     = 'zhaoshang.png';
+            break;
+        case '浦发银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'pufa.png';
+            var bankbig     = 'pufa.png';
+            break;
+        case '中国光大银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'guangda.png';
+            var bankbig     = 'guangda.png';
+            break;
+        case '中信银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'zhongxin.png';
+            var bankbig     = 'zhongxin.png';
+            break;
+        case '平安银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'pingan.png';
+            var bankbig     = 'pingan.png';
+            break;
+        case '中国民生银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'minsheng.png';
+            var bankbig     = 'minsheng.png';
+            break;
+        case '华夏银行':
+            var color       = '#e60012';
+            var backcolor   = '#e2616b';
+            var backcolors  = '#e64d7b';
+            var bank        = 'huaxia.png';
+            var bankbig     = 'huaxia.png';
+            break;
+        case '广东发展银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'fazhan.png';
+            var bankbig     = 'fazhan.png';
+            break;
+        case '兴业银行':
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'xingye.png';
+            var bankbig     = 'xingye.png';
+            break;
+        default :
+            var color       = '#14a17d';
+            var backcolor   = '#1db292';
+            var backcolors  = '#009eb7';
+            var bank        = 'bank.png';
+            var bankbig     = 'bank_big.png';
+    }
+
+    $('.coldbg').css({
+
+        'color':color,
+        'background':'linear-gradient(to right, '+backcolor+' , '+backcolors+')'
+    });
+
+    $('header.coldbg>span>i').css({
+
+        'background':'url(__IMG__/yongli/banks/'+bank+') no-repeat center center',
+        'background-size':'1.5rem 1.5rem'
+    });
+
+    $('header.coldbg i.icon-nongyeyinxing1').css({
+
+        'background':'url(__IMG__/yongli/banks/'+bankbig+')',
+        'background-size':'100% 100%'
+    });
+
+
+</script>

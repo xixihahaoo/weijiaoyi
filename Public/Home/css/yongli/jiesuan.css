@@ -1,0 +1,108 @@
+.mui-bar-nav {
+    height: 1.52rem;
+    line-height: 1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight: normal;
+}
+.mui-action-back {
+    display: inline-block;
+}
+.mui-action-back img {
+    width: 0.33rem;
+    height: 0.42rem;
+}
+.mui-title {
+    width: 85%;
+    text-align: center;
+    font-size: 0.6rem;
+}
+.mui_play {
+    font-size: 0.4rem;
+    padding-right: 0.3rem;
+}
+
+.user_top {
+    background: #11141d;
+    border-top: 2px solid #252529;
+    border-bottom: 2px solid #252529;
+    margin-bottom: 0.35rem;
+}
+.buy_hand {
+    padding: 0rem .45rem;
+    overflow: auto;
+    display: block;
+}
+.buy_hand ul {
+    border-bottom: 2px solid #252529;
+    height: 1.34rem;
+    line-height: 1.34rem;
+}
+.buy_hand ul li {
+    color: #1fc65b;
+    font-size: 0.5rem;
+    width: 50%;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    white-space: nowrap;
+}
+.buy_hand ul li.buy_hand_num{
+    text-align: right;
+}
+.buy_hand ul li.buy_hand_num>span {
+    font-size: 0.38rem;
+}
+.buy_hp {
+    overflow: auto;
+    padding: 0 0.45rem;
+    padding-bottom: 0.2rem;
+}
+.buy_hp .buy_hand_lf {
+    width: 65%;
+    overflow: auto;
+    padding-top: 0.2rem;
+}
+.buy_hand_rt {
+    width: 1.68rem;
+    height: 1.7rem;
+    line-height: 0.6rem;
+    border-radius: 0.2rem;
+    background: #252529;
+    text-align: center;
+    font-size: 0.45rem;
+    padding: 0.25rem 0.3rem;
+    margin-top: 0.35rem;
+    color: #616161;
+}
+.buy_hand_lfnum,.ping_time {
+    display: block;
+    /*overflow: auto;*/
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.38rem;
+    color: #616161;
+}
+.ping_time>span{
+    white-space: nowrap;
+}
+.buy_hand_lfnum li, .buy_hand_lfnum li>span {
+    white-space: nowrap;
+}
+.buy_hand_lfnum li, .buy_hand_lfnum li>span {
+    white-space: nowrap;
+    height: 0.8rem;
+    line-height: 0.8rem;
+}
+.no_more{
+    width: 2.95rem;
+    height:1.08rem;
+    line-height:1.08rem;
+    background: #252529;
+    border-radius: 0.3rem;
+    margin: 0 auto;
+    text-align: center;
+    font-size:0.4rem;
+    color: #616161;
+    margin-bottom: 0.3rem;
+}

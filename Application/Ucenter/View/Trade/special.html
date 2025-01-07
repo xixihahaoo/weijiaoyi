@@ -1,0 +1,185 @@
+<extend name="Base/common"/>
+<block name="content">
+<div class="main sidebar-minified">
+    <style type="text/css">
+    .datatable,.datatable th{text-align:center;}
+    .styles span, .styles input{
+        margin: 10px 5px;
+    }
+    </style>
+    <!--/row-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>
+                        <i class="fa fa-table red"></i>
+                        <span class="break"></span>
+                        <strong>特会订单</strong>
+                        <div class="styles" style="display: inline-block; margin-left: 20px">
+                            <form id="tradefrom"  method="get" action="{:U('Trade/special')}">
+                                <span>起始时间：</span><input style="width:12%;border:10px" value="{$Think.get.starttime}" type="text" id="starttime" name="starttime" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+                                <span>结束时间：</span><input style="width:12%;border:10px" value="{$Think.get.endtime}" type="text" id="endtime" name="endtime" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+                                <if condition="$subordinate_dis[2] eq 1">
+                                <span>会员单位</span>
+                                <select class='ajax_select' style="width:100px;border:10px;height:36px" name="unit_id">
+                                    <option value="">请选择</option>
+                                    <volist name="subordinate_list" id="subordinate">
+                                    <option value="{$subordinate.uid}" <?php if($_GET['unit_id'] == $subordinate['uid']){echo "selected";}?> otype="{$subordinate.otype}">{$subordinate.username}</option>
+                                    </volist>
+                                </select>
+                                <?php $subordinate_list = '';?>
+                                </if>
+                                <if condition="$subordinate_dis[1] eq 1">
+                                <span>代理1</span>
+                                <select class='ajax_select leaguer_id' style="width:100px;border:10px;height:36px" name="leaguer_id">
+                                    <option value="">请选择</option>
+                                    <volist name="subordinate_list" id="subordinate">
+                                    <option value="{$subordinate.uid}" <?php if($_GET['leaguer_id'] == $subordinate['uid']){echo "selected";}?> otype="{$subordinate.otype}">{$subordinate.username}</option>
+                                    </volist>
+                                </select>
+                                <?php $subordinate_list = '';?>
+                                </if>
+<!--                                 <if condition="$subordinate_dis[0] eq 1">
+                                <span>代理2</span>
+                                <select class='agent_id' style="width:100px;border:10px;height:36px" name="agent_id">
+                                    <option value="">请选择</option>
+                                    <volist name="subordinate_list" id="subordinate">
+                                    <option value="{$subordinate.uid}" <?php if($_GET['agent_id'] == $subordinate['uid']){echo "selected";}?>>{$subordinate.username}</option>
+                                    </volist>
+                                </select>
+                                </if> -->
+                                <span>手机号：</span><input type="text" style="width:15%;border:10px" value="{$Think.get.utel}" name="utel">
+                                <a class="btn btn-danger" id="tradebut">
+                                    <i class="fa">搜索</i>
+                                </a>
+                            </form>
+                        </div>
+                    </h2>
+                    <div class="panel-actions">
+                        <a href="" ><i class="fa fa-rotate-right"></i></a>
+                        <a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                        <a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>特会</th>
+                                <th>用户[上级]</th>
+                                <th>用户编号</th>
+                                <th>用户手机号</th>
+                                <th>建仓时间</th>
+                                <th>平仓时间</th>
+                                <th>产品</th>
+                                <th>方向</th>
+                                <th>建仓出金</th>
+                                <th>手续费</th>
+                                <th>入仓价</th>
+                                <th>平仓价</th>
+                                <th>盈亏情况</th>
+                                <th>盈亏</th>
+                                <th>金额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="order_list" item="vo" >
+                            <tr>
+                                <td>{$vo.jno}</td>
+                                <td>{$vo.special_name}</td>
+                                <td>{$vo.jusername}[{$vo.managername}]</td>
+                                <td>{$vo['uid']}</td>
+                                <td>{$vo['utel']}</td>
+                                <td>{$vo.trade_time}</td>
+                                <td>{$vo.jtime|date='Y-m-d H:i:s',###}</td>
+                                <td>{$vo.remarks}</td>
+                                <!-- <td>{$vo.number}</td>
+                                <td>{$vo.jtype}</td>-->
+                                <if condition="$vo.jostyle eq 0">
+                                <td>涨</td> <else/> <td>跌</td>
+                                </if>
+                                <td style='color:#f00;'>-<?php echo $vo['fee']+$vo['trade_amount'];?></td>
+                                <td style='color:#f00;'>{$vo.jfee}</td>
+                                <td style='color:#f00;'>{$vo.jbuyprice}</td>
+                                <td style='color:#f00;'>{$vo.jsellprice|default=0}</td>
+                                <td style='color:<?php if($vo['is_win'] == '盈利'){echo '#f00';}else{echo '#81bd82';}?>;'>{$vo.is_win}</td>
+                                <td style='color:<?php if($vo['jploss'] > 0){echo '#f00';}else{echo '#81bd82';}?>;'>{$vo.jploss|default=0}</td>
+                                <td style='color:#81bd82'>{$vo.jaccess}</td>
+                                <!-- <td>{$vo.gefee}</td> -->
+                            </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                    <span style="margin-right:30px;float:right">
+                        当前查询总金额:<i style="color:red">{$trade_amount|default=0}元</i>
+                        当前查询订单总数量:<i style="color:red">{$total_jc|default=0}</i>
+                        当前查询机构总盈亏：<i style="color:red">{$sumploss|default=0}元</i>
+                        当前查询总手续费：<i style="color:red">{$sumfee|default=0}元</i>
+                    </span>
+                    <div class="pagelist">{$page}</div>
+                </div>
+            </div>
+        </div><!--/col-->
+    </div><!--/row-->
+</div>
+<script src="__LAY_/layui.js" charset="utf-8"></script>
+<script>
+function sub()
+{
+    $('#tradefrom').attr("action","__URL__/daochu");
+    $('#tradefrom').submit();
+    $('#tradefrom').attr("action","__URL__/tlist");
+
+}
+$(function(){
+    var subordinate_all = <?php echo json_encode($subordinate_all);?>;
+    if(Object.keys(subordinate_all).length>0)
+    {
+        for(var i in subordinate_all)
+        {
+            if(i && subordinate_all[i])
+            {
+                var get_info = GetQueryString(i);
+                for(var t=0;t<subordinate_all[i].length;t++)
+                {
+                    $('select.'+i+'').append("<option value="+subordinate_all[i][t]['uid']+" otype="+subordinate_all[i][t]['otype']+">"+subordinate_all[i][t]['username']+"</option>");
+                }
+                if(get_info)
+                {
+                    $('select.'+i+'').children('option[value='+get_info+']').attr('selected','selected');
+                }
+            }
+        }
+    }
+    var data = new Object();
+    $('select.ajax_select').change(function(){
+        var select_this = $(this);
+        data.cuid = $(this).val();
+        data.userotype = $(this).find("option:selected").attr("otype");
+        $.get("__CONTROLLER__/get_subordinate",{data:data,type:0},function(data){
+            var subordinate_list = select_this.nextAll('select:eq(0)');
+            subordinate_list.children('option:gt(0)').remove();
+            subordinate_list.change();
+            var data = JSON.parse(data);
+            for(var p in data)
+            {
+                subordinate_list.append("<option value="+data[p].uid+" otype="+data[p].otype+">"+data[p].username+"</option>");
+            }
+        })
+    })
+
+    function GetQueryString(name)
+    {
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if(r!=null)return  unescape(r[2]); return null;
+    }
+})
+</script>
+<script>
+layui.use('laydate', function(){
+});
+</script>
+ </block>

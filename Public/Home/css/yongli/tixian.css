@@ -1,0 +1,52 @@
+.in_top{
+    background: #151515;
+    overflow: auto;
+    border-bottom:1px solid #252529;
+}
+.yu_money>p{
+    font-size:0.4rem;
+    line-height:1.62rem;
+    color: #a4a3a3;
+}
+p.in_top_money{
+    font-size:0.8rem;
+    color: #ce1704;
+}
+.user_top{
+    padding: 0.2rem 0.55rem 0.48rem 0.55rem;
+}
+.user_top_text{
+    text-align: center;
+    font-size:0.38rem;
+    line-height:0.6rem;
+    color: #a4a3a3;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+}
+.t_bank{
+    width: 9.45rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    background: #da2f35;
+    margin: 0 auto;
+    margin-top: 0.8rem;
+    border-radius: 0.2rem;
+    font-size: 0.4rem;
+    text-align: center;
+}
+.w_tishi{
+    margin-top: 0.8rem;
+}
+.w_tishi>p{
+    font-size:0.3rem;
+    line-height:0.55rem;
+    color: #a4a3a3;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    letter-spacing: 0.02rem;
+}
+p.w_tishi_title{
+    color: #ce1704;
+    font-size:0.35rem;
+}

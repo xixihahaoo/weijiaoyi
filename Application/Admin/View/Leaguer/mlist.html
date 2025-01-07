@@ -1,0 +1,299 @@
+<extend name="Base/common"/>
+<block name="content">
+<!-- this page specific styles -->
+<link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+<div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3><notempty name="unit"><b>{$unit}</b> 下的</notempty> 代理商列表</h3></br>
+            <div class="row-fluid header" style="margin-bottom: 10px">
+                <form id="form1" action="__URL__/mlist" method="get">
+                    <div class="span10 pull-left">
+
+                        <div class="tpsearch" style="width: 20%">
+                            手机号：<input type="text" class="span6 search" value="{$sea.phone}" placeholder="请输入手机号"
+                                       name="phone" id="phone"/>
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            机构编号：<input type="text" value="{$sea.username}" class="span6 search"
+                                        placeholder="请输入用户名称查找..." name="username" id="username"/>
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            开始时间：<input type="text" value="{$sea.starttime}" class="input-large datepicker"
+                                        style="margin-bottom: 0;width:100px;height:20px" name="starttime"
+                                        id="starttime">
+                        </div>
+                        <div class="tpsearch" style="width: 20%">
+                            结束时间：<input type="text" value="{$sea.endtime}" class="input-large datepicker"
+                                        style="margin-bottom: 0;width:100px;height:20px" name="endtime" id="endtime">
+                        </div>
+
+                        <div class="tpsearch" style="width: 20%">
+                            运营中心：<select name="operate" id="operate" class="span7">
+                            <option value="">默认不选</option>
+                            <foreach name="operate" item="vo">
+                                <option value="{$vo.uid}">{$vo.username}</option>
+                            </foreach>
+                            <input type="hidden" value="{$sea.operate}" class="operate">
+                        </select>
+                        </div>
+
+                        <div class="tpsearch" style="width: 20%;margin-top: 30px;">
+                            会员单位：<select name="oid" id="oid" class="span7">
+                            <option value="">默认不选</option>
+                            <notempty name="oidinfo['uid']">
+                                <option value="{$oidinfo['uid']}" selected>{$oidinfo['username']}</option>
+                            </notempty>
+                        </select>
+                        </div>
+
+                        <div class="tpsearch" style="width:20%;margin:30px 0px 20px">
+                            <a href="javascript:void(0)" class="btn-flat info"
+                               onclick="javascript:$('#form1').submit();">开始查找</a>
+                            <a href="javascript:void(0)" class="btn-flat info" onclick="sub()">查找导出</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                </div>
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span1 sortable">
+                                    编号
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>机构编号
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>手机号码
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>创建日期
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>上级
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>最近登录时间
+                                </th>
+                                <!--<th class="span2 sortable">
+                                    <span class="line"></span>账户余额
+                                </th>-->
+<!--                                <th class="span2 sortable">
+                                    <span class="line"></span>盘面资金
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>保证金
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>盘面资金比
+                                </th> -->
+                                <!--
+                                <th class="span2 sortable">
+                                    <span class="line"></span>冻结金额
+                                </th> -->
+                                <th class="span1 sortable">
+                                    <span class="line"></span>公司名称
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>客户状态
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="ajaxback">
+                        <volist name="ulist" id="ult">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                                {$ult['uid']}
+                            </td>
+                            <td>
+<!--                             <a href="{:U('Agentlist/alist_user',array('uid'=>$ult['uid']))}">{$ult['username']}</a> -->
+                                 <a href="{:U('User/ulist')}?operate={$ult['operate_id']}&oid={$ult['unit_id']}&puhui_id={$ult['uid']}">{$ult['username']}</a>[<a href="{:U('Agentlist/save_name')}?uid={$ult['uid']}&url=Leaguer/mlist">修改</a>]
+                            </td>
+                            <td>
+                                {$ult['utel']}
+                            </td>
+                            <!--td>
+                                {$ult['address']}
+                            </td>
+                            <td>
+                                <img src="__IMG__/contact-img.png" class="img-circle avatar hidden-phone" />
+                            </td-->
+                            <td>
+                                {$ult['utime']|date='Y-m-d',###}
+                            </td>
+                            <td>
+                                {$ult.managername}
+                            </td>
+                            <td>
+                                {$ult['utime']|date='Y-m-d H:i:m',###}
+                            </td>
+                            <!--<td>
+                                <font color="#f00" size="4">￥{$ult['balance']}<font>
+                            </td>-->
+<!--                            <td>
+                                <font color="#f00" size="4">￥{$ult['trade_amount']?$ult['trade_amount']:0}<font>
+                            </td>
+                            <td>
+                                <font color="#f00" size="4">￥{$ult['assure']|default=0}<font>
+                            </td>
+                            <td>{$ult['ratio']?$ult['ratio']:0}</td>
+                            <td>
+                                <font color="#f00" size="4">￥<input type="text" value="{$ult['frozen']|default=0}" style="width:40px;height:20px;" onkeyup="frozen({$ult['uid']})" id="frozen" class="fange"><font>
+                            </td>  -->
+                            <td>
+                                 {$ult.comname}
+                            </td>
+                            <td>
+                                <if condition='$ult["ustatus"] eq 0'>
+                                    正常
+                                    <else/>
+                                    已冻结
+                                </if>
+                            </td>
+                            <td>
+                                <ul class="actions">
+                                    <li><a href="{:U('Leaguer/mupdate',array('uid'=>$ult['uid']))}"><i class="table-edit"></i></a></li>
+                                    <if condition="$ult['ustatus'] eq 0">
+                                        <li class="last"><a href="#" onclick="upstatus({$ult['uid']},1)" value="{$ult['uid']}">冻结</a></li>
+                                    <else/>
+                                        <li class="last"><a href="#" onclick="upstatus({$ult['uid']},0)" value="{$ult['uid']}">解冻</a></li>
+                                    </if>
+                                   <if condition="$ult['num'] eq 0">
+                                        <li class="last"><a href_dara="{:U('User/delete_mem')}?uid={$ult['uid']}&url=leaguer/mlist" class='a_delete' value="{$ult['uid']}">删除</a></li>
+                                    </if>
+                                </ul>
+                            </td>
+                        </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+<!--                     <div class="qjcz">
+                        会员单位总数：{$total_unit}, 代理总数：{$total_leaguer}, 经纪人总数：{$total_agent}<br />
+                    截止<script type="text/javascript">var myDate = new Date();document.writeln(myDate.getFullYear()+'年'+(myDate.getMonth()+1)+'月'+myDate.getDate()+'日');</script>，共有<font color="#f00" size="4">{$ucount}</font>个会员完成注册，交易数量已达<font color="#f00" size="4">{$ocount}</font>手，所有账户余额累计<font color="#f00" size="5">{$anumber}</font>元
+                </div> -->
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        {$page}
+                    </ul>
+                </div>
+                <!-- end users table -->
+            </div>
+        </div>
+    <!-- scripts -->
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/bootstrap.datepicker.js"></script>
+    <script src="__JS__/theme.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker().on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            $('a.a_delete').click(function(){
+                if (confirm("您确定删除吗？")) {
+                    window.location.href = $(this).attr('href_dara');
+                }
+                else {
+                    alert("点击了取消");
+                }
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*var eqli = $("#dashboard-menu").children().eq(5);
+            eqli.attr('class', 'active');
+            $("#dashboard-menu .active .submenu").css("display", "block");*/
+
+            /**
+             * 时间对象的格式化;
+             */
+            Date.prototype.format = function (format) {
+                /*
+                 * eg:format="yyyy-MM-dd hh:mm:ss";
+                 */
+                var o = {
+                    "M+": this.getMonth() + 1, // month
+                    "d+": this.getDate(), // day
+                    "h+": this.getHours(), // hour
+                    "m+": this.getMinutes(), // minute
+                    "s+": this.getSeconds(), // second
+                    "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+                    "S": this.getMilliseconds()
+                    // millisecond
+                }
+
+                if (/(y+)/.test(format)) {
+                    format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                            - RegExp.$1.length));
+                }
+
+                for (var k in o) {
+                    if (new RegExp("(" + k + ")").test(format)) {
+                        format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                                ? o[k]
+                                : ("00" + o[k]).substr(("" + o[k]).length));
+                    }
+                }
+                return format;
+            }
+        });
+        function sub() {
+            $('#form1').attr("action", "__URL__/daochu");
+            $('#form1').submit();
+        }
+
+        function upstatus(id,type){
+
+            if(confirm('确定要进行该操作吗？')){
+                $.post("{:U('/Admin/Menber/upstatus')}", { "type":type,"id":id },
+                        function(data){
+                            alert(data.info); // John
+                            if(data.state==1){
+                                window.location.reload();//刷新当前页面.
+                            }
+                        });
+            }else{
+                return false;
+            }
+        }
+    </script>
+
+<script type="text/javascript">
+$('#operate').change(function(){
+
+    var id = $(this).val();
+    $.ajax({
+            type: "GET",
+            url: "{:U("User/ajax_get_brokers")}",
+            data: {'id':id},
+            success: function(data){
+            var html = '';
+            html +='<option value="">默认不选</option>';
+            for (x in data) {
+                    html +="<option value=\""+data[x]['uid']+"\">"+data[x]['username']+"</option>"
+            }
+            $("#oid").html(html);
+        }
+   });
+});
+
+
+var operate = $(".operate").val();
+$("#operate option").each(function(){
+    if(operate == $(this).val()){
+        $(this).attr('selected',true);
+    }
+});
+
+</script>
+</block>

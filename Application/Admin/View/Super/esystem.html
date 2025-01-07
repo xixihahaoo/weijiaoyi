@@ -1,0 +1,458 @@
+<extend name="Base/common"/>
+<block name="content">
+        <!-- this page specific styles -->
+		<link rel="stylesheet" href="__CSS__/compiled/article-add.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="__CSS__/compiled/ui-elements.css" type="text/css" media="screen" />
+		<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+                <div class="row-fluid form-wrapper">
+                    <!-- left column -->
+                    <div class="span8 column esystem">
+                    	<div class="field-box" style="height: 40px">
+                            <label>平台设置:</label>
+                            <div class="slider-frame">
+                            	<span data-on-text="关闭平台" data-off-text="开启平台" class="slider-button on" data-isopen="{$conf.isopen}">关闭平台</span>
+                        	</div>
+                        	<div class="setopen" data-on-text="平台已经关闭，请尽快开启，以免流失客户" data-off-text="平台已开启，需要关闭平台请谨慎操作">平台已开启，需要关闭平台请谨慎操作</div>
+                        </div>
+<!-- 						<div class="field-box">                        	
+                            <label>是否开启隔夜利息：</label>
+							<if condition="$conf.isovernight eq 1">
+								<button type="button" class="btn btn-warning">关闭隔夜</button>
+							<else/>
+								<button type="button" class="btn btn-success">开启隔夜</button>
+							</if>
+							<span style="color:red">注：关闭则必须设置定时平仓！（请尽快联系售后，同时必须商家自己制定定时任务，我们只提供访问地址！)</span>
+                        </div> -->
+<!--                         <div class="field-box">                         
+                            <label>是否开启金币赠送：</label>
+                            <if condition="$conf.is_experience eq 1">
+                                <button type="button" class="btn btn-warning">关闭赠送</button>
+                            <else/>
+                                <button type="button" class="btn btn-success">开启赠送</button>
+                            </if>
+                            <span style="color:red">注:金币赠送包括 客户注册时送1金币,邀请好友时送1金币</span>
+                        </div>
+
+                        <div class="field-box">                         
+                            <label>盘面切换：</label>
+                            <if condition="$conf.is_type eq 3">
+                                <button type="button" class="btn btn-typea" style="background:#468847">点位模式</button>
+                            <elseif condition="$conf.is_type eq 2"/>
+                                <button type="button" class="btn btn-typeb" style="background:#fc6439">时间模式</button>
+                            <else/><button type="button" class="btn btn-typec" style="background:#fc6439">双重模式</button>
+                            </if>
+                            <span style="color:red">注:点位模式和时间模式互相切换</span>
+                        </div> -->
+
+					<!-- 	<div class="field-box">                        	
+                            <label>爆仓比率：</label>
+                            <input class="span1" type="text" data-toggle="tooltip" data-trigger="focus" title="爆仓比率,推荐值为50~100" data-placement="right" id="blowratio" value="{$conf.blowratio}" name="blowratio"/>
+                            <span class="sysset">
+                            	<a class="btn-glow primary blowratio">提交</a>
+                           	</span>
+                        </div> -->
+					<!-- 	<div class="field-box">                        	
+                            <label>登陆参数：</label>
+                            <input class="span1" type="text" data-toggle="tooltip" data-trigger="focus" title="每天登陆需要赠送多少积分" data-placement="right" id="integral" value="{$conf.integral}" name="integral"/>
+                            <span class="sysset">
+                            	<a class="btn-glow primary integral">提交</a>
+                           	</span>
+                        </div> -->
+				<!-- 		<div class="field-box">                        	
+                            <label>多人积分手动赠送：</label>
+                           <textarea class="span8" rows="2" id="mores" placeholder="请输入赠送人，并已分号隔开"></textarea>
+                            <span class="sysset">
+                            	<a class="btn-glow primary mores">提交</a>
+                           	</span>
+                        </div> -->
+                   <!--      <div class="field-box">                        	
+                            <label>短信接口设置：</label>
+                            <input class="span2" type="text" data-toggle="tooltip" data-trigger="focus" title="短信用户名" placeholder="用户名" data-placement="top" id="smsname" value="{$sms.smsname}" name="smsname"/>
+							<input class="span2" type="password" data-toggle="tooltip" data-trigger="focus" title="短信密码" placeholder="密码" data-placement="top" id="smspwd" value="{$sms.smspwd}" name="smspwd"/>
+                            <span class="sysset">
+                            	<a class="btn-glow primary sms">提交</a>
+                           	</span>
+                        </div> -->
+                        <div class="field-box">                        	
+                            <label>风控预警功能：</label>
+                            <input class="span6" type="text" data-toggle="tooltip" data-trigger="focus" title="风控预警功能" data-placement="right" value="{$conf.warn}" name="warn" style="width:150px;" /><span style="color:red">&nbsp;注: 当会员单位资金低于此值，自动转为特会模式 </span>
+                            <span class="sysset">
+                            	<a class="btn-glow primary warn">提交</a>
+                           	</span>
+                        </div>
+                        <div class="field-box">                         
+                            <label>下单最小金额：</label>
+                            <input class="span6" type="text" data-toggle="tooltip" data-trigger="focus" title="下单额度限制" data-placement="right" value="{$conf.limit}" name="limit" style="width:150px;" /><span style="color:red">&nbsp;注:格式 = 最小金额|最大金额</span>
+                            <span class="sysset">
+                                <a class="btn-glow primary limit">提交</a>
+                            </span>
+                        </div>
+						<div class="field-box">                        	
+                            <label>注册协议：</label>
+							 <textarea class="span8" rows="2" id="protocol">{$conf.protocol}</textarea>
+                            <span class="sysset">
+                            	<a class="btn-glow primary protocol">提交</a>
+                           	</span>
+                        </div>
+						<div class="field-box">                        	
+                            <label>网站名称：</label>
+                            <input class="span6" type="text" data-toggle="tooltip" data-trigger="focus" title="网站名称" data-placement="right" value="{$conf.webname}" name="webname"/>
+                            <span class="sysset">
+                            	<a class="btn-glow primary webname">提交</a>
+                           	</span>
+                        </div>
+                        <div class="field-box" style="margin-bottom: 0;">
+                            <label>网站公告:</label>
+                            <textarea class="span8" rows="2" id="notice">{$conf.notice}</textarea>
+                            <span class="sysset"><a class="btn-glow primary notice">提交</a></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	<!-- scripts for this page -->	
+	<script src="__JS__/wysihtml5-0.3.0.js"></script>
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/bootstrap-wysihtml5-0.0.2.js"></script>
+    <script src="__JS__/bootstrap.datepicker.js"></script>
+    <script src="__JS__/jquery.uniform.min.js"></script>
+	<script src="__JS__/select2.min.js"></script>
+	<script src="__JS__/theme.js"></script>
+    <!-- call this page plugins -->
+    <script>
+    	$(".notice").click(function(){
+    		var notice = $("#notice").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"notice":notice},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".mores").click(function(){
+    		var mores = $("#mores").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"mores":mores},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".sms").click(function(){
+    		var smsname = $("#smsname").val();
+    		var smspwd = $("#smspwd").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"smsname":smsname,'smspwd':smspwd},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".integral").click(function(){
+    		var integral = $("#integral").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"integral":integral},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".blowratio").click(function(){
+    		var blowratio = $("#blowratio").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"blowratio":blowratio},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".protocol").click(function(){
+    		var protocol = $("#protocol").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"protocol":protocol},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+		$(".btn-warning").click(function(){
+
+    		var is_experience =2;
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+               
+        		data:{"is_experience":is_experience},
+        		success:function(data){
+            	  alert(data);
+					  window.location.reload();
+        		},
+        		error:function(data){
+        		 alert(data);
+        		}
+        	});
+    	})
+		$(".btn-success").click(function(){
+    		var is_experience = 1;
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"is_experience":is_experience},
+        		success:function(data){
+        		  alert(data);
+				  window.location.reload();
+        		},
+        		error:function(data){
+        		  alert(data);
+        		}
+        	});
+    	})
+
+        $(".btn-typea").click(function(){
+            var is_type = 2;
+            $.ajax({
+                type:"post",
+                url:"{:U('Super/esystem')}",
+                data:{"is_type":is_type},
+                success:function(data){
+                  alert(data);
+                  window.location.reload();
+                },
+                error:function(data){
+                  alert(data);
+                }
+            });
+        })
+
+        $(".btn-typeb").click(function(){
+            var is_type = 1;
+            $.ajax({
+                type:"post",
+                url:"{:U('Super/esystem')}",
+                data:{"is_type":is_type},
+                success:function(data){
+                  alert(data);
+                  window.location.reload();
+                },
+                error:function(data){
+                  alert(data);
+                }
+            });
+        })
+
+        $(".btn-typec").click(function(){
+            var is_type = 3;
+            $.ajax({
+                type:"post",
+                url:"{:U('Super/esystem')}",
+                data:{"is_type":is_type},
+                success:function(data){
+                  alert(data);
+                  window.location.reload();
+                },
+                error:function(data){
+                  alert(data);
+                }
+            });
+        })
+   
+    	$(".webname").click(function(){
+    		var webname = $("input[name=webname]").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"webname":webname},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+
+    	$(".warn").click(function(){
+    		var warn = $("input[name=warn]").val();
+    		$.ajax({
+        		type:"post",
+        		url:"{:U('Super/esystem')}",
+        		data:{"warn":warn},
+        		success:function(data){
+        			alert(data);
+        		},
+        		error:function(data){
+        			alert(data);
+        		}
+        	});
+    	})
+        $(".limit").click(function(){
+            var limit = $("input[name=limit]").val();
+            $.ajax({
+                type:"post",
+                url:"{:U('Super/esystem')}",
+                data:{"limit":limit},
+                success:function(data){
+                    alert(data);
+                },
+                error:function(data){
+                    alert(data);
+                }
+            });
+        })
+        $(".max").click(function(){
+            var max = $("input[name=max]").val();
+            $.ajax({
+                type:"post",
+                url:"{:U('Super/esystem')}",
+                data:{"max":max},
+                success:function(data){
+                    alert(data);
+                },
+                error:function(data){
+                    alert(data);
+                }
+            });
+        })
+    	$('.slider-button').click(function() {
+            	var isopen = $(this).attr('data-isopen');
+            	if(isopen==0){
+    				$(this).attr('data-isopen','1');
+    			}else{
+    				$(this).attr('data-isopen','0');
+    			}
+            	$.ajax({
+            		type:"post",
+            		url:"{:U('Super/esystem')}",
+            		data:{"isopen":isopen},
+            		success:function(data){
+            			alert(data);
+            		},
+            		error:function(data){
+            			alert(data);
+            		}
+            	});
+                if ($(this).hasClass("on")) {
+                    $(this).removeClass('on').html($(this).data("off-text"));
+                    $('.slider-frame').css('background-color','#d5dde4');
+                    $('.slider-frame span	').css('color','#f00');
+                } else {
+                    $(this).addClass('on').html($(this).data("on-text"));
+                    $('.slider-frame').css('background-color','#468847');
+                    $('.slider-frame span').css('color','#7e91aa');
+                }
+                if ($('.setopen').hasClass("on")) {
+                    $('.setopen').removeClass('on').html($('.setopen').data("off-text"));
+                } else {
+                    $('.setopen').addClass('on').html($('.setopen').data("on-text"));
+                }
+        	});
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+            // select2 plugin for select elements
+            $(".select2").select2({
+                placeholder: "Select a State"
+            });
+
+            // datepicker plugin
+            $('.datepicker').datepicker().on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+            // wysihtml5 plugin on textarea
+            $(".wysihtml5").wysihtml5({
+                "font-styles": false
+            });
+        });
+    </script>
+    <!-- call this page plugins -->
+    <script type="text/javascript">
+	    $(document).ready(function(){
+			/*var eqli = $("#dashboard-menu").children().eq(11);
+			eqli.attr('class','active');
+			$("#dashboard-menu .active .submenu").css("display","block");*/
+			
+			/** 
+			 * 时间对象的格式化; 
+			 */  
+			Date.prototype.format = function(format) {  
+			    /* 
+			     * eg:format="yyyy-MM-dd hh:mm:ss"; 
+			     */  
+			    var o = {  
+			        "M+" : this.getMonth() + 1, // month  
+			        "d+" : this.getDate(), // day  
+			        "h+" : this.getHours(), // hour  
+			        "m+" : this.getMinutes(), // minute  
+			        "s+" : this.getSeconds(), // second  
+			        "q+" : Math.floor((this.getMonth() + 3) / 3), // quarter  
+			        "S" : this.getMilliseconds()  
+			        // millisecond  
+			    }  
+			  
+			    if (/(y+)/.test(format)) {  
+			        format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4  
+			                        - RegExp.$1.length));  
+			    }  
+			  
+			    for (var k in o) {  
+			        if (new RegExp("(" + k + ")").test(format)) {  
+			            format = format.replace(RegExp.$1, RegExp.$1.length == 1  
+			                            ? o[k]  
+			                            : ("00" + o[k]).substr(("" + o[k]).length));  
+			        }  
+			    }  
+			    return format;  
+			}
+			
+			var now = new Date().format("MM/dd/yyyy");
+			$(".input-large").attr("value",now);
+		});
+        $(function () {
+            // Switch slide buttons
+            
+        });
+        
+        $("#settime").click(function(){
+        	$('.stime').animate({left:'390px',opacity: 'toggle'},600);
+        })
+        $("#setclose").click(function(){
+        	$('.stime').css('display','none');
+        })
+    </script>
+</block>

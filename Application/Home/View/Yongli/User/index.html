@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>我的账户</title>
+    <include file="Common:header" />
+    <link href="__CSS__/yongli/base.css" rel="stylesheet" type="text/css"/>
+    <link href="__CSS__/yongli/gerenzhognxin.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/yongli/footer.css" />
+    <script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+    <script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+    <script language="javascript" type="text/javascript" src="__JS__/jquery.qrcode.min.js"></script>
+</head>
+<style type="text/css">
+.erwema_img img{border:solid 10px white;}
+</style>
+<body>
+<section class="wrap-page">
+    <!--内容部分-->
+        <div class="in_top personalbg clearfix">
+            <header>
+                <a href="{:U('User/logout')}"><i class="iconfont icon--9"></i></a>
+                <article class="article_img"><img src="__IMG__/yongli/logobg.jpg"></article>
+                <p class="ng-binding">
+                {$info.utel}
+                <a href="{:U('User/password_retrieval')}"><span class="iconfont icon--3"></span></a>
+                </p>
+                <p class="ng-binding">￥{$account.balance}</p>
+            </header>
+        </div>
+    <ul class="persona_nation">
+        <li>
+            <a id="Sign" href="{:U('User/banks')}">
+                <section >
+                    <i class="iconfont icon--19 qianyue"></i>
+                    <p>签约</p>
+                </section>
+            </a>
+        </li>
+        <li  class="" style="">
+            <a href="{:U('User/recharge')}">
+                <section >
+                    <i class="iconfont icon--5 rujin"></i>
+                    <p>用户入金</p>
+                </section>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('User/withdrawals')}">
+                <section >
+                    <i class="iconfont icon--4 chujin"></i>
+                    <p>用户出金</p>
+                </section>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('capital')}">
+                <section >
+                    <i class="iconfont icon--- zijin"></i>
+                    <p>资金流水</p>
+                </section>
+            </a>
+        </li>
+    </ul>
+    <div class="main">
+        <input  id='link' type="hidden" value="{$url}"/>
+        <div class="img" style="display: none;">
+        </div>
+
+        <div class="erwema_img" >
+        </div>
+
+        <p>
+            <span>扫描二维码注册</span>
+            <span style="display: none;">分享<i class="iconfont"></i></span>
+        </p>
+    </div>
+</section>
+<!-- 底部开始 -->
+<nav class="bar bar-tab index" id="bar-tab">
+    <a href="{:U('Index/index')}" class="tab-item on" >
+        <span class="icon icontu icon-index"></span>
+        <span class="tab-label indext">商品行情</span>
+    </a>
+    <a href="{:U('Transaction/record')}" class="tab-item jy">
+        <span class="icon icontu icon-jy"></span>
+        <span class="tab-label jy">交易记录</span>
+    </a>
+    <a href="{:U('User/index')}" id="account label" class="tab-item">
+        <span class="icon icontu icon-me-active"></span>
+        <span class="tab-label me-active">个人账户</span>
+    </a>
+</nav>
+<!---底部结束 -->
+</body>
+</html>
+
+<script type="text/javascript">
+
+$(".img").qrcode({ 
+    render: "canvas", 
+    width: 200, //宽度 
+    height:200, //高度 
+    text: $("#link").val()
+}); 
+
+function convertCanvasToImage(canvas) {
+    //新Image对象，可以理解为DOM
+    var image = new Image();
+    // canvas.toDataURL 返回的是一串Base64编码的URL
+    // 指定格式 PNG
+    image.src = canvas.toDataURL("image/png");
+    return image;
+}
+
+var mycanvas1=document.getElementsByTagName('canvas')[0];
+
+var img=convertCanvasToImage(mycanvas1);
+    
+$('.erwema_img').append(img);
+
+
+</script> 

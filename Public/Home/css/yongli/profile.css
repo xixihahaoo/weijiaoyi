@@ -1,0 +1,193 @@
+.payment{
+    overflow: hidden;
+}
+.payment li{
+    margin-bottom: 0.3rem;
+    font-size:0.45rem;
+    background: #1b1b1d;
+    padding: 0;
+}
+.item-content{
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 0.3rem;
+
+}
+.pay_bank_list_header {
+    border-radius: 0.05rem;
+    background: #28282b;
+    width: 100%;
+    height: 2rem;
+    position: relative;
+}
+.pay_bank_list_header i {
+    display: inline-block;
+    vertical-align: top;
+    width: 0.2rem;
+    height: 2rem;
+    border-bottom-left-radius: 0.15rem;
+    border-top-left-radius: 0.15rem;
+}
+.pay_blue_bg {
+    background: #159aef;
+}
+.pay_yinlian_bg{
+    background: #006a65;
+}
+.pay_yinlian .ng-binding {
+    color: #006a65 !important;
+}
+.pay_green_bg{
+    background: #1fc65b;
+}
+.weixin{
+    color: #1fc65b !important;;
+}
+.ng-zhifubao{
+    color: #159aef !important;
+}
+.ng-qq{
+    color: #1fc65b !important;
+}
+.item-content .pay_bank_list_header article {
+    display: inline-block;
+    width: 80%;
+    height: 2rem;
+}
+.item-content .pay_bank_list_header article p {
+    height: 2rem !important;
+    line-height: 2rem !important;
+    margin: 0 !important;
+    font-size: 0.45rem !important;
+}
+.item-content .pay_bank_list_header article p span {
+    height: 2rem !important;
+    line-height: 2rem !important;
+    display: inline-block;
+    vertical-align: top;
+  /*  width: 1rem;*/
+    text-align: center;
+    color: #159aef;
+}
+span.iconfont{
+    width: 0.8rem;
+    height:0.8rem;
+    margin-right: 0.3rem;
+    margin-left: 0.3rem;
+}
+span.icon--19{
+    background: url("../../images/yongli/kuaijie.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+span.icon-yinlianzhifu{
+    background: url("../../images/yongli/yinlian.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+span.zhifubao{
+    background: url("../../images/yongli/zhifubao.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+span.icon--19{
+    background: url("../../images/yongli/kuaijie.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+span.icon-weixin{
+    background: url("../../images/yongli/weixin.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+span.qq{
+    background: url("../../images/yongli/weixin.png") no-repeat center center;
+    background-size: 0.8rem 0.8rem;
+}
+.pay_bank_list_header .kuang {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.1rem;
+    border: 1px solid #4c4c51;
+    top: 0.8rem;
+    right: 0.5rem;
+    z-index: 100;
+}
+.pay_bank_list_header .active{
+    width: 0.5rem;
+    height: 0.5rem;
+    background: url("../../images/yongli/duihao.png") no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+}
+.out_money_content article {
+    width: 100%;
+    height: 1rem;
+    background: #222225;
+}
+.out_money_content article span {
+    display: inline-block;
+    vertical-align: top;
+    width: 34%;
+    font-size: 0.45rem;
+    color: #FFFFFF;
+    height: 1rem;
+    line-height: 1rem;
+}
+.out_money_content article span i {
+    width:0.5rem;
+    height:0.5rem;
+    background: url("../../images/yongli/rujin.png") no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    font-size: 0.2rem;
+    margin-left: 0.25rem;
+}
+.out_money_content article input {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+    height: 1rem;
+    line-height: 1rem;
+    background: transparent;
+    border: none;
+    color: #fdbe19;
+    font-size: 0.4rem;
+}
+.out_money_content section {
+    width: 100%;
+    padding-left: 7%;
+    text-align: left;
+    color: #4e4e4f;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    margin: 0;
+    font-size: 0.4rem;
+}
+.out_money_content footer {
+    width: 100%;
+    padding-left: 0.25rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #4e4e4f;
+    font-size: 0.4rem;
+    text-align: left;
+}
+.out_money_content footer span {
+    display: inline-block;
+    width: 17%;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    color: #fdbe19;
+}
+.out_money_content .outmoneybtn {
+    width: 90%;
+    border: none;
+    display: block;
+}
+.newbutton {
+    height: 1.2rem;
+    border-radius: 0.15rem;
+    background: #fdbe19;
+    color: #000000;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: 0.45rem;
+    border: none;
+    margin: 0.5rem auto;
+}

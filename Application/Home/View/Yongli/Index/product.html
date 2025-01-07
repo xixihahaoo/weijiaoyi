@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{$option.name}</title>
+    <include file="Common:header" />
+    <link href="__CSS__/yongli/base.css" rel="stylesheet" type="text/css"/>
+    <link href="__CSS__/yongli/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="__CSS__/yongli/jiaoyi_second.css" rel="stylesheet" type="text/css"/>
+    <link href="__CSS__/yongli/jiaoyi.css" rel="stylesheet" type="text/css"/>
+    <link href="__CSS__/yongli/chicang.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+    <script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+
+
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+
+    <style type="text/css">
+        
+        .wrap-page{
+            overflow-y: hidden;
+        }
+
+        .ccjl{
+            margin-top: 0.3rem;
+        }
+
+        .ccjl_top{
+            background: #000!important;
+        }
+
+        ul.ccjl_bt_time li {
+            text-align: right;
+        }
+
+        .heigh .t_heigh_low{
+    
+        	text-align: center;
+        }
+
+        .t_heigh_low>p{
+
+        	width: 45%;
+        }
+
+    </style>
+
+</head>
+<body style="background: #1e1e1e;">
+<section class="wrap-page" style="/*bottom:1.65rem;">
+    <header class="mui-bar mui-bar-nav">
+        <eq name="type" value="2">
+        <a  href="{:U('Index/index',array('status' => 'moni'))}" class="mui-action-back left"><img src="__IMG__/yongli/left.png"></a>
+        <else />
+        <a  href="{:U('Index/index')}" class="mui-action-back left"><img src="__IMG__/yongli/left.png"></a>
+        </eq>
+
+        <div class="mui-title left">
+            {$option.name}
+        </div>
+    </header>
+
+    
+    <input type="hidden" value="{$option.length}" id="length">  <!-- 产品价格长度 -->
+    <input type="hidden" value="{$option.id}" id="optionid">
+    <input type="hidden" value="{$option.code}" id="code">
+    <input type="hidden" value="candlestick" id="type">
+    <input type="hidden" value="1m" id="interval">
+
+
+    <div class="heigh">
+        <div class="total left red last">{$option.last}</div>
+        <div class="t_heigh_low right">
+
+<!--        <p>
+                <span>开盘</span>
+                <span class="red open">{$option.open}</span>
+            </p> -->
+
+            <p>
+                <span>最低</span>
+                <span  class="red low">{$option.low}</span>
+            </p>
+
+            <p>
+                <span>最高</span>
+                <span  class="red high">{$option.high}</span>
+            </p>
+
+        </div>
+    </div>
+    <div class="user_top clearfix">
+        <div class="zoushi clearfix">
+            <div class="kxian" type="candlestick">K线</div>
+            <div type="area">走势</div>
+        </div>
+        <div class="zoushi_day ">
+            <ul class="zoushi_day_list">
+
+                <li class="tu on" interval="1m">1M</li>
+                <li class="tu" interval="5m">5M</li>
+                <li class="tu" interval="15m">15M</li>
+                <li class="tu" interval="30m">30M</li>
+                <li class="tu" interval="1h">1H</li>
+                <li class="tu" interval="1d">1D</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="kxiantu">
+        <article class="tick" style="display: block;" id="quxian">
+                <div class="xiantu" style="height: 300px;width:100%" >
+<!--                     <iframe  id="nowtu" name='nowtu' style='width:100%;height:100%;border: 0;' src="{:U("highcharts",array("code"=>"$option[code]","interval"=>'1','type' => 'candlestick'))}"> -->
+                    <iframe  id="nowtu" name='nowtu' style='width:100%;height:100%;border: 0;' src="">
+                   </iframe>
+                </div>
+                <input type="hidden" value="{$product.capital_length}" id="length">
+                <em class="text-minor" style="display: none;" id="key">{$product.capital_key}</em>
+                <input type="hidden" value="{$product.id}" id="op_id">
+        </article>
+    </div>
+</section>
+
+<nav class="bar bar-tab index" id="bar-tab">
+    <a href="#" class="tab-item cc">
+        <span class="icon icontu icon-cc"></span>
+        <span class="tab-label cc">持仓</span>
+    </a>
+
+
+    <if condition="$option['flag'] eq 1">
+        <a href="#" class="tab-item jy buy"  ostyle='买涨'>
+            <i class="iconfont buy_up icon--17"></i>
+            <p class="tab-label  jy">买涨</p>
+        </a>
+        <a href="#" class="tab-item me buy" ostyle="买跌">
+            <i class="iconfont buy_down icon--17"></i>
+            <p class="tab-label me">买跌</p>
+        </a>
+    <else />
+        <a href="#" class="tab-item jy disbal" >
+            <i class="iconfont buy_up icon--17"></i>
+            <p class="tab-label  jy">买涨</p>
+        </a>
+        <a href="#" class="tab-item me disbal">
+            <i class="iconfont buy_down icon--17"></i>
+            <p class="tab-label me">买跌</p>
+        </a>
+    </if>
+
+</nav>
+
+
+<div class="popBox" id="sureBox" style="display: none;">
+    <div class="popCont">
+        <div class="pop_bd pop_bd_text pop_bd_text_kuang  f36" style="width:9rem; height: auto;margin-bottom: 0.3rem;">
+            <div class="tishi">
+                <div class="tishi_text">购买</div>
+                <div class="close pas_close" onclick="hideBox('passErrorBox')"><img src="__IMG__/yongli/q_03.png"></div>
+            </div>
+            <div class="xianTiao3"></div>
+            <ul class="biaopan">
+
+                <volist name="productData" id="vo">
+                    <li class="">
+                        <div>
+                        </div>
+                        <p class="settlement">结算时间</p>
+                        <h5><span>{$vo.time}</span>秒</h5>
+                        <p class="profit"><i class="icon"></i>收益<span>{$vo.odds}</span>%</p>
+                        <input type="hidden" value="{$vo.feeprice}">
+                    </li>
+                </volist>
+            </ul>
+            <div class="invest_account">
+                <p>投资金额<span class="credit right"></span></p>
+            </div>
+            <div class="pa_yc clearfix">
+                <ul class="pa_y clearfix" id="chooseMoney">
+                    <li data="100" class="on" >￥100</li>
+                    <li data="200" >￥200</li>
+                    <li data="500" >￥500</li>
+                    <li data="1000" >￥1000</li>
+                    <li data="2000" >￥2000</li>
+                    <li data="5000" >￥5000</li>
+                    <input class="money" type="number" placeholder="其他金额"  onkeyup="inputBuyMoney(this)" onblur="inputBuyMoney(this)">
+                </ul>
+            </div>
+            <div class="xianTiao3"></div>
+            <div class="info-view">
+                <div class="ng-binding left">余额:  ￥ {$balance}</div>
+                <div class="ng-binding right" style="text-align: left">手续费： <span id="feeprice">0.00</span>%</div>
+            </div>
+            <div class="order-detail-view">
+                <div class="order-detail">
+                    <div class="row fields">
+                        <div class="col">名称</div>
+                        <div class="col">方向</div>
+                        <div class="col">现价</div>
+                        <div class="col">金额</div>
+                    </div>
+                    <div class="row">
+                        <div class="col qoute_name ng-binding">{$option.name}</div>
+                        <div class="col ng-binding rise ostyle">0.00</div>
+                        <div class="col ng-binding rise last">{$option.last}</div>
+                        <div class="col ng-binding" id="money"> ￥0.00</div>
+                    </div>
+                    <div class="row btn_confirm">
+                        <div class="sure">
+                            <button class="button" id="submit">确认下单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="xianTiao3"></div>
+            <p class="expect_profit">
+                <span class="ng-binding">预期收益 :  ￥ <span>0.00</span></span>
+                &nbsp;&nbsp;
+                <span class="ng-binding">保底金额 :  ￥ 0.00</span>
+            </p>
+    </div>
+</div>
+</div>
+
+<div class="popBox" id="Position" style="display: none;background: rgba(0,0,0,0.7);">
+    <div class="popCont">
+        <div class="pop_bd pop_bd_text pop_chicang pop_bd_text_kuang  f36" style="width: 100%;height: auto;    bottom: -13.3rem;z-index: -999;position: absolute;">
+            <div class="tishi">
+                <div class="tishi_text">持仓</div>
+                <div class="close pas_close" ><img src="__IMG__/yongli/q_03.png"></div>
+            </div>
+            <div class="xianTiao3"></div>
+            <div style="overflow-y: auto;position: relative;height: 11rem;" id="html">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(".buy").click(function(){
+        
+        $("#sureBox").slideDown(100).show();
+        $(".pop_bd_text").fadeIn(3000) .show();
+
+        $('.biaopan li:first').addClass('on').siblings().removeClass('on');  //默认选中第一个图标
+
+        var feeprice = $('.biaopan li:first input').val();
+
+        var ostyle  = $(this).attr('ostyle');
+
+        var money   = $('#chooseMoney li.on').attr('data');
+
+        var odds    = $('.biaopan li:first p:last span').html();
+
+        var profit  = parseFloat((money * odds / 100)) + parseFloat(money);
+
+        $('#feeprice').html(feeprice);  //手续费
+
+        $('.ostyle').html(ostyle);    //买入类型
+
+        $('#money').html('￥'+money);  //金额
+
+        $('.expect_profit span:first span').html(profit); //收益率
+    });
+
+
+    $(".cc").click(function(){
+        $("#Position").slideDown(300).show();
+        $(".pop_chicang").fadeIn(3000) .show();
+
+
+        var index = layer.load(1, {
+            shade: [0.1,'#fff']
+        });
+
+        var optionid = $("#optionid").val();
+
+        $.ajax({
+            url: "{:U('Transaction/position')}",
+            dataType: "json",
+            type:"post",
+            data: {'optionid':optionid},
+            success: function(data){
+    
+                if(data.status === 0){
+                    
+                     layer.close(index);
+                     layer.msg(data.msg);
+                     return false;
+                }
+
+                if(data.status === 1){
+
+                  layer.close(index); 
+                  var html = '';
+
+                  $.each(data.msg,function(key,val){
+
+                        html+=' <div class="ccjl" style="overflow: hidden" ostyle="'+val.ostyle+'" odds="'+val.odds+'" lefttime="'+val.selltime+'">';
+                        html+=' <div class="ccjl_top" style="border-bottom: 1px solid #2b2a2a;">';
+                        html+=' <ul class="ccjl_top_dh">';
+                        html+=' <li>'+val.ptitle+'</li>';
+                        html+=' <li class="ccjl_dh_zd zd_green">'+val.ostyles+'<i class="icon"></i></li>';
+                        html+=' <li class="yignkui">浮动盈亏：<span class="fu_green">'+val.ploss+'</span></li>';
+                        html+=' </ul>';
+                        html+=' </div>';
+                        html+=' <div class="xianTiao3"></div>';
+                        html+=' <div class="ccjl_ct" style="background: transparent;border-bottom: 1px solid #2b2a2a;">';
+                        html+=' <ul class="ccjl_ct_pri">';
+                        html+=' <li>';
+                        html+=' <span>'+val.buyprice+'</span>';
+                        html+=' <p>买入价格</p>';
+                        html+=' </li>';
+                        html+=' <li>';
+                        html+=' <span>'+val.trade_amount+'</span>';
+                        html+=' <p>买入金额</p>';
+                        html+=' </li>';
+                        html+=' <li>';
+                        html+=' <span>'+val.minute+'M</span>';
+                        html+=' <p>持单时长</p>';
+                        html+=' </li>';
+                        html+=' <li>';
+                        html+=' <span>'+val.Price+'</span>';
+                        html+=' <p>最新价格</p>';
+                        html+=' </li>';
+                        html+=' </ul>';
+                        html+=' </div>';
+                        html+=' <div class="xianTiao3"></div>';
+                        html+=' <div class="ccjl_bt" style="background: transparent;">';
+                        html+=' <ul class="ccjl_bt_time">';
+                        html+=' <li class="left">买入时间：<span>'+val.buytime+'</span></li>';
+                        html+=' <li  class="right">结算时间：<span class="bt_time_red">'+val.selltime+'秒</span></li>';
+                        html+=' </ul>';
+                        html+=' </div>';
+                        html+=' </div>';
+                  });
+
+                  $('#html').html(html);
+
+                  return false;
+                }
+
+                if(data.status === 2){
+                 layer.msg(data.msg);
+                 window.setTimeout("window.location='{:U("User/login")}'",500);
+                  return false;
+                }
+            },
+        });
+    });
+
+    $(".pas_close").click(function(){
+        $("#Position").hide();
+    });
+
+
+</script>
+<script type="text/javascript" src="__JS__/yongli/slide.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+
+    $(".biaopan li").click(function() {
+
+        $(this).addClass('on').siblings().removeClass('on');
+
+        var money       = $('#chooseMoney li.on').attr('data');
+
+        var odds        = $(this).find('p:last span').html();
+
+        var profit      = parseFloat((money * odds / 100)) + parseFloat(money);
+
+        var feeprice    = $(this).find('input').val();
+        
+        $('#feeprice').html(feeprice);  //手续费
+
+        $('.expect_profit span:first span').html(profit); //收益率
+    });
+
+    $('.pa_y li').click(function() {
+
+        $(this).addClass('on').siblings().removeClass('on');
+
+        var odds    = $('.biaopan li.on p:last span').html();
+
+        var money   = $(this).attr('data');
+
+        $('#money').html('￥'+money);  //金额
+
+        var profit  = parseFloat((money * odds / 100)) + parseFloat(money);
+
+        $('.expect_profit span:first span').html(profit); //收益率
+    });
+
+
+    function inputBuyMoney(obj)
+    {
+        var money   = $(obj).val();
+
+        var odds    = $('.biaopan li.on p:last span').html();
+
+        $('#money').html('￥'+money);  //金额
+
+        var profit  = parseFloat((money * odds / 100)) + parseFloat(money);
+
+        $('.expect_profit span:first span').html(profit); //收益率
+    }
+
+
+    function hideBox(){
+        $("#sureBox").hide()
+    }
+</script>
+
+<script type="text/javascript">
+
+var arrString = $('#code').val();
+
+ws = new WebSocket("ws://39.107.99.235:8026");
+ws.onopen = function() {
+    ws.send('tom');
+};
+ws.onmessage = function(e) {
+
+    var data = eval("("+e.data+")");
+    var type = data.type || '';
+    switch(type){
+        case 'init':
+            $.post('{:U("binding")}', {client_id: data.client_id,group:arrString}, function(data){}, 'json');
+            break;
+        default :
+
+            var data   = JSON.parse(e.data);
+
+            try{
+                frames['nowtu'].updateData1M(parseFloat(data.Price));
+            }catch(e){
+            }
+
+            $('.last').html(data.Price);
+            $('.open').html(data.Open);
+            $('.low').html(data.Low);
+            $('.high').html(data.High);
+
+            //计算持仓盈亏
+            status = $('.ccjl').attr('ostyle');
+            if(status)
+            {
+                $.each($('.ccjl'),function(){
+
+                ostyle      = $(this).attr('ostyle');
+
+                odds        = $(this).attr('odds');
+
+                buyprice    = $(this).find('.ccjl_ct ul li:first span').html();
+
+                trade_amount = $(this).find('.ccjl_ct ul li:eq(1) span').html();
+
+                if(ostyle == 0)
+                {
+                    if(data.Price > buyprice)
+                    {
+                        ploss = (trade_amount * odds);
+
+                    } else if(data.Price == buyprice){
+
+                        ploss = 0;
+
+                    } else {
+
+                        ploss = -trade_amount;
+                    }
+                } else {
+
+                    if(data.Price < buyprice)
+                    {
+                        ploss = (trade_amount * odds);
+
+                    } else if(data.Price == buyprice){
+
+                        ploss = 0;
+
+                    } else {
+
+                        ploss = -trade_amount;
+                    }
+                }
+
+                $(this).find('.ccjl_ct ul li:last span').html(data.Price);
+
+                $(this).find('.ccjl_top ul li:last span').html(ploss);
+            });
+        }
+
+
+    }
+};
+
+$("#submit").click(function(){
+
+    var index = layer.load(1, {
+        shade: [0.1,'#fff']
+    });
+
+    var trademoney      = $("#money").html().replace(/[^\d.]/g,''); 
+    var tradedirection  = $(".ostyle").html();
+    var optionid        = $("#optionid").val();
+    var tradingfinish   = $('.biaopan li.on h5 span').html();
+
+      $.ajax({
+            url: "{:U('Transaction/intoorder')}",
+            dataType: "json",
+            type:"post",
+            data: {'trademoney':trademoney,'tradedirection':tradedirection,'optionid':optionid,'tradingfinish':tradingfinish},
+            success: function(data){
+    
+                if(data.status === 0){
+                    
+                     layer.close(index);
+                     layer.msg(data.msg);
+                     return false;
+                }
+
+                if(data.status === 1){
+
+                  layer.close(index);
+                  layer.msg(data.msg);
+                  window.location.reload();
+                  return false;
+                }
+
+                if(data.status === 2){
+                 layer.msg(data.msg);
+                 window.setTimeout("window.location='{:U("User/login")}'",500);
+                  return false;
+                }
+            },
+      });
+});
+
+
+
+
+</script>
+<script type="text/javascript">
+
+$(function(){
+
+    var windowHeight=$(window).height();
+
+    var headHeight=$('.mui-bar-nav').height()+$('.heigh').height()+$('.clearfix').height();
+
+    var footerHeight=$('.bar-tab').height()
+
+    var height=windowHeight-headHeight-footerHeight;
+
+    $('.xiantu').css('height',height+'px');
+
+    var code    = $("#code").val();
+    
+    var length  = $('#length').val();
+
+
+    var src     = '{:U("highcharts")}'+"?code="+code+"&interval=1m&type=candlestick&height="+height+"&length="+length+"";
+
+    $('#nowtu').attr('src',src);
+
+     
+     $(".tu").click(function(){        
+     
+        var type = $('#type').val();
+
+       $(this).addClass('on').siblings().removeClass('on');
+
+       var interval = $(this).attr('interval');
+
+       $('#interval').val(interval);
+
+       var src = '{:U("highcharts")}'+"?code="+code+"&interval="+interval+"&type="+type+"&height="+height+"&length="+length+"";
+
+       $("#nowtu").attr('src',src);
+
+     });
+
+
+    $('.zoushi div').click(function () {
+
+        $(this).addClass('kxian').siblings().removeClass('kxian');
+
+        var type     = $(this).attr('type');
+
+        var interval = $('#interval').val();
+
+        $('#type').val(type);
+
+        var src = '{:U("highcharts")}'+"?code="+code+"&interval="+interval+"&type="+type+"&height="+height+"&length="+length+"";
+
+        $("#nowtu").attr('src',src);
+    })
+});
+
+
+$(".disbal").click(function(){
+
+ layer.msg('产品已休市');
+
+});
+
+
+
+handleLefttime();
+setInterval(handleLefttime,1000);
+
+function handleLefttime() {
+
+    $.each($('.ccjl'),function(key,val){
+
+        lefttime = $(this).attr('lefttime');
+
+        lefttime = lefttime - 1;
+
+        if (lefttime < 1) {
+
+            $(this).remove();
+            return false;
+        }
+
+        $(this).attr('lefttime', lefttime);
+
+        $(this).find('.ccjl_bt ul li:last span').html(lefttime+'秒');
+
+    });
+}
+
+</script>

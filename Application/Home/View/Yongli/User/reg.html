@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="html">
+<head>
+	<title>注册账户</title>
+    <include file="Common:header" />
+	<link rel="stylesheet" href="__CSS__/yongli/merge1.css">
+
+    <script src="__JS__/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+
+	<style type="text/css">
+		.formtips{
+			text-align:center;
+			width: 100%;
+		}
+
+        .mod-list>li {
+            border-bottom: 1px solid #343438;
+        }
+
+        .mod-list>li:after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: -50%;
+            width: 200%;
+            height: 0px;
+            background: #ededed;
+            -webkit-transform: scale(0.5);
+        }
+	</style>
+</head>
+<body>
+
+	<!-- 内容 -->
+	<section class="page-main main-user main-smscode main-user-register">
+		<form id="reviseForm" class="content" method="post" style="/*background: #11141d;*/">
+
+			<div class="step step1"  style="/*background: #11141d;*/">
+				<ul class="mod-list">
+
+					<li class="clearfix">
+						<label class="left">真实姓名 : </label>
+						<input id="username" name="utel" class="left input" maxlength="11" placeholder="请输入姓名" type="text">
+					</li>
+					<li class="clearfix">
+						<label class="left">手机号 : </label>
+						<input id="c-pho" name="utel" class="left input mobile" maxlength="11" placeholder="请输入手机号" type="text">
+					</li>
+					<li class="clearfix">
+						<label class="left">短信验证 : </label>
+						<input name="code" class="left input smscode" style="width:42%;" maxlength="6" placeholder="请输入短信验证码" id="c-pwd" type="text">
+						<input class="right get-smscode disabled" type="button" value="获取验证码" id="mes" onclick="javascript:mbtime(this);">
+					</li>
+					<li class="clearfix">
+						<label class="left">密码 : </label>
+						<input name="upwd" id="n-pwd" class="left input password" maxlength="20" placeholder="请输入登录密码" type="password">
+					</li>
+
+ 					<li style="display: block;" class="clearfix" id="tugG">
+						<label class="left">推荐人</label>
+						<input id="oid_name" name="tg" class="left input" placeholder="请填写推荐人" type="text" value="{$up_name}">
+						<input type="hidden" value="{$ouid}" id="tuijian_uid">
+					</li>
+				 </ul>
+			</div>
+		</form>
+		<a class="login-btn do-login" id="send" style="width: 90%">注册登录</a>
+		<div class="signin-footer">
+			<a href="{:U('login')}">已有帐户，登陆</a>
+		</div>
+	</section>
+</body>
+</html>
+
+<script type="text/javascript">
+
+		
+$("#send").click(function(){
+
+	var index = layer.load(1, {
+	shade: [0.1,'#fff'] //0.1透明度的白色背景
+	});
+
+	var numbers = /^1\d{10}$/;
+	var mobile   = $(".mobile").val().replace(/\s+/g,""); //手机号
+	if(!numbers.test(mobile) || mobile.length ==0){
+
+		layer.close(index);              	     
+		layer.msg('手机号码格式错误');
+		return false;
+	}
+
+	var username 	= $("#username").val(); //用户名
+	var code  	 	= $(".smscode").val(); //短信验证码
+	var utel 		= $(".mobile").val(); //手机号
+	var password 	= $(".password").val(); //密码
+	var tuijian_uid = $('#tuijian_uid').val();   //推广码
+	var oid_name    = $("#oid_name").val();   //推荐人
+
+
+	$.ajax({
+		url:"{:U('register')}",
+		dataType: 'json',
+		type: 'post',
+		data: {'username':username,'utel':utel,'upwd':password,'code':code,'tuijian_uid':tuijian_uid,'oid_name':oid_name},
+		
+		success:function(data){
+
+			if(data.status === 0){
+
+				layer.close(index);
+				layer.msg(data.msg);
+				return false;
+			}
+
+			if(data.status === 1){
+
+				layer.close(index);              	     
+				layer.msg(data.msg);
+				window.setTimeout("window.location='{:U('login')}'",1000);
+				return false;
+			}
+		}
+	});
+});
+</script>
+
+<script type="text/javascript">
+ 
+
+
+var wait=60;
+
+function mbtime(o) {
+	if (wait == 60) {
+		get_phones_code();
+	}
+	if (wait == 0) {
+		o.removeAttribute("disabled");
+		o.value="重新获取";
+		wait = 60;
+	} else {
+		o.setAttribute("disabled", true);
+		o.value="重新发送(" + wait + ")";
+		wait--;
+		setTimeout(function() {mbtime(o)},1000)
+	}
+}
+
+function get_phones_code(){
+
+	var index = layer.load(1, {
+	shade: [0.1,'#fff'] //0.1透明度的白色背景
+	});
+
+	var numbers = /^1\d{10}$/;
+	var mobile   = $(".mobile").val().replace(/\s+/g,""); //手机号
+	if(!numbers.test(mobile) || mobile.length ==0){
+
+		layer.msg('手机号码格式错误');
+		layer.close(index); 
+		return false;
+	}
+
+	$.ajax({
+		url:"{:U('Tools/smsverify')}",
+		dataType: 'json',
+		type: 'post',
+		data: "mobile="+mobile+" ",
+		success:function(data){
+
+			if(data.ret_code == 1){
+
+				layer.close(index);
+				layer.msg(data.ret_msg);
+
+			} else{
+
+				layer.close(index);
+				layer.msg(data.ret_msg);
+			}
+		}
+	});
+}
+
+</script>

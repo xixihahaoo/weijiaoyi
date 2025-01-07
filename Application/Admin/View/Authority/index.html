@@ -1,0 +1,72 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="__CSS__/layerui/css/layui.css">
+    <script src="__JS__/theme.js"></script>
+    <script type="text/javascript" src="__PUBJS__/layer/layer.js"></script>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>管理员权限管理</legend>
+    </fieldset>
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <!-- Users table -->
+            <div class="row-fluid table">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span1 sortable">
+                            编号
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>组名
+                        </th>
+                        <th class="span5 sortable">
+                            <span class="line"></span>权限
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>操作
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                    <foreach name="showArr" item="v" key="k">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                                {$k}
+                            </td>
+                            <td>
+                                {$v.name}
+                            </td>
+                            <td style="text-align:left;">
+                                {$k==1?'全部权限':$v['str']}
+                            </td>
+                            <td>
+                                <if condition="$k neq 1">
+                                    <a href="{:U('edit',array('id'=>$k))}" class="layui-btn layui-btn-normal layui-btn-mini">编辑</a>
+                                </if>
+
+                            </td>
+
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination pull-right">
+                <ul>
+                    {$page}
+                </ul>
+            </div>
+            <!-- end users table -->
+        </div>
+
+        <!-- scripts -->
+        <script src="__JS__/jquery-latest.js"></script>
+        <script src="__JS__/bootstrap.min.js"></script>
+        <script src="__JS__/bootstrap.datepicker.js"></script>
+        <script src="__JS__/theme.js"></script>
+        <script type="text/javascript" src="__PUBJS__/layer/layer.js"></script>
+
+</block>

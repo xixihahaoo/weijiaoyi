@@ -1,0 +1,270 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-family:arial,microsoft yahei;
+	font-size:14px;
+	color:#f5f5f5;
+	background:#000c17;
+}
+ul {
+	list-style-type:none;
+}
+img {
+	border:none;
+}
+a {
+	color:#f5f5f5;
+	outline:none;
+	text-decoration:none;
+}
+.clear {
+	clear:both;
+}
+select {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+}
+input[type="submit"],input[type="button"] {
+    -webkit-appearance:none;
+	-moz-appearance:none;
+}
+
+
+.content_box {
+	width:100%;
+	height:auto;
+	margin:0 0 68px 0;
+}
+
+
+.footer {
+	width:100%;
+	height:auto;
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index:8888;
+	background:#001b33;
+	border-top:4px solid #00284c;
+}
+.footer ul {
+	width:100%;
+	height:auto;
+}
+.footer ul li {
+	width:33%;
+	height:66px;
+	float:left;
+	text-align:center;
+}
+.footer ul li img {
+	width:30px;
+}
+.footer ul li a {
+	width:100%;
+	padding:10px 0 8px;
+	display:inline-block;
+}
+.footer ul li.choice a {
+	color:#ff8400;
+}
+
+
+.upfooter {
+	width:100%;
+	height:auto;
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index:8888;
+	background:#001b33;
+	border-top:4px solid #00284c;
+}
+.upfooter ul {
+	width:100%;
+	height:auto;
+}
+.upfooter ul li {
+	width:33%;
+	height:45px;
+	float:left;
+	text-align:center;
+	line-height:45px;
+}
+.upfooter ul li span {
+	color:#ff8400;
+}
+.fl_right {
+	float:right;
+	margin:5px;
+}
+.upfooter ul li input {
+	width:80%;
+	height:32px;
+	border:none;
+	color:#fff;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;
+	background:#61be37;
+}
+.upfooter ul li input.updateIB {
+	/*margin-right:2%;*/
+	background:#ff8400;
+}
+
+/* 弹窗 */
+.cover_box {
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:9999;
+	background:url(../images/cover_bg.png);
+	_position: absolute;
+    _top: expression_r(document . documentElement . clientHeight +   document .
+  documentElement . scrollTop -   this . offsetHeight);
+}
+.cont_box {
+	width:auto;
+	height:auto;
+	padding:6px;
+	margin:20% 7% 0;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #000c17;
+	background:url(../images/cover_bg1.png);
+}
+.cont_detail {
+	width:auto;
+	height:auto;
+	padding:30px 0;
+	text-align:center;
+	background:#293043;
+}
+.cont_detail h1 {
+	line-height:40px;
+	font-size:18px;
+	font-weight:normal;
+	text-align:center;
+}
+.cont_detail h1 span {
+	display:inline-block;
+}
+.cont_detail h1 span img {
+	width:40px;
+	float:left;
+	margin-right:6px;
+}
+.cont_detail p {
+	margin:15px 10% 0;
+	padding-top:18px;
+	border-top:1px solid #00284c;
+}
+.cont_detail p input {
+	width:58%;
+	height:38px;
+	color:#fff;
+	font-size:14px;
+	font-family:microsoft yahei;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;
+	border:none;
+	background:#ff8400;
+}
+
+
+.cont_detail ul {
+	width:88%;
+	height:auto;
+	margin:-14px auto 0;
+}
+.cont_detail ul li {
+	width:50%;
+	height:52px;
+	line-height:26px;
+	float:left;
+	color:#fff;
+	padding:5px 0;
+	text-align:center;
+	border-bottom:1px dashed #141823;
+}
+.cont_detail ul li span {
+	color:#999;
+}
+.cont_detail ul li span.red {
+	font-size:18px;
+	font-weight:bold;
+	color:#ef0000;
+}
+.cont_detail ul li span.green {
+	font-size:18px;
+	font-weight:bold;
+	color:#61be37;
+}
+.cont_detail ul li.end {
+	line-height:52px;
+	font-size:18px;
+}
+.cont_detail ul li.end em {
+	width:65px;
+	display:inline-block;
+	color:#ef0000;
+	font-style:normal;
+}
+.cont_detail ul li.end em.green {
+	color:#61be37;
+}
+.cont_detail ul li.end em img {
+	height:22px;
+	float:left;
+	margin:14px 3px 0 0;
+}
+.cover_butn {
+	width:88%;
+	margin:20px auto 0;
+}
+.cover_butn input {
+	width:47%;
+	height:36px;
+	margin:0 1.5%;
+	font-size:14px;
+	color:#fff;
+	font-family:microsoft yahei;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	border-radius:5px;
+	border:none;
+    -webkit-transition: all 150ms linear;
+    transition: all 150ms linear;
+	background:#e40000;
+}
+.cover_butn input.green {
+	background:#61be37;
+}
+.rule_box {
+	width:100%;
+	height:auto;
+	margin:0 0 68px 0;
+}
+.pickupgoods {
+	background: #ef0000;
+	border-radius: 5px;
+	width: 80%;
+	padding: 2.5%;
+	margin: -40px auto 14px;
+}
+.pickupgoods a {
+	padding: 5px 35%;
+}

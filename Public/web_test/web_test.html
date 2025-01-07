@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script src='./bootstrap/js/bootstrap.min.js'></script>
+    <title>测试网页</title>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-top:100px">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">post参数1:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_1' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_1' style="width:100px" placeholder="值"></div>
+            <div class="col-sm-offset-1 col-sm-2">post参数2:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_2' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_2' style="width:100px" placeholder="值"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">post参数3:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_3' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_3' style="width:100px" placeholder="值"></div>
+            <div class="col-sm-offset-1 col-sm-2">post参数4:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_4' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_4' style="width:100px" placeholder="值"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">post参数5:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_5' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_5' style="width:100px" placeholder="值"></div>
+            <div class="col-sm-offset-1 col-sm-2">post参数6:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_6' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_6' style="width:100px" placeholder="值"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">post参数7:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_7' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_7' style="width:100px" placeholder="值"></div>
+            <div class="col-sm-offset-1 col-sm-2">post参数8:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_8' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_8' style="width:100px" placeholder="值"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">post参数9:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_9' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_9' style="width:100px" placeholder="值"></div>
+            <div class="col-sm-offset-1 col-sm-2">post参数10:</div>
+            <div class="col-sm-1"><input type="text" id='post_key_10' style="width:100px" placeholder="键"></div>
+            <div class="col-sm-1"><input type="text" id='post_val_10' style="width:100px" placeholder="值"></div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="col-sm-offset-2 col-sm-1">url地址:</div>
+            <div class="col-sm-1"><input type="text" id='post_url' style="width:200px" placeholder="键"></div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="col-sm-2 col-sm-offset-2">发送类型设置:</div>
+            <div class="col-sm-2"><button type="button" class="btn btn-danger post" onclick="post_type(this,'POST')">post类型</button></div>
+            <div class="col-sm-2"><button type="button" class="btn btn-primary post" onclick="post_type(this,'GET')">get类型</button></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-1" style="margin-top:30px">
+                <button type="button " class="btn btn-success" onclick="ajax('html')">发送并获取原文</button>
+            </div>
+            <div class="col-sm-offset-3 col-sm-1" style="margin-top:30px">
+                <button type="button " class="btn btn-success " onclick="ajax('json')">发送并获取json</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-1" style="margin-top:30px">
+                <button type="button " class="btn btn-success" onclick="del_data()">清空参数区</button>
+            </div>
+            <div class="col-sm-offset-3 col-sm-1" style="margin-top:30px">
+                <button type="button " class="btn btn-success " onclick="del_recive()">清空返回区</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top:60px">
+        <div class="row">
+            <div class="col-sm-offset-5 col-sm-2">
+                返回区
+            </div>
+        </div>
+        <div class="row" id="recive"></div>
+    </div>
+</body>
+<script>
+    var datatype = "POST";
+
+    function post_text(e) {
+        if (e && e.val().length !== 0) {
+            return e;
+        } else {
+            return 'null';
+        }
+    }
+
+    function post_content() {
+        var data_data = Object();
+        for (var i = 1; i < 11; i++) {
+            var str = $('#post_key_' + i);
+            var data = post_text(str);
+            if (data != 'null') {
+                var key = $('#post_key_' + i).val();
+                var val = $('#post_val_' + i).val();
+                data_data[key] = val;
+            }
+        }
+        return data_data;
+    }
+
+    function post_type(a, e) {
+        datatype = e;
+        $(".post").removeClass('btn-danger');
+        $(".post").removeClass('btn-primary');
+        $(".post").addClass('btn-primary');
+        $(a).addClass('btn-danger');
+    }
+
+    function ajax(type) {
+        var data = post_content();
+        if ($("#post_url").val().length == 0) {
+            alert("url为空，请重新输入");
+            return;
+        }
+        $.ajax({
+            type: datatype,
+            url: $("#post_url").val(),
+            data: data,
+            dataType: type,
+            success: function(msg) {
+                $("#recive").html(msg);
+            },
+            error: function(msg) {
+                alert("POST发送失败");
+                alert(msg);
+            }
+        });
+
+    }
+
+    function del_data() {
+        $("input").val('');
+    }
+
+    function del_recive() {
+        $("#recive").html('');
+    }
+</script>
+
+</html>

@@ -1,0 +1,277 @@
+<link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet">
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+<script src="__PUBLIC__/Js/layer/layer.js"></script>
+<div style="margin-top:10px;">
+    <div class="container-fluid">
+        <form class="form-horizontal" id="form1" onsubmit="return false;" method="post">
+            <div class="control-group">
+                <label class="control-label" for="title">名称<font color="#ff0000">*</font></label>
+                <div class="controls">
+                    <input type="text" name="title" id="title" value="" placeholder="代金券标题">必填
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="value">体验券金额<font color="#ff0000">*</font></label>
+                <div class="controls">
+                    <input type="text" name="value" id="value" placeholder="价值">必填
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="title">类型</label>
+                <div class="controls">
+                    <select name="type" id="check">
+                        <option value="1">入金返券</option>
+                        <option value="2">注册返券</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="limit"><span id="change">入金额度</span><font color="#ff0000">*</font></label>
+                <div class="controls">
+                    <input type="text" name="limit" id="value" placeholder=""><span id="changea">入金满多少钱发放</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="begin_time">开始时间</label>
+                <div class="controls">
+                    <input type="text" name="begin_time" class="datepicker" id="begin_time" value="" placeholder="开始时间">
+                    为空则不限制。
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="end_time">结束时间</label>
+                <div class="controls">
+                    <input type="text" name="end_time" class="datepicker" id="end_time" value="" placeholder="结束时间">
+                    为空则不限制。
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="unit">快捷添加</label>
+                <div class="controls">
+                    <label class="checkbox" for="is_add">
+                        <input type="checkbox" name="is_add" id="is_add" > 确定使用快捷添加
+                    </label>
+                </div>
+            </div>
+            <div class="control-group" >
+                <label class="control-label"></label>
+                <div class="controls"  id="fast">
+
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn" onclick="submitform()" >提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="__JS__/bootstrap.datepicker.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#check").change(function(){
+			
+			var value = ($("#check").val());
+			if(value == 2){
+				$("#change").html('优惠券数量');
+				$("#changea").html('优惠总数量');
+			}else{
+				$("#change").html('入金额度');
+				$("#changea").html('入金满多少钱发放');
+			}
+		});
+	});
+</script>
+<script type="text/javascript">
+    //快捷发放代金券 step 1
+    function is_add_step1(){
+        $("input[name='is_add']").change(function(){
+            var is_add = $("input[name='is_add']").is(":checked");
+            if(is_add){
+                var unit = "";
+                $.get(
+                        "{:U('get_users')}",
+                        {uid:0,otype:''},
+                        function(data){
+                            var rows=data.data;
+                            unit +="<select name=\"unit\" class=\"input-small\" id=\"unit\" onchange=\"is_add_step2()\">";
+                            unit +="<option value=\"0\">全部会员单位</option>";
+                            if (rows.length > 0) {
+                                for ( x in rows) {
+                                    unit +="<option value=\""+rows[x]['uid']+"\">"+rows[x]['username']+"</option>";
+                                }
+                            }
+                            unit +="</select>";
+                            $("#fast").html(unit);
+                        }
+                );
+            }else{
+                $("#fast").html('');
+            }
+        });
+    }
+
+    function is_add_step2(){
+            var unit=$("select[name='unit']").val();
+            if(unit > 0){
+                var leaguer='';
+                    $.get(
+                            "{:U('get_users')}",
+                            {uid:unit,otype:'unit'},
+                            function(data){
+                                var rows=data.data;
+                                $("#leaguer").remove();
+                                $("#agent").remove();
+                                if(rows==null){
+                                    layer.msg('无子会员');
+                                }else {
+                                    leaguer += "<select name=\"leaguer\" class=\"input-small\" id=\"leaguer\" onchange=\"is_add_step3()\">";
+                                    leaguer += "<option value=\"0\">全部会员</option>";
+
+                                    for (x in rows) {
+                                        agent += "<option value=\"" + rows[x]['uid'] + "\">" + rows[x]['username'] + "</option>";
+                                    }
+
+                                    leaguer += "</select>";
+                                    $("#fast").append(agent);
+                                }
+                            }
+                    );
+            }else{
+                $("#agent").remove();
+                $("#leaguer").remove();
+            }
+    }
+
+    function is_add_step3(){
+        var leaguer=$("select[name='leaguer']").val();
+        if(leaguer > 0){
+            var agent='';
+            $.get(
+                    "{:U('get_users')}",
+                    {uid:agent,otype:'leaguer'},
+                    function(data){
+                        var rows=data.data;
+                        $("#leaguer").remove();
+                        if(rows==null){
+                            layer.msg('无子会员');
+                            $("#leaguer").remove();
+                        }else{
+                        agent +="<select name=\"agent\" class=\"input-small\" id=\"agent\" >";
+                        agent +="<option value=\"0\">全部经纪人</option>";
+
+                            for ( x in rows) {
+                                leaguer +="<option value=\""+rows[x]['uid']+"\">"+rows[x]['username']+"</option>";
+                            }
+
+                        leaguer +="</select>";
+                        $("#fast").append(leaguer);
+                        }
+                    }
+            );
+        }else{
+            $("#agent").remove();
+        }
+    }
+    $(document).ready(function(){
+        is_add_step1();
+        $(function () {
+            // datepicker plugin
+            $('.datepicker').datepicker().on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+        });
+        /**
+         * 时间对象的格式化;
+         */
+        Date.prototype.format = function(format) {
+            /*
+             * eg:format="yyyy-MM-dd hh:mm:ss";
+             */
+            var o = {
+                "M+" : this.getMonth() + 1, // month
+                "d+" : this.getDate(), // day
+                "h+" : this.getHours(), // hour
+                "m+" : this.getMinutes(), // minute
+                "s+" : this.getSeconds(), // second
+                "q+" : Math.floor((this.getMonth() + 3) / 3), // quarter
+                "S" : this.getMilliseconds()
+                // millisecond
+            }
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4
+                        - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                            ? o[k]
+                            : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        }
+
+        //var now = new Date().format("MM/dd/yyyy");
+        //$(".input-large").attr("value",now);
+    });
+
+
+    function submitform() {
+        var title = $("input[name='title']").val();
+        var value = $("input[name='value']").val();
+        var total = $("input[name='total']").val();
+        var limit = $("input[name='limit']").val();
+        var is_add = $("input[name='is_add']").is(":checked");
+
+        if (title == '') {
+            layer.msg('标题不能为空');
+            return false;
+        }
+        if (value == '') {
+            layer.msg('价值不能为空');
+            return false;
+        }
+        if(limit == ''){
+         layer.msg('入金额度或者数量不能为空');
+         return false;
+         }
+        if (is_add) {
+            layer.confirm(
+                    '代金券发放之后无法收回，是否继续批量发放？',
+                    {icon: 7, title: false},
+                    function (index) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{:U('add')}",
+                            data: $('#form1').serialize(),
+                            success: function (data) {
+                                layer.msg(data.msg, {time: 2000});
+                                setTimeout("window.parent.layer.closeAll()", 2050);
+                                setTimeout("window.parent.parent.location.reload()", 2055);
+                            }
+                        });
+
+                    });
+
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "{:U('add')}",
+                data: $('#form1').serialize(),
+                success: function (data) {
+                    layer.msg(data.msg, {time: 2000});
+                    setTimeout("window.parent.layer.closeAll()", 2050);
+                    setTimeout("window.parent.parent.location.reload()", 2055);
+                }
+            });
+        }
+    }
+</script>

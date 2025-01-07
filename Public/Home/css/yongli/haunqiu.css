@@ -1,0 +1,50 @@
+.form {
+    overflow: hidden;
+    display: block;
+}
+.top_img{
+    margin: 0 0.45rem 0.3rem 0.45rem;
+    border-bottom: 2px solid #283038;
+}
+.top_img .img{
+    width: 5rem;
+    height: 4.5rem;
+    /* margin: 0 auto; */
+    margin-left: 2.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.w-item {
+    width: 10rem;
+    height: 1.2rem;
+    border-color: #c1c1c1;
+    position: relative;
+    float: left;
+    line-height: 1.2rem;
+    font-size: 0.3rem;
+    background: #002b54;
+    border-radius: 0.2rem;
+    padding-left: 0.3rem;
+    /* margin-bottom: 0.3rem; */
+    margin-left: 0.4rem;
+    margin-top: 0.3rem;
+}
+.user_info {
+    width: 0.7rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.3rem;
+}
+.user_info_text {
+    font-size: 0.4rem;
+    padding-left: 1.2rem;
+    line-height: 1.2rem;
+}
+.jiantou {
+    margin-right: 0.4rem;
+}
+.jiantou img {
+    width: 0.2rem;
+    height: 0.3rem;
+}

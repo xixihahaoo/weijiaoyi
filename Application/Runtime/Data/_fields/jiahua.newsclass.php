@@ -1,0 +1,1 @@
+a:5:{i:0;s:3:"fid";i:1;s:6:"fclass";i:2;s:4:"type";s:3:"_pk";s:3:"fid";s:5:"_type";a:3:{s:3:"fid";s:7:"int(11)";s:6:"fclass";s:12:"varchar(255)";s:4:"type";s:19:"tinyint(1) unsigned";}}

@@ -1,0 +1,175 @@
+<extend name="Base/common"/>
+<block name="content">
+
+	<link rel="stylesheet" href="__CSS__/compiled/article.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="__PUBLIC__/Js/layer_mobile/need/layer.css" type="text/css" />
+	<script src="__PUBLIC__/Js/layer_mobile/layer.js"></script>
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <div class="row-fluid header">
+                <h3>产品管理&nbsp;>&nbsp;产品列表</h3>
+                <div class="span8 pull-right">
+                </div>
+            </div>
+            <form  action="{:U('Goods/gdel')}" method="post" name="del">
+            <div class="row-fluid table">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="span1 sortable">
+                                编号
+                            </th>
+                            <th class="span3 sortable">
+                                <span class="line"></span>商品名称
+                            </th>
+                            <th class="span2 sortable">
+                                <span class="line"></span>收益率（%）
+                            </th>
+							<th class="span2 sortable">
+                                <span class="line"></span>持单时长
+                            </th>
+							<th class="span2 sortable">
+                                <span class="line"></span>最大持仓手数
+                            </th>
+							<th class="span2 sortable">
+								<span class="line"></span>休市状态
+							</th>
+							<th class="span2 sortable">
+								<span class="line"></span>交易时间
+							</th>
+						<!-- 	<th class="span2 sortable">
+                                <span class="line"></span>每日最大建仓次数
+                            </th> -->
+							<th class="span1 sortable">
+                                <span class="line"></span>操作
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                    <volist name="goodlist" id="gl">
+                    <!-- row -->
+                    <tr class="first">
+						<td>
+                            {$gl['pid']}
+                        </td>
+                        <td>
+                            <a href="{:U('Goods/gedit',array('pid'=>$gl['pid']))}" class="name">{$gl['ptitle']}</a>
+                        </td>
+                        <td>
+                        	{$gl['odds']}
+                        </td>
+                        <td>
+							{$gl['minute']}
+                        </td>
+						<td>
+							{$gl['maxhands']}
+						</td>
+						<td class="flag_{$gl['cid']}">
+							<if condition="$gl['flag'] == 1 ">
+								<a href="javascript:void(0);" class="btn btn-info btn-xs" onclick="setflag({$gl['cid']},0)" title="点击设置休市">开市中</a>
+								<else />
+								<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="setflag({$gl['cid']},1)" title="点击设置开市">休市中</a>
+							</if>
+						</td>
+					<!-- 	<td>
+							{$gl['maxcounts']}
+						</td> -->
+                            <td>
+                                <div style="display:inline-block;float:left;">
+                                    {$dealTimeRs1[$gl['pid']]['deal_time']}
+                                </div>
+                                <div style="display:inline-block;float:left;margin-left:20px;">
+                                    <ul class="actions">
+                                        <li style="border: 0;">
+                                            <a class="option_time_edit" href="#" data-id="{$gl['pid']}"><i class="table-edit"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        <td>
+							<ul class="actions">
+								<li style="border: 0;"><a href="{:U('Goods/gedit',array('pid'=>$gl['pid']))}"><i class="table-edit"></i></a></li>
+							</ul>
+                        </td>
+                    </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            <input id="yprice" type="hidden" value=""/>
+            <input id="byprice" type="hidden" value=""/>
+            <input id="toprice" type="hidden" value=""/>
+            </form>
+            <div class="pagination pull-right">
+                <ul>
+                    {$page}
+                </ul>
+            </div>
+            <!-- end users table -->
+        </div>
+    </div>
+</div>
+<!-- end main container -->
+
+<!-- scripts -->
+<script src="__JS__/jquery-latest.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/theme.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/layer/layer.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var eqli = $("#dashboard-menu").children().eq(2);
+	eqli.attr('class','active');
+	$("#dashboard-menu .active .submenu").css("display","block");
+});
+
+
+//更改开市休市状态
+	function setflag(pid,flag){
+		if(pid <= 0 || flag < 0){
+			layer.open({
+				content:'参数错误',
+				skin:'msg',
+				time:2
+			});
+			return false;
+		}
+
+		var btn_flag='';
+		if(flag==1){
+			btn_flag = "<a href=\"javascript:void(0);\" class=\"btn btn-info btn-xs\" onclick=\"setflag("+pid+",0)\" title=\"点击设置休市\">开市中</a>";
+		}else{
+			btn_flag = "<a href=\"javascript:void(0);\" class=\"btn btn-danger btn-xs\" onclick=\"setflag("+pid+",1)\" title=\"点击设置开市\">休市中</a>";
+		}
+		$.get("{:U('setflag',array('pid'=>"+pid+",'flag'=>"+flag+"))}",
+				{ pid: pid, flag: flag },
+        	function(data){
+        		if(data.code>0){
+        			$(".flag_"+pid).html(btn_flag);
+        		}
+        		layer.open({
+        			content:data.msg,
+        			skin:'msg',
+        			time:2,
+        		});
+        	});
+	}
+
+$('.option_time_edit').click(function(){
+    layer.open({
+        type: 2,
+        area: ['700px', '530px'],
+        fixed: true, //不固定
+        maxmin: true,
+        title: "商品交易时间设置",
+        content: ["{:U('Goods/good_time_edit')}?option_id="+$(this).attr('data-id'), 'no'],
+        end: function () {
+            top.location.reload();
+        }
+    });
+});
+</script>
+</block>

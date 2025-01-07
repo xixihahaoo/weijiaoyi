@@ -1,0 +1,266 @@
+<extend name="Base/common"/>
+<block name="content">
+<script>
+<style type="text/css">
+	.datatable,.datatable th{text-align:center;}
+</style>
+<script type="text/javascript" src="/public/home/js/jquery.min.js"></script>
+<div class="main sidebar-minified">
+	<div class="row">		
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2><i class="fa fa-table red"></i><span class="break"></span><strong>当前持仓</strong></h2>
+					<div style="display: block; margin-left: 20px">
+						<form id="cuntomerfrom"  method="get" action="{:U('Trade/nowlist')}">
+							<if condition="$agent_two neq ''">
+							<span>代理2：</span>
+							<select name='agent_uid' class='agent_uid' style='width:150px;height:40px;'>
+								<option value=''>默认不选</option>
+								<volist name="agent_two" id="agent">
+								<option value="{$agent['uid']}" <?php if($_GET['agent_uid'] == $agent['uid']){echo "selected='true'";}?>>{$agent['username']}</option>
+								</volist>
+							</select>
+							</if>
+<!-- 							<span>用户名：</span>
+							<select name='uid' class='select_mem' style='width:150px;height:40px;'>
+								<option value=''>默认不选</option>
+								<volist name="user_list" id="user">
+								<option class='option_mem' value="{$user['uid']}" <?php if($_GET['uid'] == $user['uid']){echo "selected='true'";}?>>{$user['username']}</option>
+								</volist>
+							</select> -->
+							<span>订单编号：</span><input type="text" value="{$Think.get.orderno}" name="orderno">
+							<!--<span>产品：</span>
+							<select name='pid' style='width:150px;height:40px;'>
+								<option value=''>默认不选</option>
+								<volist name="product_list" id="product">
+								<option value="{$product['ptitle']}" <?php if($_GET['pid'] == $product['ptitle']){echo "selected='true'";}?>>{$product['ptitle']}</option>
+								</volist>
+							</select>-->
+							<span>订单类型：</span>
+							<select name='ostyle' style='width:150px;height:40px;'>
+								<option value=''>默认不选</option>
+								<option value='0' <?php if($_GET['ostyle'] === '0'){echo "selected='true'";}?>>买涨</option>
+								<option value='1' <?php if($_GET['ostyle'] == 1){echo "selected='true'";}?>>买跌</option>
+							</select>
+							<span>起始时间：</span><input type="text" id="StartTime" name="StartTime" value="{$Think.get.StartTime}" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+							<span>结束时间：</span><input type="text" id="EntTime" name="EntTime" value="{$Think.get.EntTime}" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+							<a class="btn btn-danger" id="cuntomerbut">
+								<i class="fa">搜索</i> 
+							</a>
+						</form>
+					</div>
+				</div>
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th class="span1 sortable" style="font-size:14px;">
+							统计汇总
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>交易总金额：<font color="red">{$total_trade_amount|default=0}</font>元
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>手续费：<font color="red">{$total_fee|default=0}</font>元
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>持仓笔数：<font color="red">{$total|default=0}</font>
+						</th>
+					</tr>
+					</thead>
+				</table>
+				
+				<div class="panel-body">
+					<table class="table table-striped table-bordered bootstrap-datatable datatable">
+					  <thead>
+							<tr>
+								<th class="span2 sortable">
+									<span class="line"></span>编号
+								</th>
+								<th class="span3 sortable">
+									<span class="line"></span>用户[上级]
+								</th>
+								<th class="span3 sortable">
+									<span class="line"></span>手机号码
+								</th>
+								<th class="span3 sortable">
+									<span class="line"></span>下单时间
+								</th>
+								<th class="span3 sortable">
+									<span class="line"></span>结束时间
+								</th>
+								<th class="span2 sortable">
+									<span class="line"></span>剩余时间
+								</th>
+								<th class="span2 sortable">
+									<span class="line"></span>产品信息
+								</th>
+								<th class="span2 sortable">
+									<span class="line"></span>当前价格
+								</th>
+								<th class="span1 sortable">
+									<span class="line"></span>类型
+								</th>
+								<th class="span1 sortable">
+									<span class="line"></span>方向
+								</th>
+								<th class="span1 sortable">
+									<span class="line"></span>手续费
+								</th>
+								<th class="span1 sortable">
+									<span class="line"></span>买价
+								</th>
+								<th class="span2 sortable">
+									<span class="line"></span>交易金额
+								</th>
+								<th class="span2 sortable">
+									<span class="line"></span>盈亏
+								</th>
+							</tr>
+					  </thead>   
+					  <tbody>
+					  <volist name="order_info" id="tl">
+						<tr class="first ordlis_type" ordlis_type='{$tl.data_now_id}' un_surplus = '{$tl.un_surplus}' odds = '{$tl.odds}' data_now = '{$tl.data_now_id}' ostyle="{$tl.ostyle}" time_data = <?php echo strtotime($tl['finirm_time']);?>>
+							<td style="text-align: left;">
+								{$tl.orderno}
+							</td>
+							<td style="text-align: left;">
+								<a href="javascript:;">{$tl['username']}[{$tl['managername']}]</a>
+							</td>
+							<td>{$tl.utel}</td>
+							<td>{$tl.buytime|date='Y-m-d H:i:s',###}</td>
+							<td>{$tl.finirm_time}</td>
+							<td class='date_time'>{$tl.surplus}</td>
+							<td>
+								{$tl.ptitle}
+							</td>
+							<td class='td_last'>
+								{$tl.last}
+							</td>
+							<td>
+								<if condition="$tl['is_settle'] eq 0">
+								<span class="label" style="color:#f00;">持仓</span>
+								<else/>
+								<span class="label" style="color:#f00;">平仓</span>
+								</if>
+							</td>
+							<td>
+								{$tl['ostyle']==1?"<font color='#61be37'>跌</font>":"<font color='#f00'>涨</font>"}
+							</td>
+
+							<td>
+								{$tl['fee']?$tl['fee']:0} 元
+							</td>
+							<td>
+								<span class='action'>{$tl['buyprice']?$tl['buyprice']:0}</span> 元
+							</td>
+							<td>
+								<span class='initial'>{$tl['trade_amount']?$tl['trade_amount']:0}</span> 元
+							</td>
+							<td>
+								<span class='profit'>{$tl['profit']}</span> 元
+							</td>
+						</tr>
+						</volist>
+					  </tbody>
+					</table> 						
+					<div class="pagelist">{$page}</div>						 
+				</div>
+			</div>
+		</div><!--/col-->
+	</div><!--/row-->
+</div>
+<script>
+<?php if(!$_GET['type']){?>
+$(function(){
+	var order_type = new Array();
+	var remaining_time = new Array();
+	var all_order_info = new Array();
+	var count = 0;
+	var type = 0;
+	var set1;
+	$('tr.ordlis_type').each(function(i){
+		var order_info = new Object();
+		order_info.action = $(this).find('span.action').html();
+		order_info.initial = $(this).find('span.initial').html();
+		order_info.interest = $(this).attr('odds');
+		order_info.data_now = $(this).attr('data_now');
+		order_info.ostyle = $(this).attr('ostyle');
+		type = 0;
+		if(i == 0)
+		{
+			order_type[count] = $(this).attr('ordlis_type');
+			count++;
+		}
+		for(var sum = 0;sum < order_type.length;sum++)
+		{
+			if(order_type[sum] != $(this).attr('ordlis_type'))
+			{
+				type++;
+			}
+			if(type == order_type.length)
+			{
+				order_type[count] = $(this).attr('ordlis_type');
+				type = 0;
+				count++;
+				break;
+			}
+		}
+		remaining_time[i] = new Array();
+		remaining_time[i][0] = $(this).attr('un_surplus');
+		remaining_time[i][1] = $(this).attr('time_data');
+		all_order_info.push(order_info);
+	})
+	function renovate()
+	{
+		$.get("__CONTROLLER__/ajax_agent",{order_type:order_type,remaining_time:remaining_time,all_order_info:all_order_info},function(data){
+			var data = JSON.parse(data);
+			var list = data['list'];
+			var time = data['time'];
+			var profit = data['profit'];
+			for(var i in list)
+			{
+				$('tr.ordlis_type[ordlis_type='+i+']').find('td.td_last').html(list[i]);
+			}
+			for(var t in time['date_time'])
+			{
+				$('tr.ordlis_type:eq('+t+')').attr('un_surplus',time['remaining_time'][t][0]);
+				$('td.date_time:eq('+t+')').html(time['date_time'][t]);
+				remaining_time[t] = new Array();
+				remaining_time[t][0] = time['remaining_time'][t][0];
+				remaining_time[t][1] = time['remaining_time'][t][1];
+			}
+			for(var p in profit)
+			{
+				$('span.profit:eq('+p+')').html(profit[p]);
+			}
+			$('tr.ordlis_type[un_surplus=0]').remove();
+			if(!$('tr.ordlis_type').length)
+			{
+				clearTimeout(set1);
+			}
+		});
+	}
+	if($('tr.ordlis_type').length)
+	{
+		set1 = setInterval(renovate,1000);
+	}
+	
+})
+</script>
+<?php } ?>
+<script>
+$(function(){
+	$('select.agent_uid').change(function(){
+		$.get("__CONTROLLER__/ajax_mem",{val:$(this).val()},function(data){
+			var data = JSON.parse(data);
+			$('option.option_mem').remove();
+			for(var i in data)
+			{
+				$('select.select_mem').append("<option class='option_mem' value="+data[i]['uid']+">"+data[i]['username']+"</option>");
+			}
+		});
+	})
+})
+</script>
+</block>

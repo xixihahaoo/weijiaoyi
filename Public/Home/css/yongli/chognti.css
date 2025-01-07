@@ -1,0 +1,142 @@
+.user_top {
+    /*margin-bottom: 0.2rem;*/
+    height:1.1rem;
+    /*line-height:1.73rem;*/
+}
+a.buy_chic, a.buy_dd {
+    width: 50%;
+    height: 0.887rem;
+    background: #252529;
+    position: relative;
+    padding-left: 0.5rem;
+    color: #838385;
+    font-size: .4rem;
+    text-align: center;
+    line-height: 0.887rem;
+}
+.user_top a.active{
+    background: #fdbe19;
+    color:#000;
+}
+.user_top a i {
+    width: 0.6rem;
+    height: 0.6rem;
+    left: 1.3rem;
+    top: 0.2rem;
+    position: absolute;
+}
+a.active i.buy_chic_fangd {
+    background: url(image/zxc.png) no-repeat;
+    background-size: 0.55rem 0.55rem;
+}
+i.buy_chic_fangd {
+    background: url(../../images/yongli/zxc1.png) no-repeat;
+    background-size: 0.55rem 0.55rem;
+}
+.chingti{
+    width: 94%;
+    height: 1.29rem;
+    line-height: 1.29rem;
+    /*background: #252529;*/
+    border-radius: 0.1rem;
+    /*margin-top: 0.4rem;*/
+    margin-left: 0.35rem;
+}
+.chingti_text{
+    margin-left: 0.5rem;
+}
+p.chongzhi,p.tixian{
+    padding-top: 0.1rem;
+}
+.chingti p.lan,.chingti p.lv{
+    width:0.23rem;
+    height: 1.29rem;
+    background: #159aef;
+    border-bottom-left-radius: 0.1rem;
+    border-top-left-radius: 0.1rem;
+    display: inline-block;
+}
+.chingti p.lv{
+    background: #1fc65b;
+}
+.chingti p.lan{
+    background: rgb(21,154,239);
+}
+.chingti p{
+    line-height: 0.6rem;
+}
+.chingti .chingti_text{
+    width:5rem;
+    height:1.29rem;
+    line-height:1.29rem;
+    font-size:0.38rem;
+    display: inline-block;
+}
+.chingti  p.c_time{
+    font-size: 0.25rem;
+    color:#838385;
+}
+.chingti  p.c_time span{
+    width: 0.3rem;
+    height:0.3rem;
+    background: url("../../images/yongli/assd.png") no-repeat center center;
+    background-size:0.3rem 0.3rem;
+    display: inline-block;
+    margin-right: 0.1rem;
+}
+.chingti_num{
+    width: 20%;
+    text-align: center;
+}
+p.chongzhi{
+    font-size: 0.35rem;
+    color:#159aef;
+}
+p.tixian{
+    color: #1fc65b!important;
+}
+.ct,.tx{
+    overflow: auto;
+    width: 100%;
+    display: block;
+    background: #252529;
+    margin-bottom: 0.35rem;
+}
+.user_time_txt li{
+    float: left;
+}
+.user_time_txt{
+    float: left;
+    width: 10.1rem;
+    height: 1.29rem;
+    line-height: 1.29rem;
+     background: #252529; 
+    border-radius: 0.1rem;
+    /* margin-top: 0.4rem; */
+    margin-left: 0.35rem;
+        margin-bottom: 0.35rem;
+}
+.blueBorder{
+    width: 10px;
+    height: 1.29rem;
+    background: red;
+}
+.button-bar {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 45px;
+    line-height: 45px;
+    position: absolute;
+}
+ .button-bar .button-dark {
+    font-size: 14px;
+    height: 45px;
+    line-height: 45px;
+    border: none !important;
+    border-radius: 0px 0px 0px 0px;
+    background-color: rgb(38, 40, 52);
+     width: 100%;
+     display: inline-block;
+     text-align: center;
+}

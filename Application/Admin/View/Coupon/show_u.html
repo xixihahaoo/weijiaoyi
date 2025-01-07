@@ -1,0 +1,62 @@
+<link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="__CSS__/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+<link href="__CSS__/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="__CSS__/layout.css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/elements.css" />
+<div class="container-fluid">
+    <div id="pad-wrapper" style="margin-top:4px;" class="users-list">
+        
+            <div class="row-fluid header">
+                <a href="{:U('send_coupon',array('id'=>$id))}" class="btn-flat info" style="margin-bottom:10px;">发放代金券</a>
+            </div>
+
+        <!-- Users table -->
+        <div class="row-fluid table">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="span1 sortable">编号</th>
+                    <th class="span1 sortable">会员</th>
+                    <th class="span1 sortable">类型</th>
+                    <th class="span1 sortable">电话</th>
+                    <th class="span1 sortable">状态</th>
+                    <th class="span2 sortable">时间</th>
+                    <!--<th class="span2 sortable">操作</th>-->
+                </tr>
+                </thead>
+                <tbody id="ajaxback">
+                <empty name="rows">
+                    <tr>
+                        <td colspan="6">暂无数据</td>
+                    </tr>
+                </empty>
+                <volist name="rows" id="vo">
+                <!-- row -->
+                <tr class="first">
+                    <td>{$vo.uid}</td>
+                    <td><empty name="vo.username">{$vo.nickname}<else />{$vo.username}</empty></td>
+                    <td>{$vo.otype_str}</td>
+                    <td>{$vo.utel}</td>
+                    <td>
+                        {$vo.status_str}
+                    </td>
+                    <td>
+                        <empty name="vo.modified">--<else />{$vo.modified|date='Y-m-d H:i',###}</empty>
+                    </td>
+                    <!--<td>
+                        删除？
+                    </td>-->
+                </tr>
+                <!-- row -->
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination pull-right">
+            <ul id="show">
+                {$page}
+            </ul>
+        </div>
+        <!-- end users table -->
+    </div>
+</div>

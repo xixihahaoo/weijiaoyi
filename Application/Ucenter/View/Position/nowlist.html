@@ -1,0 +1,140 @@
+<extend name="Base/common"/>
+<block name="content">
+	<!-- this page specific styles -->
+	<link rel="stylesheet" href="__CSS__/compiled/order-list.css" type="text/css" media="screen" />
+	<link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+
+
+	<div class="container-fluid">
+		<div id="pad-wrapper" class="users-list" style="padding:0px; margin-top:25px;">
+			<div class="row-fluid header">
+			</div>
+			<!-- Users table -->
+			<br />
+			<div class="row-fluid table">
+				<!--//这个地方动态加载-->
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th class="span1 sortable" style="font-size:14px;">
+							统计汇总
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>佣金总额：<font color="red">{$total_trade_amount|default=0}</font>元
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>手续费：<font color="red">{$total_fee|default=0}</font>元
+						</th>
+						<th class="span2 sortable" style="font-size:14px;">
+							<span class="line"></span>持仓笔数：<font color="red">{$total|default=0}</font>
+						</th>
+					</tr>
+					</thead>
+				</table>
+			</div>
+
+			<div class="row-fluid table">
+				<!--//这个地方动态加载-->
+				<table class="table table-hover">
+					<div class="qjcz">
+						<thead>
+						<tr>
+							<th class="span2 sortable">
+								<span class="line"></span>编号
+							</th>
+							<th class="span3 sortable">
+								<span class="line"></span>用户[上级]
+							</th>
+							<th class="span3 sortable">
+								<span class="line"></span>下单时间
+							</th>
+							<th class="span2 sortable">
+								<span class="line"></span>产品信息
+							</th>
+							<th class="span1 sortable">
+								<span class="line"></span>类型
+							</th>
+							<th class="span1 sortable">
+								<span class="line"></span>方向
+							</th>
+							<th class="span1 sortable">
+								<span class="line"></span>手续费
+							</th>
+							<th class="span1 sortable">
+								<span class="line"></span>买价
+							</th>
+							<th class="span2 sortable">
+								<span class="line"></span>佣金
+							</th>
+							<th class="span2 sortable">
+								<span class="line"></span>操作
+							</th>
+						</tr>
+						</thead>
+						<tbody id="ajaxback">
+						<volist name="rows" id="tl">
+							<tr class="first">
+								<td style="text-align: left;">
+									{$tl.orderno}
+								</td>
+								<td style="text-align: left;">
+									<a href="{:U('User/updateuser',array('uid'=>$tl['uid']))}">{$tl['username']?$tl['username']:$tl['nickname']}</a>[{$tl.up_user}]
+								</td>
+								<td>{$tl.buytime|date='Y-m-d H:i:s',###}</td>
+								<td>
+									{$tl.ptitle}
+								</td>
+
+								<td>
+									<span class="label">持仓</span>
+								</td>
+								<td>
+									{$tl['ostyle']==1?"<font color='#61be37'>跌</font>":"<font color='#f00'>涨</font>"}
+								</td>
+
+								<td>
+									{$tl['fee']?$tl['fee']:0} 元
+								</td>
+								<td>
+									{$tl['buyprice']?$tl['buyprice']:0} 元
+								</td>
+								<td>
+									{$tl['trade_amount']?$tl['trade_amount']:0} 元
+								</td>
+								<td>
+									<a href="{:U('Order/ocontent',array('oid'=>$tl['oid'],'jtype'=>$tl['jtype']))}">查看</a>
+									<!--<a class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="getdatanow({$tl.jno})">更新</a> -->
+								</td>
+							</tr>
+						</volist>
+						</tbody>
+				</table>
+
+			</div>
+		</div>
+		<div class="pagination pull-right">
+			<ul>
+				{$page}
+			</ul>
+		</div>
+		<!-- end users table -->
+	</div>
+	</div>
+	<!-- end main container -->
+	<div id="loading" style="width: 100%;height: 105%;position: absolute;top: 0; z-index: 9999;display: none;">
+		<div class="load-center" style="background: #000;position: absolute;width: 60%;height: 14%;bottom: 10%;border-radius: 10px;color: #fff;text-align: center;font-size: 24px;left: 17%;padding: 1%;">
+			<img src="__IMG__/ajax-loading.jpg" alt="ajax-loading" width="40"/><br/>页面加载中...
+		</div>
+	</div>
+
+
+
+	<!-- scripts -->
+
+	<script src="__JS__/jquery-latest.js"></script>
+	<script src="__JS__/bootstrap.min.js"></script>
+	<script src="__JS__/bootstrap.datepicker.js"></script>
+	<script src="__JS__/theme.js"></script>
+</block>
+
+<!-- <a href="{:U('Order/deldingdan',array('oid'=>$tl['iddd']))}">删除</a>  -->

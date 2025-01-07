@@ -1,0 +1,81 @@
+body,ul,li,p,h1,h2,h3,h4,h5,h6,img,br,hr,table,tr,td,dl,dt,dd,form,button,input{
+    margin: 0;
+    padding: 0;
+}
+body {
+  font-family: Arial,"微软雅黑";
+  color: #434343;
+  background: url(../images/big_bg.png) no-repeat;
+  background-size:100% 100%;
+}
+.clear {
+    clear: both;
+    font-size: 0px;
+}
+.clearfix:after{
+  content:".";        
+  display:block;        
+  height:0;        
+  clear:both;        
+  visibility:hidden;
+}
+.hide{
+    display:none;
+}
+ul,li {
+    list-style: none;
+}
+img {
+    border: none;
+}
+/*一般链接*/
+a {
+    text-decoration: none;
+    color: #555;
+}
+a: hover {
+    color: #3366ff;
+}
+img{
+    border:0;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+/*#window{
+  width:100%;
+  height:100%;
+  position: fixed;
+  background: rgba(0,0,0,0.3);
+  z-index:998;
+  display: none;
+}
+#window .window{
+  width:65%;
+  height:30%;
+  z-index:999;
+  background:url(../images/window_bg.png) no-repeat;
+  background-size:100% 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin: auto;
+}
+#window .window p{
+  padding:22% 11% 0px;
+  text-align: center;
+  color:#212121;
+  font-size:0.48rem;
+}
+#window .window .sure{
+  width:24%;
+  height:14%;
+  background:url(../images/sure_bg.png) no-repeat;
+  background-size:100% 100%;
+  position: absolute;
+  left:38%;
+  bottom:3%;
+}*/

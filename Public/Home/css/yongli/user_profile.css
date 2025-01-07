@@ -1,0 +1,153 @@
+.out_money_content article {
+    width: 100%;
+    height: 1rem;
+    background: #222225;
+}
+.out_money_content article span {
+    display: inline-block;
+    vertical-align: top;
+    width: 34%;
+    font-size: 0.45rem;
+    color: #FFFFFF;
+    height: 1rem;
+    line-height: 1rem;
+}
+.out_money_content article span i {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: url(../../images/yongli/chujin.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    font-size: 0.2rem;
+    margin-left: 0.25rem;
+}
+.out_money_content article input {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+    height: 1rem;
+    line-height: 1rem;
+    background: transparent;
+    border: none;
+    color: #fdbe19;
+    font-size: 0.4rem;
+}
+.out_money_content section {
+    width: 100%;
+    padding-left: 7%;
+    text-align: left;
+    color: #4e4e4f;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    margin: 0;
+    font-size: 0.4rem;
+}
+.out_money_content footer {
+    width: 100%;
+    padding-left: 0.25rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #4e4e4f;
+    font-size: 0.4rem;
+    text-align: left;
+}
+.out_money_content footer span {
+    display: inline-block;
+    width: 17%;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    color: #fdbe19;
+}
+.out_money_content .outmoneybtn {
+    width: 90%;
+    border: none;
+    display: block;
+}
+.newbutton {
+    height: 1.2rem;
+    border-radius: 0.15rem;
+    background: #FDBE19;
+    color: #000000;
+    line-height: 1.2rem;
+    text-align: center;
+    font-size: 0.45rem;
+    border: none;
+    margin: 0.5rem auto;
+}
+.newbutton .active{
+    background: #fdbe19;
+}
+ .coldbg {
+    color: #14a17d;
+    background: -webkit-linear-gradient(right, #1db292 , #009eb7);
+    background: -o-linear-gradient(right, #1db292 , #009eb7);
+    background: -moz-linear-gradient(right, #1db292 , #009eb7);
+    background: linear-gradient(to right, #1db292 , #009eb7);
+     width: 96%;
+     height: 3.5rem;
+     border-radius: 0.2rem;
+     margin: 0.1rem 2% 0.1rem 2%;
+     position: relative;
+}
+header.coldbg p:nth-of-type(1) {
+    height: 0.8rem;
+    font-size: 0.5rem;
+    line-height: 0.8rem;
+    text-align: left;
+    position: absolute;
+    top: 0.4rem;
+    left: 2.4rem;
+    color: #FFFFFF;
+    z-index: 1000;
+    margin: 0;
+}
+header.coldbg p:nth-of-type(2) {
+    height: 0.8rem;
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+    text-align: left;
+    position: absolute;
+    top: 2.3rem;
+    left: 5rem;
+    color: #FFFFFF;
+    z-index: 1000;
+    margin: 0;
+}
+.out_money_content{
+    margin-top: 0.3rem;
+}
+header.coldbg>span{
+    position: absolute;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(255,255,255,0.7);
+    font-size: 0.4rem;
+    top: 0.4rem;
+    left: 0.2rem;
+    line-height: 1.9rem;
+    text-align: center;
+    border-radius: 50%;
+    z-index: 1000;
+}
+header.coldbg>span>i{
+    width:1.5rem;
+    height:1.5rem;
+    background: url("../../images/yongli/bank.png") no-repeat center center;
+    background-size: 1.5rem 1.5rem;
+}
+header.coldbg i.icon-nongyeyinxing1{
+    position: absolute;
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.2rem;
+    top: 0rem;
+    right: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    overflow: hidden;
+    z-index: 100;
+    background: url(../../images/yongli/bank_big.png) no-repeat center center;
+    background-size: 100% 100%;
+}

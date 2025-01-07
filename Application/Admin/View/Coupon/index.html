@@ -1,0 +1,207 @@
+<extend name="Base/common"/>
+<block name="content">
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="__CSS__/compiled/user-list.css" type="text/css" media="screen"/>
+    <link href="__CSS__/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet"/>
+
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__PUBLIC__/Js/layer/layer.js"></script>
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <div class="row-fluid header">
+                <h3 style="height: 40px;width: 100%;">{$title}</h3>
+                <a href="javascript:void(0)" class="btn-flat info" style="margin-bottom:10px;" onclick="add()">添加体验券</a>
+            </div>
+
+            <!-- Users table -->
+            <div class="row-fluid table">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span1 sortable">
+                            编号
+                        </th>
+                        <th class="span1 sortable">
+                            名称
+                        </th>
+                        <th class="span1 sortable">
+                            金额
+                        </th>
+                        <th class="span2 sortable">
+                            使用范围
+                        </th>
+                        <th class="span2 sortable">
+                            时间有效期
+                        </th>
+                        <!--<th class="span2 sortable">
+                            类型
+                        </th>-->
+                        <!--<th class="span2 sortable">
+                            验证码
+                        </th>-->
+                        <th class="span2 sortable">
+                            数量
+                        </th>
+                        <th class="span2 sortable">
+                            添加时间
+                        </th>
+                        <th class="span2 sortable">操作</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="ajaxback">
+                    <volist name="rows" id="vo">
+                        <!-- row -->
+                        <tr class="first">
+                            <td>{$vo.id}</td>
+                            <td>{$vo.title}</td>
+                            <td>&yen;{$vo.value}</td>
+                            <td>
+                                <if condition="$vo.type eq 1">
+                                    入金返券
+                                    <else />
+                                    注册返券
+                                </if>
+
+                            </td>
+                            <td>
+                                <empty name="vo.begin_time">
+                                    无限制
+                                    <else/>
+                                    {$vo.begin_time|date="Y-m-d",###}
+                                </empty>
+                                至
+                                <if condition="$vo.end_time lt 1">
+                                    无限制
+                                    <else />
+                                    {$vo.end_time|date="Y-m-d",###}
+                                </if>
+                            </td>
+                            <!--<td>
+                                <if condition="$vo.type eq 1">会员模式 <a href="javascript:void(0)" onclick="show_u('{$vo.id}','{$vo.title}')" title="查看详情">管理会员</a>
+                                    <else/>
+                                    验证码模式 <a href="javascript:void(0)" onclick="show_u('{$vo.id}','{$vo.title}')">查看使用者</a></if>
+                            </td>
+                            <td>
+                                <if condition="$vo.type eq 2">{$vo.verify_code}
+                                    <else/>
+                                    无
+                                </if>
+                            </td>-->
+                            <td>
+                                <span id="t_{$vo.id}">[ {$vo.total} ]</span>
+                                
+                                    <a href="javascript:void(0)" class="btn btn-mini btn-info" onclick="update_count('{$vo.id}')" title="更新数量">更新数量</a>
+                               
+                            </td>
+                            <td>{$vo.createtime|date="Y-m-d H:i",###}</td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="edit('{$vo.id}','{$vo.title}')" title="编辑">编辑</a>
+                                
+                                    <a href="javascript:void(0)" onclick="show_u('{$vo.id}','{$vo.title}')" title="查看详情">管理会员</a>
+                                   
+                                <!--<a href="javascript:void(0)" onclick="del('{$vo.id}','{$vo.title}')" >删除</a>-->
+                            </td>
+                        </tr>
+
+                        <!-- row -->
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination pull-right">
+                <ul id="show">
+                    {$page}
+                </ul>
+            </div>
+            <!-- end users table -->
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <!--<script src="__JS__/jquery-latest.js"></script>-->
+    <!--<script src="__JS__/bootstrap.min.js"></script>-->
+    <script src="__JS__/popup_layer.js"></script>
+    <script src="__JS__/bootstrap.datepicker.js"></script>
+    <script src="__JS__/theme.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var eqli = $("#dashboard-menu").children().eq(10);
+            eqli.attr('class', 'active');
+            $("#dashboard-menu .active .submenu").css("display", "block");
+        })
+        //添加代金券
+        function add(){
+            var index = layer.open({
+                title: '添加代金券',
+                type: 2,
+                content: "{:U('add')}",
+                area: ['600px', '580px'],
+                shadeClose:true,
+            });
+        }
+        //编辑代金券
+        function edit(id,title){
+            if(id<1){
+                layer.msg('不存在该代金券');
+                return false;
+            }
+            layer.open({
+                title:'编辑代金券 : '+title,
+                type:2,
+                content:"{:U('edit')}?id="+id,
+                area:['600px','580px'],
+                shadeClose:true,
+            });
+        }
+        //删除代金券
+        /*function del(id,title){
+            if(id<1){
+                layer.msg('不存在该代金券');
+                return false;
+            }
+            layer.confirm(
+                    '确定删除 : '+title,
+                    {icon: 2,title:'删除代金券'},
+                    function(data){
+                        $.get("{:U('del')}", { id: id},
+                                function(data){
+                                    layer.msg(data.msg);
+                                });
+                        setTimeout("window.parent.location.reload()",2050);
+                    });
+        }*/
+        //查看代金券会员
+        function show_u(id,title){
+            if(id<1){
+                layer.msg('不存在该代金券');
+                return false;
+            }
+            layer.open({
+                title:'代金券【 '+title+'】的使用信息',
+                type:2,
+                content:"{:U('show_u')}?id="+id,
+                area:['1000px','700px'],
+                shadeClose:true,
+                maxmin:true
+            });
+        }
+
+        //更新代金券数量
+        function update_count(id){
+            if(id<1){
+                layer.msg('不存在该代金券');
+                return false;
+            }
+            $.get(
+                    "{:U('update_count')}",
+                    {id:id},
+                    function(data){
+                    layer.msg(data.msg);
+                        var total = '[ '+data.data+' ]';
+                        $("#t_"+id).text(total);
+            });
+        }
+    </script>
+</block>

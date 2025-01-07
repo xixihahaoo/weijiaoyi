@@ -1,0 +1,9 @@
+<if condition="$type eq 0">
+<volist name="agent_one_list" id="agent_one">
+<option value="{$agent_one['uid']},{$agent_one['username']}">{$agent_one['username']}</option>
+</volist>
+<else/>
+<volist name="agent_one_list" id="agent_one">
+<option value="{$agent_one['uid']},{$agent_one['username']},{$agent_one['feerebate']}">{$agent_one['username']}</option>
+</volist>
+</if>

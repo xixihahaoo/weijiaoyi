@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>签约银行卡</title>
+    <include file="Common:header" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__CSS__/yongli/nameAndBank.css">
+    <script src="__JS__/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="__JS__/layer/layer.js"></script>
+    <style>
+        .shadeWrap{ position:fixed; width:100%; height:100%; top:0; left:0; z-index:99; background:rgba(0,0,0,.3); font-size:16px;}
+        .shadeWrap .content{ width: 75%; background: #fff; border-radius: 5px; position: absolute; top: 50%; margin-top: -20.5%; left: 50%; margin-left: -38%; text-align: center;box-shadow: 0 0 5px rgba(0,0,0,.4); }
+        .shadeWrap .main{padding: 25px; border-bottom: 1px solid #eee;}
+        .shadeWrap .action{ width:100%; height:38px; line-height: 38px; border-radius: 0 0 5px 5px;font-size:16px; color:#fff;background:#da3333;}
+        .page-header a {
+            color: #fff;
+            position: absolute;
+            top: 1.3rem;
+            left: 10px;
+            z-index: 10001;
+            display: block;
+            width: 1.6rem;
+            height: 1.6rem;
+            background-size: 1rem 1.6rem;
+        }
+        #bankName{
+                width: 35%;
+                border-radius: 0;
+                height: 26px;
+                padding: 0 0.5rem;
+                border: 1px solid #3c3a39;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                background: #11141d;
+                color: #eee;
+            }
+    </style>
+</head>
+<body>
+    <div class="wrap gray">
+        <header class="page-header">
+            <div class="content">
+                <div class="left">
+                    <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+                </div>
+                <h3 class="back " id="head-name">签约银行</h3>
+            </div>
+        </header>
+        <div class="page-content">
+
+           <div class="noBind">
+                <div class="bank">
+                    <div class="group">
+                        <label for="">开户人</label>
+                        <input type="text" class="bankInfo" id="j_name"  placeholder="请输入开户人姓名" value="{$bank.busername}">
+                    </div>
+                    
+                    <p class="line"></p>
+                    <div class="group">
+                        <label for="j_bankNo">身份证号</label>
+                        <input type="text" class="bankInfo" placeholder="请输入身份证号" id="Card" value="{$bank.card}">
+                    </div>
+                    
+                    <p class="line"></p>
+                    <div class="group" id="j_bank">
+                        <label for="">开户银行</label>
+                        <input type="hidden" value="{$bank.bankname}" id="banks">
+                        <select id="bankName">
+                           <option value="中国农业银行">中国农业银行</option>
+                           <option value="中国银行">中国银行</option>
+                           <option value="中国工商银行">中国工商银行</option>
+                           <option value="交通银行">交通银行</option>
+                           <option value="中国建设银行">中国建设银行</option>
+                           <option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+                           <option value="招商银行">招商银行</option>
+                           <option value="浦发银行">浦发银行</option>
+                           <option value="中国光大银行">中国光大银行</option>
+                           <option value="中信银行">中信银行</option>
+                           <option value="平安银行">平安银行</option>
+                           <option value="中国民生银行">中国民生银行</option>
+                           <option value="华夏银行">华夏银行</option>
+                           <option value="广东发展银行">广东发展银行</option>
+                           <option value="兴业银行">兴业银行</option>
+                        <select>
+                    </div>
+
+
+                    <p class="line"></p>
+                    <div class="group" id="j_bank">
+                        <label for="">开户所在省</label>
+                        <select class="province">
+                        <volist name="city" id="vo">
+                          <if condition="$bank['province'] eq $vo['joinname']">
+                            <option value="{$vo.joinname}" selected="" data-id="{$vo.id}">{$vo.joinname}</option>
+                          <else />
+                            <option value="{$vo.joinname}" data-id="{$vo.id}">{$vo.joinname}</option>
+                          </if>
+                          </volist>
+                        <select>
+                    </div>
+                    
+                    <p class="line"></p>
+                    <div class="group" id="j_bank">
+                        <label for="">开户所在市</label>
+                       <select id="city">
+                            <if condition="$myCity neq ''">
+                                <volist name="myCity" id="vo">
+                                    <if condition="$bank['city'] eq $vo['name']">
+                                        <option value="{$vo.name}" selected="">{$vo.name}</option>
+                                    <else />
+                                        <option value="{$vo.name}">{$vo.name}</option>
+                                    </if>
+                                </volist>
+                           <else />
+                                <option value="0">请选择</option>
+                           </if>
+                        <select>
+                    </div>
+                    
+                    <p class="line"></p>
+                    <div class="group" id="j_phone1">
+                        <label for="">开户支行</label>
+                        <input type="text" class="bankInfo" placeholder="请填写开户行" id="branch" maxlength="11" value="{$bank.branch}">
+                    </div>
+
+                    <p class="line"></p>
+                    <div class="group">
+                        <label for="j_bankNo">银行卡号</label>
+                        <input type="text" class="bankInfo" placeholder="请输入银行卡号" id="j_bankNo" value="{$bank.banknumber}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="button-bar">
+            <a class="button button-balanced submit">确定</a>
+            <a href="{:U('index')}" class="button button-dark">关闭</a>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+var banks = $('#banks').val();
+$.each($('#bankName option'),function(){
+
+    if(banks == $(this).val())
+    {
+        $(this).attr('selected',true);
+    }
+});
+
+
+
+$(".province").change(function(){
+
+       var id = $(".province").find("option:selected").attr("data-id");
+       $("#city option").remove();
+       $.ajax({
+               url:"{:U('User/city')}",
+               dataType:'JSON',
+               type:'post',
+               data:{'id':id},
+               success:function(data){
+                 var html = '';
+                 $.each(data,function(key,val){
+                    html = "<option value="+val.name+">"+val.name+"</option>"
+                    $("#city").append(html);
+                 });
+               }
+       })
+});
+
+$(".submit").click(function(){
+
+      var index = layer.load(1, {
+            shade: [0.1,'#fff']
+        });
+
+      var j_name       = $("#j_name").val();        //持卡人
+      var Card         = $("#Card").val();          //身份证号
+      var bankName     = $("#bankName").val();      //银行名称
+      var province     = $(".province").val();      //开户所在省
+      var city         = $("#city").val();          //开户所在市
+      var branch       = $("#branch").val();        //支行名称
+      var j_bankNo     = $("#j_bankNo").val();      //银行卡
+       
+    $.ajax({
+
+        url:"{:U('User/binding')}",
+        dataType: 'json',
+        type: 'post',
+        data: {'j_name':j_name,'Card':Card,'bankName':bankName,'province':province,'city':city,'branch':branch,'j_bankNo':j_bankNo},
+        success:function(data){
+
+               if(data.status === 0){
+                    layer.close(index);
+                    layer.msg(data.msg);
+                     return false;
+                }
+
+                if(data.status === 1){
+                    layer.close(index);                     
+                    layer.msg(data.msg);
+                     window.setTimeout("window.location='{:U('User/Index')}'",500);
+                     return false;
+                }
+        }
+    });
+});
+</script>

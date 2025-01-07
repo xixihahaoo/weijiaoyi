@@ -1,0 +1,43 @@
+<extend name="Base/common"/>
+<block name="content">
+<link rel="stylesheet" href="__CSS__/compiled/new-user.css" type="text/css" media="screen" />  
+   <div class="container-fluid">
+            <div id="pad-wrapper" class="new-user">
+                <div class="row-fluid header">
+                    <h3>客户管理&nbsp;>&nbsp推广设置</h3>
+                </div>
+
+                <div class="row-fluid form-wrapper">
+                    <form action="__URL__/act_recommend" method="post" class="new_user_form">
+                 
+                    <!-- left column -->
+                    <div class="span6 with-sidebar">
+            
+                        <div class="span9 field-box">
+                            <label>推广人奖励:</label>
+                            <input class="span2" type="text" name="recommend" value="{$recommend}" />
+                            %
+                            （ 直接推广关系 A->B, A 获得的利润）<br>
+                           <span style="float:right">建议范围:1% ~ 10%</span> 
+                        </div> 
+                         <div class="span9 field-box">
+                            <label>上级推广人奖励:</label>
+                            <input class="span2" type="text" name="recommend2" value="{$recommend2}" />
+                            %  （ 间接推广关系 A->B->C, A 获得 B 的利润）<br>
+                            <span style="float:right">建议范围:30% ~ 70%</span> 
+                        </div>
+          
+                        <div class="span8 field-box actions" style="padding-bottom: 20px;">
+                            <input type="submit" class="btn-glow primary" value="修改" />
+                        </div>
+                    </div>
+					</form>
+                  
+                </div>
+            </div>
+        </div>
+	<!-- scripts -->
+    <script src="__JS__/jquery-latest.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+    <script src="__JS__/theme.js"></script>
+ </block>

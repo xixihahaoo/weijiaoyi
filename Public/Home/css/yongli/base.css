@@ -1,0 +1,69 @@
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,/* structural elements 结构元素 */
+dl,dt,dd,ul,ol,li,/*  list elements 列表元素*/
+pre,/* text formatting elements 文本格式元素 */
+fieldset,lengend,button,input,textarea, /* form elements 表单元素 */
+th,td{margin:0;padding:0;}
+body{ -webkit-tap-highlight-color: rgba(0,0,0,0);  }/*去除鼠标点击时的阴影*/
+address,cite,dfn,em,var{font-style: normal;}
+code,kbd,pre,samp,tt{ font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+/*small{font-size: 12px;}!* 小于 12px 的中文很难阅读，让 small 正常化 *!*/
+img,input{vertical-align: middle; border:none;}
+ul,ol,li{list-style: none;}
+a{text-decoration:none;outline:none}a:hover{text-decoration: underline;}
+table{border-collapse: collapse;border-spacing: 0;}
+html,body{-webkit-text-size-adjust:none;}
+*{padding:0;margin:0;}
+.clear{height:1px;clear:both;margin-bottom:-1px;overflow:hidden;visibility:hidden;display:block;}
+.left{ float:left;display: inline-block;}
+.right{float:right;display: inline-block;}
+.clearfix:after{content:'\20';display:block;height:0;clear:both;overflow:hidden;}
+.clearfix{*zoom:1;}
+.hide{display: none;}
+.text-right{text-align: right;}
+.text-center{text-align: center;}
+.text-left{text-align: left;}
+i,em{font-style: normal;vertical-align: middle;display: inline-block;}
+input,button,select,textarea{outline:none;height: auto;line-height: normal;appearance: none;font-family: 'Microsoft Yahei';}
+.hide{display: none;}
+/*垂直水平居中*/
+/*.vm{top: 50%;left: 50%; position: absolute;-webkit-transform: translate(-50%, -50%);transform:translate(-50%, -50%);}*/
+/*垂直居中*/
+.vtm{top: 50%; position: absolute;-webkit-transform: translate(0, -50%);transform:translate(0, -50%);}
+/*元素均分*/
+.my-bar{bottom: 0;display: table; width: 100%;height: 50px; padding: 0;table-layout: fixed;border-top: 0;border-bottom: 0;-webkit-touch-callout: none;}
+.my-bar .my-bar-item{display: table-cell;overflow: hidden;width: 1%; height: 50px; text-align: center; vertical-align: middle;
+    /*white-space: nowrap;text-overflow: ellipsis;*/
+}
+.my-bar .my-bar-item.mui-active{color: #007aff;}
+.p_relative{position: relative;}
+.icon{display: inline-block;background-repeat: no-repeat;background-size: 100% 100%;overflow: hidden;vertical-align: middle;}
+.text-ellipsis{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+
+
+
+html,body{width: 100%;overflow: hidden;height: 100%;}
+input{outline:none}
+body{margin: 0 auto;overflow-x:hidden;font-size: .1rem;position:relative;background: #ededed;color: #fff;font-family: 'Microsoft Yahei';letter-spacing: 0px;}
+a{color:#fff;cursor:pointer;}
+a:hover{text-decoration:none;}
+img{vertical-align: middle;}
+.img-responsive{display: block;width: 100%;max-width: 100%;}
+*{-webkit-box-sizing:border-box;box-sizing:border-box;}
+.box_content{-webkit-box-sizing:content-box;box-sizing:content-box;}
+.header,.wrap-page,.footer{position:absolute;left:0;right:0}
+.wrap-page{
+    /* overflow: hidden; */
+    overflow-y: auto;
+    top: 0rem;
+    bottom: 0rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding-top: 0;
+    border: 0;
+    background-color: #1b1b1b;
+}
+.close>img {
+    width: 0.4rem;
+    height: 0.4rem;
+}

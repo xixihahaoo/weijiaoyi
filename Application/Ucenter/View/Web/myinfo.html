@@ -1,0 +1,38 @@
+<extend name="Base/common"/>
+<block name="content">
+<style type="text/css">
+	.col-md-6{ width:100%;}
+	.form-horizontal { width:500px;}
+</style>
+	<div class="main sidebar-minified">
+		<div class="row">
+			    <div class="col-md-6">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">
+			                <h2><i class="fa fa-indent red"></i><strong>
+							我的账户
+			                </strong></h2>
+			            </div>
+						<div class="panel-body">
+
+				                <div class="form-group">
+				                    <label class="col-md-3 control-label" for="text-input">账户余额</label>
+				                    <div class="col-md-9">
+
+				                        <input type="password"  name="npw" class="form-control" value="{$list.frozen}" >
+				                    </div>
+				                </div>
+
+
+						</div>
+						<div class="panel-footer">
+		                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> 提交</button>
+	                        <a onclick="window.history.go(-1)"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> 返回</button></a>
+		                </div>	
+			        </div>
+			    </div>
+				
+			 
+			        </div>
+	</div>
+</block>

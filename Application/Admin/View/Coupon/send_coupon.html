@@ -1,0 +1,54 @@
+<link href="__CSS__/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="__CSS__/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+<link href="__CSS__/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="__CSS__/layout.css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/elements.css" />
+<div class="container-fluid">
+    <div id="pad-wrapper" style="margin-top:4px;" class="users-list">
+        <if condition="$cou_type eq 1">
+            <div class="row-fluid header">
+                <a href="{:U('send_coupon',array('id'=>$id))}" class="btn-flat info" style="margin-bottom:10px;">发放代金券</a>
+            </div>
+        </if>
+
+        <!-- Users table -->
+        <div class="row-fluid table">
+            <table class="table table-hover">
+                <tbody id="ajaxback">
+                <empty name="rows">
+                    <tr>
+                        <td>无可发送的会员</td>
+                    </tr>
+                    <else />
+                    <form action="" method="post">
+                        <!-- row -->
+                        <tr class="first">
+                            <volist name="rows" id="vo" key="k" mod="8">
+                                <td>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" id="inlineCheckbox1" name="ids[]" value="{$vo.uid}">
+                                        <span title="会员编号：{$vo.uid}"><if condition="$vo.username eq ''">{$vo.nickname}<else />{$vo.username}</if></span>
+                                    </label>
+                                </td>
+                                <if condition="$k%6 eq 0"></tr><tr></if>
+                        </volist>
+                    </tr>
+                        <tr>
+                            <td colspan="8">
+                                <input type="hidden" name="id" value="{$id}" />
+                                <input type="submit" value="确定发放" class="btn"></td>
+                        </tr>
+                        <!-- row -->
+                    </form>
+                </empty>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination pull-right">
+            <ul id="show">
+                {$page}
+            </ul>
+        </div>
+        <!-- end users table -->
+    </div>
+</div>

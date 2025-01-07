@@ -1,0 +1,90 @@
+.f36 {
+    font-size: .36rem;
+}
+.ita_t {
+    background: #1f2024;
+}
+.ita_t, .ita_t .my-bar-item {
+    height: 1.3rem;
+    font-size: 0.45rem;
+}
+.ita_t li.on {
+    color: #e0ac3e;
+    border-bottom: 0.05rem solid #c0a33f;
+}
+.ita_t .my-bar-item {
+    transition: all 400ms;
+    text-align: center;
+}
+.iTaba .bd {
+    height: auto;
+    overflow: hidden;
+    background: #1b1b1b;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    margin-top: 0.35rem;
+}
+.iTaba .bd .my-bar-item, .iTaba .bd .my-bar {
+    height: .92rem;
+    line-height: 0.92rem;
+    color: #fff;
+    font-size: 0.4rem;
+    padding-left: 0.1rem;
+}
+li.bd_qihuo_list {
+    display: table-cell;
+    vertical-align: top;
+    width: 397px;
+}
+/*.best_new{
+    overflow: auto;
+}*/
+.new_circle{
+    width: 0.4rem;
+
+    position: relative;
+}
+.new_cirline{
+    border-left: 2px solid #575757;
+    border-top: 2px solid #575757;
+    margin-top: -0.45rem;
+    margin-bottom: -0.35rem;
+    margin-left: 0.15rem;
+    height: auto;
+    line-height: 0.6rem;
+    padding: 0.4rem 0.3rem 0.8rem 0.8rem;
+    color: #a0a0a0;
+    font-size: 0.3rem;
+    position: relative;
+    z-index: -1;
+}
+.new_cirline .new_cirt{
+    position: absolute;
+    width: 1.95rem;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    text-align: center;
+    font-size:0.35rem;
+    background: #575757;
+    border-radius: 0.5rem;
+    top: -0.35rem;
+    left: 0.7rem;
+}
+.kongbai{
+    width: 100%;
+    height: 0.65rem;
+    background: #1b1b1b;
+    position: absolute;
+    top: -0.35rem;
+    left: 2.66rem;
+}
+h3.hangye_new_title{
+    color:#c8c8c8;
+    font-size:0.45rem;
+}
+.hangye_new>p{
+    color:#a0a0a0;
+    font-size:0.4rem;
+    line-height:0.8rem;
+    padding-bottom: 0.5rem;
+}

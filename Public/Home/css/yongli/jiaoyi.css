@@ -1,0 +1,607 @@
+.mui-bar-nav{
+    height:1.52rem;
+    line-height:1.52rem;
+    background: #252529;
+    padding: 0rem .2rem 0rem .45rem;
+    font-size: .3rem;
+    font-weight:normal;
+}
+.mui-action-back{
+    display: inline-block;
+}
+.mui-action-back img{
+    width: 0.33rem;
+    height:0.42rem;
+}
+.mui-icon-nav img{
+    width: 0.45rem;
+    height:0.3rem;
+    margin-left: 0.3rem;
+}
+.mui-title{
+     width: 85%;
+     text-align: center;
+     font-size:0.4rem;
+ }
+.mui_play{
+    font-size:0.4rem;
+    padding-right: 0.3rem;
+}
+.in_top {
+    background: #1b1b1b;
+    height: 1.46rem;
+    padding: 0rem .2rem 0rem .45rem;
+}
+/*.in_acount {
+    padding: .1rem .2rem 0rem .45rem;
+}*/
+.ac_a {
+    font-size: .3rem;
+    color: #969696;
+    padding-top: 0.1rem;
+}
+.a_money {
+    font-size: .6rem;
+    color: #d9a71e;
+}
+.in_money {
+    width: 1.24rem;
+    margin-top: 0.49rem;
+    margin-right: 0.3rem;
+}
+.in_money .btn {
+    width: 1.24rem;
+    height: 0.58rem;
+    line-height: 0.58rem;
+    margin-right: 0.2rem;
+    border-radius: 0.1rem;
+    /* padding-left: 0.95rem; */
+    font-size: 0.35rem;
+    color: #fff;
+    text-align: center;
+}
+.in_money_chong {
+    background: #d83f4e;
+}
+.ita_t, .ita_t .my-bar-item {
+    height: 1.24rem;
+}
+.user_top{
+    background: #252529;
+}
+.iTaba{
+    height: 1.24rem;
+    line-height: 1.24rem;
+    border-bottom: 0.05rem solid #363636;
+}
+ul.ita_t li{
+    color:#707070;
+    font-size:0.35rem;
+}
+.ita_t li.on {
+    color: #e0ac3e;
+    border-bottom: 0.05rem solid #c0a33f;
+}
+.ita_t .my-bar-item {
+    transition: all 400ms;
+    text-align: center;
+}
+.bd{
+    height:0.97rem;
+    line-height:0.97rem;
+}
+.ita_t li {
+    border-bottom: 0.05rem solid #1f2024;
+    color: #fff;
+
+}
+ul.bd{
+    border-bottom:0.05rem solid #363636;
+}
+ul.bd li{
+    width: 50%;
+    float: left;
+    font-size:0.4rem;
+    text-align:center;
+    color:#707070;
+    white-space: nowrap;
+    overflow: hidden;
+}
+ul.bd li.bd_list{
+    height:0.97rem;
+    line-height:0.97rem;
+    border-right:0.05rem solid #363636;
+}
+.fot,.fot_a{
+    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    bottom: 1.24rem;
+    height: auto;
+    overflow: hidden;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+
+    backface-visibility: hidden;
+    background: #1b1b1b;
+}
+.fot_a{
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    bottom: 0;
+    height: 1.2rem;
+    overflow: hidden;
+}
+.fot_int{
+    width: 100%;
+    height: 0.85rem;
+    line-height: 0.85rem;
+    font-size: 0.45rem;
+    color: #fff;
+    display: block;
+}
+.fot_int .hengzhi>span{
+    font-size:0.4rem;
+    color:#707070;
+}
+.hengzhi_time{
+    color:#707070;
+    font-size:0.3rem;
+}
+ .hengzhi_time>span{
+    color:#c1c1c1;
+ }
+.fot_hz_num,.fot_num,.hz_num{
+    width: 50%;
+}
+.fot_num{
+    line-height: 1.2rem;
+    height: 1.2rem;
+}
+.fot_hz_num,.hz_num{
+    display: inline-block;
+    height:0.45rem;
+    line-height:0.45rem;
+}
+ .fot_hz_num{
+    color:#fc2e43;
+     font-size:0.85rem;
+     line-height:1.2rem;
+ }
+ .hz_num{
+     padding-top:0.18rem;
+ }
+.hz_num>p{
+    color:#fc2e43;
+    font-size:0.3rem;
+    padding-left: 0.3rem;
+}
+.fot_mm>p{
+    font-size: 0.4rem;
+    color:#707070;
+    line-height:0.58rem;
+}
+.fot_mm>p>span{
+    color:#fc2e43;
+}
+.fot_int_num{
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+.fot_mm{
+    padding-bottom: 0.1rem;
+}
+/*footer*/
+.bar {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    height: 1.65rem;
+    padding: 0!important;
+    overflow: hidden;
+    backface-visibility: hidden;
+    background: #353539;
+}
+.icontu i{
+    width: 0.15rem;
+    height: 0.15rem;
+    border-radius: 50%;
+    background-color: #e4393a;
+    position:absolute;
+    top:0.1rem;
+    right:0.55rem;
+}
+.bar a.cc{
+    background: #353539;
+    border-right:1px solid #5d5d5d;
+    height:1.65rem;
+}
+.icon-cc{
+    background: url("../../images/yongli/footer_12.png") no-repeat center center;
+    background-size: 0.56rem 0.56rem;
+}
+.cc{
+    color:#999a9c;
+}
+.icon-index{
+    background: url("../../images/yongli/index.png") no-repeat center center;
+    background-size: 0.56rem 0.56rem;
+}
+.indext{
+    color:#999a9c;
+}
+/*.icon-jy{
+    background: url("../../images/yongli/jiaoyi.png") no-repeat center center;
+    background-size: 0.56rem 0.56rem;
+}*/
+.jy{
+    color:#000;
+    background: #d83f4e;
+}
+/*.icon-me{
+    background: url("../../images/yongli/ft_05.png") no-repeat center center;
+    background-size: 0.56rem 0.56rem;
+}*/
+.me{
+    color:#000;
+    background: #1fc65b;
+}
+.bar-tab .tab-item .icon~.tab-label {
+    display: block;
+    font-size: .35rem;
+    position: relative;
+    letter-spacing: 0;
+    padding-top: 0.05rem;
+}
+.tab-item{
+    font-size: 0.35rem;
+}
+.heigh{
+    /* height: 1.4rem; */
+    overflow: hidden;
+    line-height: 1.4rem;
+}
+.total{
+    width: 25%;
+    font-size:0.6rem;
+    padding-left: 0.2rem;
+}
+.t_heigh_low{
+    width: 75%;
+}
+.heigh .red{
+    color:#d83f4e;
+}
+.heigh .green{
+    color:#1fc65b;
+}
+.t_heigh_low>p{
+    width: 32%;
+    display: inline-block;
+}
+.t_heigh_low>p>span{
+    display: block;
+    line-height: 0.6rem;
+    font-size: .4rem;
+}
+.t_heigh_low>p>span:first-child{
+    color:#737373;
+}
+.t_heigh_low>p>span.red:last-child{
+    color:#d83f4e;
+    font-size:0.5rem;
+}
+.t_heigh_low>p>span.green:last-child{
+    color:#1fc65b;
+    font-size:0.5rem;
+}
+i.buy_up{
+    background: url("../../images/yongli/zhang.png") no-repeat center center;
+}
+i.buy_down{
+    background: url("../../images/yongli/die.png") no-repeat center center;
+}
+i.iconfont{
+    width: 0.8rem;
+    height: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    background-size: 0.6rem 0.6rem;
+}
+
+/*弹出框*/
+.popBox, .prompt-box {
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* top: 100%; */
+    /* background: rgba(0,0,0,0.7); */
+    background: -webkit-linear-gradient(left top, rgba(255, 177, 0, 0.49), rgba(0, 161, 255, 0.76));
+}
+.popCont {
+    top: 2.5rem;
+}
+.popCont {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 4.5rem;
+    height: 0;
+    transition: all 500ms;
+}
+.pop_bd_text {
+    overflow: hidden;
+}
+.pop_bd {
+    width: 8rem;
+    background: #1B1A1F;
+    /* height: 8.4rem; */
+    overflow: hidden;
+    margin: 0rem auto 0.3rem auto;
+    border-radius: .2rem;
+    padding-bottom: 0.3rem;
+}
+.tishi {
+    height: 1rem;
+    padding-bottom: 0.1rem;
+    border-bottom: 1px solid #2b2a2a;
+    position: relative;
+    /* border-radius: .2rem; */
+    background: #1B1A1F;
+}
+.tishi_text {
+    color: #7B7B7B;
+    font-size: 0.4rem;
+    line-height: 1.1rem;
+    /* padding-left: 1rem; */
+    border-radius: .2rem;
+    text-align: center;
+}
+.pa_yc {
+    overflow: auto;
+    /* margin-bottom: 0.3rem; */
+    /* margin-top: 2.5rem; */
+    /* border-bottom: 0.05rem solid #2b2a2a; */
+    margin-left: 0.1rem;
+    margin-right: 0.2rem;
+}
+.pa_y {
+    /* margin-right: -.7rem; */
+    padding-top: .18rem;
+}
+.pa_y li, .pa_y input.money {
+    float: left;
+    background: #38373e;
+    /* border: .05rem solid #2a2929; */
+    line-height: .65rem;
+    width: 1.8rem;
+    margin-left: 0.2rem;
+    text-align: center;
+    font-size: 0.35rem;
+    margin-bottom: .3rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 400ms;
+}
+::-webkit-input-placeholder{
+    color:#fff;
+}
+.pa_y li.on {
+    background: #FDBE19;
+    color: #000;
+}
+.biaopan {
+    /* height: 80px; */
+    width: 100%;
+    background: #161618;
+    padding: 0.05rem 0;
+    margin-top: 0.1rem;
+    display: block;
+    display: -webkit-box;
+    /* display: -webkit-flex; */
+    display: -ms-flexbox;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+.biaopan li {
+    background: url(../../images/yongli/biao1.png) no-repeat center center;
+    background-size: 3rem 2.5rem;
+    /* float: left; */
+    width: 3rem;
+    margin: 0 0.2rem;
+    height: 2.5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+    position: relative;
+    /* overflow: hidden; */
+    border-radius: 0.2rem;
+    border: 1px solid #333335;
+    transition: all 400ms;
+}
+.biaopan li div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+   /* background: rgba(7, 7, 7, 0.63);*/
+    border-radius: 0.2rem;
+    border: 0.06rem solid #000;
+}
+.biaopan li p {
+    margin-top: 0.2rem;
+    color: #888888;
+    font-size: 0.3rem;
+}
+
+.biaopan li h5, .biaopan li p, .biaopan li h4 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+.biaopan li h5 {
+    color: #FDBE19;
+    /* font-size: 0.42rem; */
+    margin: .2rem 0 .22rem 0;
+    font-size: 0.35rem;
+    letter-spacing: -0.01rem;
+}
+.biaopan li h5 span {
+    /* font-size: 0.8rem; */
+    /* font-weight: normal; */
+    font-size: 0.65rem;
+}
+.biaopan .bianpan-li div {
+    /* background: none; */
+    /*border: 0.05rem solid #C0A33F;*/
+    background: rgba(7, 7, 7, 0);
+}
+.biaopan .on {
+    border: 1px solid #FDBE19;
+}
+.biaopan li p.profit{
+    height:0.5rem;
+    line-height:0.5rem;
+    background: #232227;
+    color:#fa2e42;
+}
+.biaopan li p.profit i.icon{
+    width:0.35rem;
+    height:0.35rem;
+    background: url("../../images/yongli/profit_logo.png") no-repeat center center ;
+    background-size: 0.35rem 0.35rem;
+}
+.biaopan li p.settlement{
+    padding-top: 0.15rem!important;
+}
+.tishi .close {
+    position: absolute;
+     width: 1.5rem;
+    top: 0rem;
+    right: 0.3rem;
+}
+.pas_close>img {
+    position: absolute;
+    left: 1rem !important;
+    top: 0.36rem;
+}
+.close>img {
+    width: 0.4rem;
+    height: 0.4rem;
+}
+p {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+.invest_account{
+    height:0.5rem;
+    line-height:0.5rem;
+    color:#fff;
+    padding: 0 0.3rem;
+}
+.invest_account p span.credit{
+    color:#fa2e42;
+}
+.info-view {
+    padding: 0 0.3rem;
+    /* display: table; */
+    height: 0.5rem;
+    line-height: 0.5rem;
+    color:#6D6D6D;
+}
+.info-view .ng-binding{
+    width: 50%;
+    font-size: .4rem;
+}
+.order-detail-view {
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+    padding: 0.3rem;
+    color: #fff;
+}
+.order-detail-view .order-detail {
+    height: 100%;
+    width: 100%;
+    border-top: 0.02rem solid #333235;
+}
+.fields {
+    margin-top: 0.2rem !important;
+    height: 0.6rem !important;
+    line-height: 0.5rem !important;
+}
+.row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.col {
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: .4rem;
+}
+.col {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0.3rem;
+    display: table;
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+.fields > div {
+    color: #6d6d6d;
+    font-size: .4rem;
+}
+.rise {
+    color: #fa2e42 !important;
+}
+
+.fall {
+    color: #1fc65b !important;
+}
+#money {
+    color: #fdbe19;
+}
+.order-detail-view .order-detail .row {
+    height: 0.8rem;
+    line-height: 0.8rem;
+}
+.order-detail-view .button {
+    width: 100%;
+    color: #000000;
+    background-color: #fdbe19;
+    min-height: 0;
+    height: 1rem;
+    font-size: 0.4rem;
+    line-height: 1rem;
+    font-family: "microsoft yahei";
+    border:none;
+    border-radius: 0.1rem;
+}
+.expect_profit {
+    color: #fdbe19;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 0.2rem;
+    font-size: 0.35rem;
+}

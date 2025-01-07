@@ -1,0 +1,20 @@
+#本地IDE相关
+.idea/
+.git/
+
+#配置文件  config
+public/Application/Common/Conf/config.php
+
+
+# 附件文件
+public/Public/Uploads/
+public/Uploads/
+
+#缓存文件
+public/Application/Runtime/
+
+#日志相关
+public/logs
+
+#测试文件
+

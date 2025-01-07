@@ -1,0 +1,214 @@
+.container{
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+.me{
+	width:54%;
+	height:12%;
+	padding-top:2%;
+	padding-left: 2.5%;
+}
+.me .left{
+	float:left;
+	width:32%;
+	height:100%;
+	position: relative;
+}
+.me .left .head{
+	width:90%;
+	height:90%;
+	display: block;
+	margin:0 auto;
+	margin-top:2%;
+}
+.me .left .pic_border{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index:10;
+}
+.me .right{
+	width:68%;
+	height:100%;
+	float:left;
+	position: relative;
+}
+.me .right p{
+	color:#fff;
+	font-size:0.4rem;
+	font-weight:bold;
+	padding-left: 0.1rem;
+}
+.me .right img{
+	display: block;
+	position: absolute;
+	width:77%;
+	height:10%;
+	top:29%;
+	left:-0.1rem;
+}
+.me .right .money{
+	width:91%;
+	height:43%;
+	background: url(../images/money_bg.png) no-repeat;
+	background-size:100% 100%;
+	position: absolute;
+	left:4%;
+	bottom:11.5%;
+}
+.me .right .money span{
+	color:#00DDF7;
+	font-size:0.3rem;
+	font-weight:bold;
+	position: absolute;
+	bottom:20%;
+	left:31.5%;
+}
+.wrap{
+	width:75%;
+	height:54%;
+	margin:1% auto 0;
+	position: relative;
+}
+.container .whirligig{
+	width:100%;
+	height:97.5%;
+	padding-top:2.5%;
+}
+.whirligig .swiper-slide{
+	background:url(../images/swiper_bg.png) no-repeat;
+	background-size:100% 100%;
+}
+.whirligig .toppic{
+	width:20.3%;
+	height:16%;
+	position: absolute;
+	top:-4%;
+	left:39.85%;
+	z-index:10;
+}
+.whirligig .banner{
+	width:60%;
+	height:40%;
+	position: absolute;
+	top:38.4%;
+	left:20%;
+	z-index:10;
+}
+.whirligig .swiper-slide p{
+	font-size:0.6rem;
+	color:#fff;
+	width:100%;
+	font-weight:bold;
+	text-shadow: 0 0 0.16rem #018AC2;
+	position: absolute;
+	text-align: center;
+	left:0;
+	letter-spacing: 0.1rem;
+	top:16%;
+}
+.s_btn{
+	width:10%;
+	height:13%;
+	position: absolute;
+	top:43.5%;
+}
+.left_btn{
+	background:url(../images/left.png) no-repeat;
+	background-size:100% 100%;
+	left:-13%;
+}
+.right_btn{
+	background:url(../images/right.png) no-repeat;
+	background-size:100% 100%;
+	right:-13%;
+}
+#LoopDiv{
+	width:100%;
+	height:15.5%;
+	position: absolute;
+	left:0;
+	bottom:17%;
+}
+/*3d轮播*/
+.imageflow {
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    visibility: hidden;
+    width:100%;
+    height:100%;
+    margin: 0 auto
+}
+.imageflow img {
+    border: none;
+    position: absolute;
+    top: 0px;
+    visibility: hidden;
+    -ms-interpolation-mode: bicubic;
+    width:50%;
+    height:100%;
+}
+.imageflow .images{
+	overflow:hidden; 
+	white-space:nowrap;
+}
+/*#previous,#next{
+	width:0px;
+	height:0px;
+	display: block;
+}*/
+#login{
+	position: absolute;
+	top:4%;
+	right:4%;
+}
+#login a{
+	display: inline-block;
+	padding:0.15rem 0.4rem;
+	background:url(../images/all_bg.png) no-repeat;
+	background-size:100% 100%;
+	text-align: center;
+	color:#fff;
+	font-size:0.3rem;
+	margin-left:0.1rem;
+}
+.self{
+	display: block;
+	width:100%;
+	height:7%;
+	text-align: center;
+	position: absolute;
+	left:0;
+	bottom:0;
+	z-index:99999;
+	color:#fff;
+	background:#000;
+	font-size:0.5rem;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+}
+.timebg{
+	width:100%;
+	height:11%;
+	position: absolute;
+	bottom:-10%;
+	left:0;
+	z-index:888;
+}
+.timebg a{
+	float:left;
+	width:30%;
+	height:100%;
+	text-align: center;
+	font-size:0.4rem;
+	color:#fff;
+	font-weight:bold;
+	letter-spacing: 0.07rem;
+	margin:1.53%;
+	background:url(../images/all_bg.png) no-repeat;
+	background-size:100% 100%;
+}

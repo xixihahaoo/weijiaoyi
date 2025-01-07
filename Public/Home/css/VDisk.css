@@ -1,0 +1,413 @@
+.VDisk_ul{
+	overflow: hidden;
+	background: #e0e0e0;
+}
+.VDisk_ul li{
+	float: left;
+	width: 50%;
+	line-height: 18px;
+	font-size: 12px;
+	color: #6d6d6d;
+	text-align: center;
+	margin-top: 2%;
+}
+.VDisk_ul .VDisk_ul_li{
+	color: #e64545;
+	margin-top: 0;
+}
+.VDisk_p{
+	overflow: hidden;
+	margin: 3% ;
+}
+.VDisk_p img{
+	float: left;
+	width: 30px;
+	height: 21px;
+}
+.VDisk_p span{
+	float: left;
+	font-size: 16px;
+	color: #a28661;
+}
+.VDisk_p a{
+	float: left;
+	font-size: 12px;
+	color: #7a7a7a;
+	margin-top: 1%;
+}
+.VDisk_pa{
+	line-height: 40px;
+	background: #e0e0e0;
+	overflow: hidden;
+}
+.VDisk_pa span{
+	font-size: 14px;
+	color: #717171;
+	float: left;
+	width: 80%;
+	text-align: center;
+}
+#VDisk_pa_i{
+	font-size: 18px;
+	color: #b8b8b8;
+	margin-left: 5%;
+	float: left;
+	width: 5%;
+}
+#VDisk_pa_ia{
+	width: 5%;
+	font-size: 18px;
+	color: #b8b8b8;
+	float: right;
+	margin-right: 5%;
+}
+.VDisk_ulb{
+	overflow: hidden;
+}
+.VDisk_ulb li{
+	float: left;
+	width: 50%;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 26px;
+	color:#7B7E80;
+}
+.chicang_gaoliang{
+	background-color: #E64545;
+	color:#fff !important;
+}
+.VDisk_ula_li{
+	overflow: hidden;
+	line-height: 35px;
+	border: 1px solid #b0b0b0;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+.VDisk_ula_li span{
+	float: left;
+	font-size: 14px;
+}
+.VDisk_ula_li_sp{
+	width: 23%;
+	text-align: center;
+}
+.VDisk_ula_li_spa{
+	width: 12%;
+	text-align: center;
+	color: #e64545;
+}
+.VDisk_ula_li_spb{
+	width: 26%;
+	text-align: center;
+}
+.VDisk_ula_li_spc{
+	width:10%;
+	text-align: center;
+	color: #e64545;
+}
+.VDisk_ula_li_spd{
+	text-align: center;
+	color: #70D777;
+}
+.VDisk_ula_li_spe{
+	width:18%;
+	text-align: center;
+}
+/*======微盘-持仓-订单详情======*/
+.personal_center_ul li{
+	font-size: 12px;
+	color: #868686;
+	border-bottom:1px solid #b0b0b0;
+	line-height: 29px;
+	padding-left: 3%; 
+}
+.personal_center_ul li span{
+	font-size: 12px;
+	color: #3a3a3a;
+}
+#personal_span{
+	color: #e64545;
+}
+.personal_spana,.personal_spanb,.personal_spanc{
+	margin-right: 10%;
+}
+/*======微盘-充值========*/
+.VDisk_recharge_d{
+	padding-left: 3%;
+}
+.VDisk_recharge_d p{
+	font-size: 12px;
+	color: #868686;
+	line-height: 20px;
+}
+.VDisk_recharge_d p span{
+	color:#e64545;
+	font-size:14px;
+}
+#VDisk_recharge_d_p{
+	background: #e0e0e0;
+	line-height: 30px;
+	overflow: hidden;
+	margin-left: -3%;
+    padding:0 3%;
+}
+#VDisk_recharge_d_p span{
+	float: right;
+	color: #868686;
+}
+.VDisk_recharge_p{
+	margin-top: 4%;
+	overflow: hidden;
+}
+.VDisk_recharge_p a{
+	float: left;
+	width: 100%;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	color: #fff;
+	background: #e64545;
+}
+/*======支付成功======*/
+.VDisk_recharge_success_d{
+	font-size: 14px;
+	color: #1c1c1c;
+	width: 100%;
+	margin:10% auto;
+}
+#VDisk_recharge_success_i{
+	font-size: 40px;
+	color: #e64545;
+	display: inline-block;
+	margin-left: 30%;
+	vertical-align: middle;
+}
+/*==============微盘-登录==========*/
+
+
+.VDisk_register_d{
+	background: url(../images/微盘-登录.jpg);
+	width: 100%;
+	height: 515px;
+}
+@media screen and (min-width: 375px) and (max-width: 383px) {
+  .VDisk_register_d {
+    height: 615px; } }
+@media screen and (min-width: 400px) and (max-width: 420px) {
+  .VDisk_register_d {
+    height: 684px; } }
+    @media screen and (min-width: 430px) and (max-width: 450px) {
+  .VDisk_register_d {
+    height: 721px; } }
+@media screen and (min-width: 700px) and (max-width: 800px) {
+  .VDisk_register_d {
+    height: 972px;} }
+@media screen and (min-width: 900px) {
+  .VDisk_register_d {
+    height: 1115px;} }
+#VDisk_register_span{
+	display:block;
+	font-size: 14px;
+	color: #fff;
+}
+.VDisk_register_d_p{
+	border-bottom: 1px solid #fff;
+	color: #fff;
+	font-size: 14px;
+	line-height: 37px;
+	margin:0 2%;
+}
+.VDisk_register_d_pa{
+	padding-top: 33%;
+}
+.VDisk_register_d_pb{
+	overflow: hidden;
+	padding: 5% 2%;
+}
+.VDisk_register_d_pb a{
+	float: left;
+	width: 100%;
+	text-align: center;
+	line-height: 25px;
+	background: #8877b9;
+	color: #fff;
+}
+/*==========微盘-公告=========*/
+.VDisk_affiche_ul{
+	overflow: hidden;
+	margin:3% 5%;
+}
+.VDisk_affiche_li{
+	float: left;
+	width: 24%;
+	text-align: center;
+}
+.VDisk_affiche_li img{
+	width: 61px;
+	height: 51px;
+}
+.VDisk_affiche_lia{
+	font-size: 12px;
+	color: #303030;
+	font-weight: bold;
+}
+.VDisk_affiche_lib{
+	font-size: 9px;
+	color:#303030;
+}
+.VDisk_affiche_lic{
+	font-size: 8px;
+	color:#5d5d5d;
+}
+/*========微盘-公告-详情==============*/
+
+.VDisk_Pages_p{
+	text-align: center;
+	line-height: 35px;
+	font-size: 16px;
+	color: #303030;
+}
+.VDisk_Pages_pa{
+	text-align: center;
+	font-size: 8px;
+	color: #5d5d5d;
+}
+.VDisk_Pages_d{
+	border-top: 1px solid #c0a576;
+	border-bottom: 1px solid #c0a576;
+	margin: 3% 0;
+}
+.VDisk_Pages_d p{
+	text-indent: 2em;
+	font-size: 9px;
+	color: #303030;
+	line-height: 20px;
+	margin: 3%;
+}
+.VDisk_Pages_pb{
+	margin: auto;
+	width: 40%;
+	overflow: hidden;
+}
+.VDisk_Pages_pb a{
+	float: left;
+	width: 30%;
+	line-height:20px;
+	text-align: center;
+	background: #016fad;
+	color: #fff;
+	margin-right: 5%;
+}
+#VDisk_Pages_pb_a{
+	width: 24%;
+}
+/*===========微盘-提现===============*/
+.VDisk_withdraw_d{
+	margin: 3% 0;
+}
+.VDisk_withdraw_d_p{
+	border: 1px solid #bdbdbd;
+	line-height: 30px;
+	font-size: 12px;
+	color: #868686;
+	padding-left: 3%;
+}
+.VDisk_withdraw_d_p input{
+	outline: none;
+	border: 0;
+	color: #e64545;
+}
+#VDisk_withdraw_d_p{
+	border-top: none;
+}
+#VDisk_withdraw_d_p input{
+	color: #868686;
+}
+.VDisk_withdraw_p{
+	border-top: 1px solid #bdbdbd;
+	border-bottom: 1px solid #bdbdbd;
+	margin: 3% 0;
+	text-align: center;
+	padding: 3% 3%;
+}
+.VDisk_withdraw_p img{
+	width: 100%;
+	height: 71px;
+}
+/*======微盘-注册========*/
+.VDisk_registers_d{
+	text-align: center;
+	margin-top:5%;
+}
+.VDisk_registers_d img{
+	width: 30%;
+	height: auto;
+}
+.VDisk_registers_da{
+	margin:0 3%;
+}
+.VDisk_registers_da p{
+	line-height: 37px;
+	font-size: 14px;
+	color: #7a7a7a;
+	border-bottom: 1px solid #bfbfbf;
+}
+#VDisk_registers_da_inp{
+	width: 30%;
+	height: 16px;
+	margin-left: 2%;
+}
+.VDisk_registers_db{
+	margin:0 3%;
+}
+.VDisk_registers_db_p{
+	font-size: 12px;
+	color: #545454;
+	line-height: 30px;
+}
+.VDisk_registers_db_p input{
+	vertical-align: middle;
+}
+/*========重置密码=============*/
+.VDisk_Password_d{
+	
+}
+.VDisk_Password_d p{
+	margin: 3%;
+	border: 1px solid #bdbdbd;
+	line-height: 30px;
+	font-size: 12px;
+	color: #585858;
+	padding: 0 2%;
+}
+.VDisk_Password_d_p input{
+	outline: none;
+	border: 0;
+	color: #989898;
+}
+#VDisk_Password_d_p_a{
+	overflow: hidden;
+}
+#VDisk_Password_d_p_a p{
+	width: 56%;
+	float: left;
+}
+#VDisk_Password_d_p_a span{
+	width: 30%;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	background: #e64545;
+	float: right;
+	margin: 3% 3% 3% 0;
+}
+.VDisk_Password_p{
+	margin:0 3%;
+	line-height: 25px;
+	text-align: center;
+	background: #e64545;
+	color: #fff;
+	font-size: 14px;
+}

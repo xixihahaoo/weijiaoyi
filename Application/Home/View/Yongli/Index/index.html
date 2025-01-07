@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>商品行情</title>
+    <head>
+        <include file="Common:header" />
+        <link rel="stylesheet" type="text/css" href="__CSS__/yongli/base.css" />
+        <link rel="stylesheet" type="text/css" href="__CSS__/yongli/index.css" />
+        <link rel="stylesheet" type="text/css" href="__CSS__/yongli/footer.css" />
+        <script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+        <script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="__CSS__/layer_mobile/layer.css">
+        <script type="text/javascript" src="__CSS__/layer_mobile/layer.js"></script>
+
+    </head>
+    <body>
+
+<section class="wrap-page" style="bottom:.62rem;">
+
+<header id="top_box" class="mui-bar mui-bar-nav">
+    <div class="mui-title left service">
+        <h4 style="margin-left: 3.6rem">
+         商品行情
+        </h4>
+    </div>
+</header>
+
+            <div class="iTaba f36" id="iTaba">
+<!--                 <ul class="ita_t my-bar">
+                    <foreach name="result" item="lt" key="k">
+                        <li class="my-bar-item on">{$k}</li>
+                    </foreach>
+                </ul> -->
+<!--                 <div class="bd">
+                    <div class="tempWrap" style="overflow:auto; position:relative;">
+                        <ul class="bd_qihuo">
+                            <foreach name="result" item="lt" key="k">
+                                <li class="my-bar bd_qihuo_list">
+                                    <span class="my-bar-item">商品名称</span>
+                                    <span class="my-bar-item">现价</span>
+                                    <span class="my-bar-item">最高</span>
+                                    <span class="my-bar-item">最低</span>
+                                    <volist name="lt" id="vo">
+
+                                    		<input type="hidden" value="{$vo.code}" class="code">
+
+                                    		<a href="{:U('product',array('id' => $vo['id']))}">
+                                                <ul class="newbd_new_list newHold {$vo.code}">
+                                                    <li>{$vo.name}</li>
+                                                    <if condition="$vo['flag'] eq 0">
+                                                        <li><span  class="newbd_xianj newbd_xianj_hui">已休市</span></li>
+                                                        <li><span class="xianj_num xianj_num_hui">已休市</span></li>
+                                                        <li><span class="xianj_num xianj_num_hui">已休市</span></li>
+                                                    <else />
+                                                        <li><span class="newbd_xianj newbd_xianj_green Price">{$vo.last}</span></li>
+                                                        <li><span class="xianj_num xianj_num_green High">{$vo.high}</span></li>
+                                                        <li><span class="xianj_num xianj_num_green Low">{$vo.low}</span></li>
+                                                    </if>
+                                                </ul>
+                                            </a>
+                                    </volist>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div> -->
+                
+                <ul class="ita_t my-bar">
+                    <volist name="class" id="vo">
+                        <li class="my-bar-item on">{$vo.name}</li>
+                    </volist>
+                </ul>
+                <div class="bd">
+                    <div class="tempWrap" style="overflow:auto; position:relative;">
+                        <ul class="bd_qihuo">
+                            <foreach name="class" item="lt" key="k">
+                                <li class="my-bar bd_qihuo_list">
+                                    <span class="my-bar-item">商品名称</span>
+                                    <span class="my-bar-item">现价</span>
+                                    <span class="my-bar-item">最高</span>
+                                    <span class="my-bar-item">最低</span>
+                                    <volist name="option" id="vo">
+                                            
+                                        <if condition="$vo['pid'] eq $lt['id']">
+                                            <input type="hidden" value="{$vo.code}" class="code">
+
+                                            <a href="{:U('product',array('id' => $vo['id']))}">
+                                                <ul class="newbd_new_list newHold {$vo.code}">
+                                                    <li>{$vo.name}</li>
+                                                    <if condition="$vo['flag'] eq 0">
+                                                        <li><span  class="newbd_xianj newbd_xianj_hui">已休市</span></li>
+                                                        <li><span class="xianj_num xianj_num_hui">已休市</span></li>
+                                                        <li><span class="xianj_num xianj_num_hui">已休市</span></li>
+                                                    <else />
+                                                        <li><span class="newbd_xianj newbd_xianj_green Price">{$vo.last}</span></li>
+                                                        <li><span class="xianj_num xianj_num_green High">{$vo.high}</span></li>
+                                                        <li><span class="xianj_num xianj_num_green Low">{$vo.low}</span></li>
+                                                    </if>
+                                                </ul>
+                                            </a>
+                                        </if>
+                                    </volist>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- 底部开始 -->
+        <nav class="bar bar-tab index" id="bar-tab">
+            <a href="{:U('Index/index')}" class="tab-item on" >
+                <span class="icon icontu icon-index-active"></span>
+                <span class="tab-label indext-active">商品行情</span>
+            </a>
+            <a href="{:U('Transaction/record')}" class="tab-item jy">
+                <span class="icon icontu icon-jy"></span>
+                <span class="tab-label jy">交易记录</span>
+            </a>
+            <a href="{:U('User/index')}" id="account label" class="tab-item">
+                <span class="icon icontu icon-me"></span>
+                <span class="tab-label me">个人账户</span>
+            </a>
+        </nav>
+<!---底部结束 -->
+<script type="text/javascript" src="__JS__/yongli/slide.js"></script>
+<script type="text/javascript">
+    TouchSlide({
+        slideCell:"#focus",
+        titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+        mainCell:".bd ul",
+        effect:"left",
+        autoPlay:true,//自动播放
+        autoPage:true
+    });
+    TouchSlide({
+        slideCell:"#iTaba",
+        titCell:".ita_t li",
+        mainCell:".bd ul",
+        effect:"left",
+        autoPlay:false,
+        autoPage:false
+    });
+    TouchSlide({
+        slideCell:"#iTabs",
+        titCell:".its_t li",
+        mainCell:".bd ul",
+        effect:"left",
+        autoPlay:false,
+        autoPage:false
+    });
+</script>
+    </body>
+</html>
+<script type="text/javascript">
+
+
+var arr = [];
+$.each($('.code'),function(){
+   var key = $(this).val();
+   arr.push(key);
+});
+var arrString = arr.join(',');
+
+ws = new WebSocket("ws://39.107.99.235:8026");
+ws.onopen = function() { 
+    ws.send('tom');
+};
+ws.onmessage = function(e) {
+
+    var data = eval("("+e.data+")");
+    var type = data.type || '';
+    switch(type){
+        case 'init':
+            $.post('{:U("binding")}', {client_id: data.client_id,group:arrString}, function(data){}, 'json');
+            break;
+        default :
+
+            var data   = JSON.parse(e.data);
+
+            if(data.Diff >= 0){
+                $('.'+data.StockCode+' li .Price').css('background','#F6293B');
+                $('.'+data.StockCode+' li .High').css("color","#F6293B");
+                $('.'+data.StockCode+' li .Low').css("color","#F6293B");
+            }else {
+                $('.'+data.StockCode+' li .Price').css('background','#1CBE52');
+                $('.'+data.StockCode+' li .High').css("color","#1CBE52");
+                $('.'+data.StockCode+' li .Low').css("color","#1CBE52");
+            }
+
+            $('.'+data.StockCode+' li .Price').html(data.Price);
+            $('.'+data.StockCode+' li .High').html(data.High);
+            $('.'+data.StockCode+' li .Low').html(data.Low);
+    }
+};
+</script>

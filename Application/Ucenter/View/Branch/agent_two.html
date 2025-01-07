@@ -1,0 +1,155 @@
+<extend name="Base/common"/>
+<block name="content">
+<script>
+<style type="text/css">
+	.datatable,.datatable th{text-align:center;}
+</style>
+<script type="text/javascript" src="/public/home/js/jquery.min.js"></script>
+<div class="main sidebar-minified">
+<!--/row-->
+			<div class="row">		
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h2><i class="fa fa-table red"></i><span class="break"></span><strong>经纪人2列表</strong></h2>
+							<div style="display: inline-block; margin-left: 20px">
+								<form id="cuntomerfrom"  method="get" action="{:U('agent_two')}">
+									<span>起始时间：</span><input type="text" id="StartTime" name="StartTime" value="{$Think.get.StartTime}" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+									<span>结束时间：</span><input type="text" id="EntTime" name="EntTime" value="{$Think.get.EntTime}" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"  />
+									<span>名字：</span><input type="text" value="{$Think.get.search}" name="search">
+									<span>代理1：</span>
+									<select name='unit_id' style='width:150px;height:40px;' class="unit_id">
+										<option value=''>默认不选</option>
+										<volist name="unit" id="vo">
+										<option value="{$vo.uid}">{$vo.username}</option>
+										</volist>
+										<input type="hidden" value="{$sea.unit_id}" id="unit_id">
+									</select>
+									<a class="btn btn-danger" id="cuntomerbut">
+										<i class="fa">搜索</i> 
+									</a>
+								</form>
+							</div>
+							<div class="panel-actions">
+							  <!--   <a href="window.location.reload();" class="btn-setting"><i class="fa fa-rotate-right"></i></a> -->
+								<a href="" ><i class="fa fa-rotate-right"></i></a>
+								<a href="table.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+								<a href="table.html#" class="btn-close"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+							  <thead>
+								  <tr> 
+                                      <th style="text-align:center">编号</th>
+									  <th style="text-align:center">用户名</th>
+									  <th style="text-align:center">联系人</th>
+									  <th style="text-align:center">联系电话</th>
+									  <th style="text-align:center">上级</th>
+									  <th style="text-align:center">返佣比例</th>
+                                      <th style="text-align:center">地区</th>
+									  <th style="text-align:center">注册时间</th>
+									  <th style="text-align:center">操作</th>
+								  </tr>
+							  </thead>   
+							  <tbody>
+							  <volist name="agent_one" id="vo">								
+									<tr>
+	                                    <td style="text-align:center">{$vo.uid}</td>
+										<td style="text-align:center">{$vo.username}</td>
+										<td style="text-align:center">{$vo.linkman|default=暂无}</td>
+										<td style="text-align:center">{$vo.utel}</td>
+										<td style="text-align:center">{$vo.unit_name}</td>
+										<td style="text-align:center">{$vo.feerebate}%</td>
+	                                    <td style="text-align:center">{$vo.address}</td>
+										<td style="text-align:center">{$vo.utime|date='Y-m-d H:i',###}</td>
+										<td style="text-align:center">
+											<a class="btn btn-info" href="{:U('branch/save_agent')}?uid={$vo['uid']}&otype=1">
+												<i class="fa">修改</i>                                            
+											</a>
+											<if condition="$vo.mem_num gt 0">
+											<a href="{:U('Agent/agent_two')}?leaguer_id={$vo['uid']}" class="btn btn-info">下级</a>
+											</if>
+											<if condition="$vo['ustatus'] eq 0">
+												<a href="#" class="btn btn-danger" onclick="upstatus({$vo['uid']},1)" value="{$vo['uid']}">冻结</a>
+											<else/>
+												<a href="#" class="btn btn-info" onclick="upstatus({$vo['uid']},0)" value="{$vo['uid']}">解冻</a>
+											</if>
+											<if condition="$vo.mem_num eq 0">
+											<a href_dara="{:U('Branch/agent_two')}?uid={$vo['uid']}&url=Agent/agent_one" class="btn btn-danger a_delete">删除</a>
+											</if>
+										</td>
+									</tr>
+								</volist>
+							  </tbody>
+						  </table> 						
+						 <div class="pagelist">{$page}</div>						 
+						</div>
+					</div>
+				</div><!--/col-->
+			
+			</div><!--/row-->
+   
+		</div>
+<script>
+	function showpre(uid)
+	{
+		var StartTime = $("#StartTime").val();
+		var EntTime = $("#EntTime").val();
+		$.ajax({
+			type: "post",
+			url:"{:U('Ordinary/showpre')}",
+			data:{"uid":uid,"StartTime":StartTime,"EntTime":EntTime},
+			dataType:"json",
+			success:function(data)
+			{
+				if(!data.sumyk){
+					alert("无任何交易信息");
+				}else{
+					alert("该用户总充值"+data.sumbla+"元,交易总盈亏是："+data.sumyk+"元,交易总手续费是"+data.sumsxf+'元');
+				}
+			},
+			error: function(data) {
+				//alert(data);
+			}
+		});
+	}
+	function upstatus(id,type){
+
+		if(confirm('确定要进行该操作吗？')){
+		   $.post("{:U('Agent/upstatus')}", { "type":type,"id":id },
+              function(data){
+                  alert(data.info); // John
+				  if(data.state==1){
+					 window.location.reload();//刷新当前页面.
+				  }
+               });
+		}else{
+		  return false;
+		}
+	}
+	$(function(){
+		$('a.a_delete').click(function(){
+			if (confirm("您确定删除吗？")) {  
+				window.location.href = $(this).attr('href_dara');
+			}  
+			else {  
+				alert("点击了取消");  
+			}  
+		});
+	})
+</script>
+
+<script type="text/javascript">
+
+
+	var unit_id = $('#unit_id').val();
+	$.each($('.unit_id option'),function(){
+		if($(this).val() == unit_id)
+		{
+			$(this).attr('selected',true);
+		}
+
+	});
+</script>
+ </block>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>资金流水</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="__CSS__/yongli/base.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/yongli/nameAndBank.css">
+    <link href="__CSS__/yongli/chognti.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="__JS__/yongli/jquery.min.js"></script>
+<script type="text/javascript"  src="__JS__/yongli/rem.js"></script>
+<title></title>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            width: 0!important;
+            height: 0!important;
+        }
+    </style>
+</head>
+<body>
+<header class="page-header">
+    <div class="content">
+        <div class="left">
+            <a class="back" href="javascript:window.history.back();">&nbsp;</a>
+        </div>
+        <h3 class="back " id="head-name">资金流水</h3>
+    </div>
+</header>
+<section class="wrap-page" style="margin-top: 12%;">
+    <div class="chingti">
+    
+        <div id="content">
+        <volist name="flow" id="vo">
+            <div class="tx">
+                <p class="lan left"></p>
+                <div class="chingti_text left">
+                    <p class="chongzhi ">
+                        {$vo.note}
+                    </p>
+                    <p class="c_time"><span></span>{:date('Y-m-d H:i:s',$vo['dateline'])}</p>
+                </div>
+                <div class="chingti_num right">
+                    <p class="chongzhi ">¥{$vo.change_money}</p>
+                    <p class="c_time">
+                        {$vo.type}
+                    </p>
+                </div>
+            </div>
+        </volist>
+        </div>
+
+        <div id="LAY_demo1" style="margin-bottom: 0.9rem;"></div>
+    </div>
+</section>
+<div class="button-bar">
+    <a class="button button-dark" href="{:U('index')}">关闭</a>
+</div>
+
+<link rel="stylesheet" href="__JS__/layui/css/layui.css"  media="all">
+<script src="__JS__/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+layui.use('flow', function(){
+
+  var flow = layui.flow;
+ 
+  flow.load({
+    elem: '#LAY_demo1'
+    ,scrollElem: ''
+    ,done: function(page, next){
+
+      setTimeout(function(){
+        var lis = [];
+        
+          $.ajax({
+                url: "{:U('capitalPage')}",
+                dataType: 'json',
+                type: 'post',
+                data:{'page':page+1},
+                success: function (data) {
+
+                 var html = '';
+                 $.each(data,function(key,val){
+                    html+='<div class="tx">';
+                    html+='<p class="lan left"></p>';
+                    html+='<div class="chingti_text left">';
+                    html+='<p class="chongzhi ">';
+                    html+=''+val.note+'';
+                    html+='</p>';
+                    html+='<p class="c_time"><span></span>'+val.dateline+'</p>';
+                    html+='</div>';
+                    html+='<div class="chingti_num right">';
+                    html+='<p class="chongzhi ">¥'+val.change_money+'</p>';
+                    html+='<p class="c_time">';
+                    html+=''+val.type+'';
+                    html+='</p>';
+                    html+='</div>';
+                    html+='</div>';
+                 });
+
+                $('#content').append(html);
+            }
+        });
+        next(lis.join(''), page < "{$count}");
+      }, 1000);
+    }
+  });
+});
+</script>
+</body>
+</html>
